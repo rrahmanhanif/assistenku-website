@@ -1,38 +1,27 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <!-- CONTENT SECURITY POLICY (relaxed untuk inline script/style) -->
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    script-src 'self' 'unsafe-inline';
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' data:;
-    connect-src 'self';
-    font-src 'self';
-    frame-ancestors 'none';
-    base-uri 'self';
-  ">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Assistenku -- Beranda</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Assistenku — Beranda</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- no external analytics here to keep CSP simple -->
 </head>
 <body data-page="index">
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <img src="logo.png" alt="Assistenku Logo" class="logo-img">
-        <div>
+        <img src="logo.png" alt="Assistenku Logo" class="logo-img" />
+        <div class="brand-text">
           <div class="logo-text">ASSISTENKU</div>
           <div class="tagline">Layanan Asisten Profesional & Pekerja Terlatih</div>
         </div>
       </div>
 
       <div class="controls">
-        <button class="dark-toggle" aria-label="Toggle dark mode">🌙</button>
+        <button class="dark-toggle" aria-label="Toggle dark">🌙</button>
         <button id="menuIcon" class="menu-icon" aria-label="Open menu">☰</button>
       </div>
-
     </div>
 
     <nav id="mainNav" class="main-nav">
@@ -45,78 +34,65 @@
   </header>
 
   <main class="container">
-    <section class="hero">
-      <h1>Selamat datang di Assistenku</h1>
-      <p class="lead">
-        Assistenku menyediakan tenaga profesional untuk kebutuhan rumah tangga, perawatan lansia, baby sitter, sopir pribadi,
-        dan layanan pendukung lain dengan proses perekrutan ketat dan pelatihan standar.
-      </p>
-      <div class="hero-actions">
-        <a class="btn primary" href="layanan.html">Lihat Layanan</a>
-        <a class="btn" href="karir.html">Daftar Karir</a>
-      </div>
-
-      <blockquote class="welcome">
-        <strong>Kata sambutan dari Founder:</strong>
-        <p>
-          "Assistenku hadir untuk mempermudah keluarga dan profesional menemukan tenaga yang dapat diandalkan -- beretika, terlatih,
-          dan siap bekerja. Komitmen kami adalah keselamatan, kenyamanan, dan kepuasan pengguna layanan." -- <em>Founder</em>
-        </p>
-      </blockquote>
-    </section>
-
-    <section class="about-grid">
-      <article>
-        <h2>Sejarah Singkat</h2>
-        <p>
-          Assistenku didirikan pada tahun 2020 dengan visi mendorong profesionalitas di sektor tenaga pendukung rumah tangga.
-          Bermula dari layanan lokal, kini kami melayani klien di beberapa kota besar dengan tim yang terus disertifikasi.
-        </p>
-      </article>
-
-      <article>
-        <h2>Visi & Misi</h2>
-        <p><strong>Visi:</strong> Menjadi platform terdepan untuk tenaga pendukung rumah tangga dan perawatan di Indonesia.</p>
-        <ul>
-          <li>Menyediakan tenaga terlatih dan terverifikasi.</li>
-          <li>Menyederhanakan proses perekrutan dengan sistem transparan.</li>
-          <li>Membangun hubungan jangka panjang antara klien dan tenaga profesional.</li>
-        </ul>
-      </article>
-
-      <article>
-        <h2>Founder & Legal</h2>
-        <div class="founder">
-          <img src="nib1.png" alt="Founder NIB 1" class="nib">
-          <div>
-            <strong>Nama Founder</strong>
-            <p>Pengalaman manajemen & layanan pelanggan sejak 2015. Penggagas Assistenku.</p>
-            <p><strong>NIB 1:</strong> ada di samping (nib1.png)</p>
+    <section class="hero hero-startup">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <h1>Tenaga Profesional untuk Kebutuhan Sehari-hari Anda</h1>
+          <p class="lead">
+            Assistenku menyediakan layanan tenaga rumah tangga, perawat lansia, baby sitter, sopir pribadi, dan
+            tenaga pendukung profesional lainnya. Proses seleksi ketat, pelatihan standar, dan layanan
+            dengan kontrak fleksibel (per jam / harian / bulanan).
+          </p>
+          <div class="hero-cta">
+            <a class="btn primary" href="layanan.html">Lihat Layanan</a>
+            <a class="btn outline" href="karir.html">Daftar Karir</a>
           </div>
-        </div>
-        <div class="founder small">
-          <img src="nib2.png" alt="NIB 2" class="nib">
-          <div><strong>Legal / NIB 2</strong><p>Dokumen legal pendukung perusahaan (nib2.png).</p></div>
-        </div>
-      </article>
-    </section>
 
-    <section class="highlights">
-      <h2>Kenapa memilih Assistenku?</h2>
-      <div class="features">
-        <div class="feature">
-          <h4>Seleksi Ketat</h4>
-          <p>Proses screening dan pelatihan untuk semua tenaga kerja.</p>
+          <blockquote class="welcome">
+            <strong>Kata Sambutan Founder</strong>
+            <p>
+              "Kami percaya bahwa kualitas layanan dimulai dari kualitas SDM. Assistenku berkomitmen
+              melatih dan menyeleksi tenaga kerja untuk memberikan rasa aman, nyaman, dan profesional kepada pengguna."
+              — <em>Founder Assistenku</em>
+            </p>
+          </blockquote>
         </div>
-        <div class="feature">
-          <h4>Jaminan Keamanan</h4>
-          <p>Pemeriksaan latar belakang & rekomendasi untuk profil tertentu.</p>
-        </div>
-        <div class="feature">
-          <h4>Harga Transparan</h4>
-          <p>Paket per jam, harian, dan bulanan. Tidak ada biaya tersembunyi.</p>
+
+        <div class="hero-media">
+          <img src="nib1.png" alt="NIB 1" class="hero-img" />
+          <img src="nib2.png" alt="NIB 2" class="hero-img small" />
         </div>
       </div>
+    </section>
+
+    <section class="section cards">
+      <h2>Kenapa Memilih Assistenku</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Seleksi Ketat</h3>
+          <p>Proses rekruitmen, verifikasi dokumen, pengecekan latar belakang, dan pelatihan dasar untuk semua kandidat.</p>
+        </div>
+        <div class="card">
+          <h3>Standard Operasional</h3>
+          <p>Protokol kerja, manual tugas, dan sistem pelaporan harian untuk menjaga kualitas layanan.</p>
+        </div>
+        <div class="card">
+          <h3>Transparansi Harga</h3>
+          <p>Paket harga jelas per jam/hari/bulan, dokumentasi biaya tersedia untuk klien (lihat halaman Layanan).</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about">
+      <h2>Sejarah Singkat</h2>
+      <p>Didirikan pada 2020, Assistenku lahir dari kebutuhan nyata masyarakat akan tenaga terpercaya. Kami mulai melayani
+      area lokal dan berkembang berdasarkan permintaan — memperkuat proses pelatihan dan pengawasan untuk menjamin layanan.</p>
+
+      <h3>Visi & Misi</h3>
+      <ul>
+        <li><strong>Visi:</strong> Menjadi platform tenaga profesional terkemuka di Indonesia.</li>
+        <li><strong>Misi:</strong> Menyediakan tenaga terlatih, proses mudah, dan dukungan berkelanjutan untuk klien.</li>
+      </ul>
     </section>
   </main>
 
