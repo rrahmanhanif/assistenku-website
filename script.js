@@ -1,19 +1,19 @@
 /* script.js — Assistenku common scripts
    - mobile nav
    - dark mode toggle
-   - lock/unlock lintas-halaman (layanan <-> karir)
+   - lock/unlock cross-page (layanan <-> karir)
    - simple contact form behavior
 */
 
 (() => {
-  // mobile nav toggle
+  // Mobile nav toggle
   const menu = document.getElementById('menuIcon');
   const nav = document.getElementById('mainNav');
   if (menu && nav) {
     menu.addEventListener('click', () => nav.classList.toggle('open'));
   }
 
-  // dark mode toggle
+  // Dark mode toggle (simple)
   document.querySelectorAll('.dark-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
       document.documentElement.classList.toggle('dark');
@@ -29,7 +29,7 @@
   }
 
   // ---------- LOCK / UNLOCK SYSTEM ----------
-  // One open page at a time. key holds page id string ('layanan' or 'karir') or null
+  // localStorage key holds which page currently "open" ('layanan' or 'karir') or null
   const LOCK_KEY = 'assistenku_doc_open_page';
 
   function setOpenPage(page) {
@@ -38,7 +38,7 @@
     } else {
       localStorage.setItem(LOCK_KEY, page);
     }
-    // notify other tabs
+    // fire storage event for same-tab listeners
     window.dispatchEvent(new Event('storage'));
   }
   function getOpenPage(){ return localStorage.getItem(LOCK_KEY); }
@@ -89,7 +89,7 @@
     }
   }
 
-  // toggle handlers
+  // Toggle handlers
   if (btnBiaya) {
     btnBiaya.addEventListener('click', () => {
       const current = getOpenPage();
@@ -114,7 +114,7 @@
     });
   }
 
-  // clicking link: only allow if this page is not locked by other page
+  // Clicking link: only allow if this page is not locked by other page
   if (linkBiaya) {
     linkBiaya.addEventListener('click', (e) => {
       const open = getOpenPage();
@@ -126,7 +126,7 @@
       // mark as opened by this page so other page locks
       setOpenPage('layanan');
       applyLocks();
-      // allow other tab open (link uses target=_blank)
+      // allow link to open in new tab
     });
   }
 
@@ -143,14 +143,14 @@
     });
   }
 
-  // listen across tabs
+  // Listen across tabs
   window.addEventListener('storage', applyLocks);
   window.addEventListener('focus', applyLocks);
 
   // init
   applyLocks();
 
-  // simple contact form (demo)
+  // Simple contact form (demo)
   const form = document.getElementById('contactForm');
   if (form) {
     form.addEventListener('submit', (e) => {
