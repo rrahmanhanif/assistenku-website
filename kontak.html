@@ -1,23 +1,19 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    script-src 'self' 'unsafe-inline';
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' data:;
-  ">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Assistenku -- Kontak</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Assistenku — Kontak</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body data-page="kontak">
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <img src="logo.png" alt="Logo" class="logo-img">
-        <div class="logo-text">ASSISTENKU</div>
+        <img src="logo.png" alt="Assistenku Logo" class="logo-img" />
+        <div class="brand-text">
+          <div class="logo-text">ASSISTENKU</div>
+        </div>
       </div>
 
       <div class="controls">
@@ -36,34 +32,34 @@
   </header>
 
   <main class="container">
-    <section class="page-header">
+    <section class="section page-header">
       <h1>Kontak Kami</h1>
-      <p class="lead">Ada pertanyaan? Ingin layanan atau rekrutmen? Hubungi kami melalui saluran berikut.</p>
+      <p class="lead">Hubungi kami untuk layanan, rekrutmen atau partnership.</p>
     </section>
 
-    <section class="contact-cards">
-      <div class="card">
-        <h3>WhatsApp</h3>
-        <p><a href="https://wa.me/6280000000000" target="_blank" rel="noopener">Klik untuk chat</a></p>
-      </div>
-
-      <div class="card">
-        <h3>Email</h3>
-        <p><a href="mailto:admin@assistenku.com">admin@assistenku.com</a></p>
-      </div>
-
-      <div class="card">
-        <h3>Alamat</h3>
-        <p>Jakarta, Indonesia -- kunjungan berdasarkan janji</p>
+    <section class="section contact-cards">
+      <div class="grid-3">
+        <div class="card">
+          <h3>WhatsApp</h3>
+          <p><a href="https://wa.me/6280000000000" target="_blank" rel="noopener">Klik untuk chat</a></p>
+        </div>
+        <div class="card">
+          <h3>Email</h3>
+          <p><a href="mailto:admin@assistenku.com">admin@assistenku.com</a></p>
+        </div>
+        <div class="card">
+          <h3>Alamat</h3>
+          <p>Jakarta, Indonesia — kunjungan berdasarkan janji</p>
+        </div>
       </div>
     </section>
 
-    <section class="form-section">
+    <section class="section form-section">
       <h3>Formulir Pertanyaan</h3>
-      <form id="contactForm">
+      <form id="contactForm" class="form">
         <label>Nama <input type="text" name="name" required></label>
         <label>Email <input type="email" name="email" required></label>
-        <label>Pesan <textarea name="message" rows="4" required></textarea></label>
+        <label>Pesan <textarea name="message" rows="5" required></textarea></label>
         <button type="submit" class="btn primary">Kirim</button>
       </form>
       <p class="muted">Kami akan membalas dalam 1–2 hari kerja.</p>
