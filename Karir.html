@@ -1,23 +1,19 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    script-src 'self' 'unsafe-inline';
-    style-src 'self' 'unsafe-inline';
-    img-src 'self' data:;
-  ">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Assistenku -- Karir</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Assistenku — Karir</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body data-page="karir">
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand">
-        <img src="logo.png" alt="Logo" class="logo-img">
-        <div class="logo-text">ASSISTENKU</div>
+        <img src="logo.png" alt="Assistenku Logo" class="logo-img" />
+        <div class="brand-text">
+          <div class="logo-text">ASSISTENKU</div>
+        </div>
       </div>
 
       <div class="controls">
@@ -36,57 +32,50 @@
   </header>
 
   <main class="container">
-    <section class="page-header">
-      <h1>Karir di Assistenku</h1>
-      <p class="lead">Bergabunglah menjadi tenaga profesional kami. Kami membuka peluang untuk berbagai posisi.</p>
+    <section class="section page-header">
+      <h1>Karir</h1>
+      <p class="lead">Bergabung menjadi tenaga profesional kami. Kami membuka berbagai posisi setiap saat.</p>
     </section>
 
-    <section class="jobs">
+    <section class="section jobs">
       <article class="job">
         <h3>Asisten Rumah Tangga (ART)</h3>
-        <p>Deskripsi pekerjaan: menyapu, mengepel, mencuci, menyetrika, mengatur rumah. Jam kerja fleksibel. Kriteria: jujur, rapi, komunikatif.</p>
+        <p>Deskripsi: menyapu, mengepel, mencuci, menyetrika, menata rumah. Kriteria: jujur, komunikatif, bertanggung jawab.</p>
       </article>
 
       <article class="job">
         <h3>Baby Sitter</h3>
-        <p>Deskripsi pekerjaan: perawatan anak, memantau perkembangan, membantu tugas rutin bayi. Kriteria: sabar, penyayang, pengalaman minimal 1 tahun.</p>
+        <p>Deskripsi: merawat bayi/anak, stimulasi, keamanan, komunikasi dengan orang tua. Kriteria: sabar, pengalaman minimal 1 tahun.</p>
       </article>
 
       <article class="job">
         <h3>Caregiver / Perawat Lansia</h3>
-        <p>Deskripsi pekerjaan: membantu aktivitas harian lansia, mengingatkan obat, membantu mobilisasi, melaporkan kondisi ke keluarga. Kriteria: empati & pelatihan dasar perawatan.</p>
+        <p>Deskripsi: bantuan mobilisasi, pengingat obat, perawatan dasar, laporan kondisi. Kriteria: empati & pelatihan dasar.</p>
       </article>
 
       <article class="job">
         <h3>Sopir Pribadi</h3>
-        <p>Deskripsi pekerjaan: aman berkendara, memahami rute, menjaga kebersihan kendaraan. Kriteria: SIM A, pengalaman, rapi & sopan.</p>
-      </article>
-
-      <article class="job">
-        <h3>Lainnya</h3>
-        <p>Cleaning service, tukang kebun, tukang pertukangan ringan -- posisi tersedia berdasarkan permintaan.</p>
+        <p>Deskripsi: aman berkendara, etika, pengelolaan kendaraan. Kriteria: SIM A, pengalaman minimal 2 tahun.</p>
       </article>
     </section>
 
-    <section class="doc-section">
+    <section class="section doc-section">
       <h2>Sistem Gaji & Dokumentasi</h2>
-      <p>Klik tombol berikut untuk melihat dokumen Sistem Gaji. Jika dokumen Layanan sedang dibuka, dokumen Sistem Gaji akan otomatis dikunci.</p>
+      <p>Untuk melihat detail sistem gaji dan simulasi perhitungan, gunakan tombol di bawah. Jika dokumen Sistem Gaji dibuka, dokumen Biaya Layanan di halaman Layanan otomatis akan terkunci.</p>
 
       <div class="doc-controls">
-        <!-- LOCK/UNLOCK Button (default biru) -->
-        <button class="lock-btn secondary" id="btn-gaji" data-target="doc-gaji">🔒 Kunci -- Sistem Gaji</button>
+        <!-- Lock button (blue default) -->
+        <button class="lock-btn secondary" id="btn-gaji" data-target="doc-gaji">🔒 Kunci — Sistem Gaji</button>
 
-        <!-- Link dokumen -->
-        <a id="doc-gaji" class="doc-link" href="https://drive.google.com/file/d/1UKaP7oSB11vBh2wI1u0qBCkwVF-YHEeD/view?usp=drivesdk" target="_blank" rel="noopener">
-          Lihat Dokumen Sistem Gaji (Google Drive)
-        </a>
+        <!-- Link -->
+        <a id="doc-gaji" class="doc-link locked" href="https://drive.google.com/file/d/1UKaP7oSB11vBh2wI1u0qBCkwVF-YHEeD/view?usp=drivesdk" target="_blank" rel="noopener">Lihat Dokumen Sistem Gaji (Google Drive)</a>
       </div>
       <p class="muted">Catatan: dokumen berisi struktur gaji, tunjangan, dan simulasi perhitungan.</p>
     </section>
 
-    <section class="cta-apply">
-      <h3>Ingin melamar?</h3>
-      <p>Kirim CV Anda ke <a href="mailto:karirassistenku@gmail.com">karirassistenku@gmail.com</a> -- sertakan pengalaman kerja dan referensi.</p>
+    <section class="section apply">
+      <h3>Ingin Melamar?</h3>
+      <p>Kirim CV ke <a href="mailto:karirassistenku@gmail.com">karirassistenku@gmail.com</a>. Cantumkan posisi yang dilamar, pengalaman, dan kontak.</p>
     </section>
   </main>
 
