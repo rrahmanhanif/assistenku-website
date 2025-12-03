@@ -1,3 +1,100 @@
+/* ================================
+   HAMBURGER MENU
+================================ */
+const menuIcon = document.getElementById("menuIcon");
+const mobileMenu = document.getElementById("mobileMenu");
+
+if (menuIcon) {
+  menuIcon.addEventListener("click", () => {
+    mobileMenu.classList.toggle("active");
+  });
+}
+
+
+/* ================================
+   CONSTANT LINKS
+================================ */
+const layananLink = "https://drive.google.com/file/d/1Hwzol_d_aAM0OGxPR_un04nPyTUrR5gW/view?usp=drivesdk";
+const gajiLink = "https://drive.google.com/file/d/1UKaP7oSB11vBh2wI1u0qBCkwVF-YHEeD/view?usp=drivesdk";
+const formulirLink = "https://drive.google.com/file/d/1tIxfDILacdYDjt6wg9VViPkugj31tvXJ/view?usp=drivesdk";
+
+
+/* ================================
+   BUTTON ELEMENTS
+================================ */
+const lockBtn = document.getElementById("lockBtn");
+const btnBiayaLayanan = document.getElementById("btnBiayaLayanan");
+const btnUnduhFormulir = document.getElementById("btnUnduhFormulir");
+const btnSistemGaji = document.getElementById("btnSistemGaji");
+
+
+/* ================================
+   PASSWORD (MD5 HASH)
+================================ */
+const correctHash = "0f23ae0ee0fa9a1c81efc8d43f22c25d"; // "Hanif@123"
+
+
+/* ================================
+   INITIAL LOCK STATUS (NO TIMER)
+================================ */
+if (lockBtn) {
+  const unlocked = localStorage.getItem("unlock_status");
+
+  if (unlocked === "true") {
+    unlock(false); // jangan auto open
+  } else {
+    lock();
+  }
+
+  lockBtn.addEventListener("click", () => {
+    if (lockBtn.classList.contains("locked")) {
+      showPasswordPopup();
+    } else {
+      lock();
+      localStorage.setItem("unlock_status", "false");
+    }
+  });
+}
+
+
+/* ================================
+   ISLAND BUTTONS (SELALU AKTIF)
+================================ */
+if (btnBiayaLayanan) {
+  btnBiayaLayanan.addEventListener("click", () => {
+    localStorage.setItem("opened_layanan", "true"); // kunci silang
+    window.open(layananLink, "_blank");
+  });
+}
+
+if (btnUnduhFormulir) {
+  btnUnduhFormulir.addEventListener("click", () => {
+    window.open(formulirLink, "_blank");
+  });
+}
+
+if (btnSistemGaji) {
+  btnSistemGaji.addEventListener("click", () => {
+    localStorage.setItem("opened_karir", "true"); // kunci silang
+    window.open(gajiLink, "_blank");
+  });
+}
+
+
+
+/* ================================
+   PASSWORD POPUP
+================================ */
+function showPasswordPopup() {
+
+  const overlay = document.createElement("div");
+  overlay.id = "popupOverlay";
+  overlay.style.position = "fixed";
+  overlay.style.inset = "0";
+  overlay.style.background = "rgba(0,0,0,0.5)";
+  overlay.style.backdropFilter = "blur(8px)";
+  overlay.style.display = "flex";
+  overlay.style.alignItems = "center";
   overlay.style.justifyContent = "center";
   overlay.style.zIndex = "9999";
 
@@ -53,8 +150,8 @@ async function validatePassword() {
   const hashed = await md5(val);
 
   if (hashed === correctHash) {
-    unlock(true); // true = auto-open dokumen
-    localStorage.setItem("unlock_time", Date.now());
+    unlock(true);
+    localStorage.setItem("unlock_status", "true");
     document.getElementById("popupOverlay").remove();
   } else {
     alert("Password salah.");
@@ -93,23 +190,20 @@ function lock() {
 
 
 /* ================================
-   SISTEM KUNCI SILANG (24 JAM)
+   SISTEM KUNCI SILANG (NO TIMER)
 ================================ */
 (function kunciSilang() {
-  const now = Date.now();
 
-  // Jika di halaman layanan → cek apakah sudah buka karir
+  // Jika sedang di halaman layanan → kunci jika karir pernah dibuka
   if (window.location.pathname.includes("layanan")) {
-    const openedKarir = localStorage.getItem("opened_karir");
-    if (openedKarir && now - openedKarir < ONE_DAY) {
+    if (localStorage.getItem("opened_karir") === "true") {
       lock();
     }
   }
 
-  // Jika di halaman karir → cek apakah sudah buka layanan
+  // Jika sedang di halaman karir → kunci jika layanan pernah dibuka
   if (window.location.pathname.includes("karir")) {
-    const openedLayanan = localStorage.getItem("opened_layanan");
-    if (openedLayanan && now - openedLayanan < ONE_DAY) {
+    if (localStorage.getItem("opened_layanan") === "true") {
       lock();
     }
   }
