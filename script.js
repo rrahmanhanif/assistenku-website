@@ -1,288 +1,256 @@
-/* ========================================================
-   GLOBAL RESET & BASE
-======================================================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Inter","Segoe UI",Arial,sans-serif;
+/* =========================================
+GLOBAL RESET
+========================================= */
+
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: "Inter", Arial, sans-serif;
 }
 
-html { scroll-behavior: smooth; }
 
 body {
-  background: #f5f7fb;
-  color: #1e1e1e;
-  line-height: 1.75;
-  transition: background 0.35s ease, color 0.35s ease;
+background: #f7f9fc;
+color: #222;
+line-height: 1.7;
 }
 
-a, button { transition: 0.25s ease; }
-
-/* ========================================================
-   NAVBAR — PREMIUM AI STARTUP STYLE
-======================================================== */
+/* =========================================
+NAVBAR
+========================================= */
 header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(255,255,255,0.70);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(255,255,255,0.4);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-  z-index: 9999;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+background: #ffffffee;
+backdrop-filter: blur(8px);
+border-bottom: 1px solid #e0e0e0;
+z-index: 999;
 }
 
 .navbar {
-  max-width: 1200px;
-  margin: auto;
-  padding: 14px 22px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+max-width: 1200px;
+margin: auto;
+padding: 15px 20px;
+display: flex;
+align-items: center;
+justify-content: space-between;
 }
 
-.logo { width: 120px; user-select: none; }
+.logo {
+width: 110px;
+object-fit: contain;
+}
 
-/* Desktop nav */
 nav ul {
-  display: flex;
-  gap: 30px;
-  list-style: none;
+display: flex;
+gap: 30px;
+}
+
+nav ul li {
+list-style: none;
 }
 
 nav ul li a {
-  position: relative;
-  text-decoration: none;
-  font-weight: 500;
-  color: #333;
-  padding: 6px 0;
-}
-
-nav ul li a::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -3px;
-  width: 0%;
-  height: 2px;
-  background: #0d6efd;
-  border-radius: 4px;
-  transition: 0.25s ease;
-}
-
-nav ul li a:hover::after,
-nav ul li a.active::after {
-  left: 0;
-  width: 100%;
+text-decoration: none;
+color: #1a1a1a;
+font-weight: 500;
+transition: 0.2s;
 }
 
 nav ul li a:hover,
-nav ul li a.active { color: #0d6efd; }
+nav ul li a.active {
+color: #0d6efd;
+}
 
-/* Mobile menu */
+/* HAMBURGER */
 #menuIcon {
-  display: none;
-  font-size: 30px;
-  cursor: pointer;
+display: none;
+cursor: pointer;
+font-size: 30px;
 }
 
 #mobileMenu {
-  display: none;
-  flex-direction: column;
-  background: rgba(255,255,255,0.85);
-  backdrop-filter: blur(12px);
-  padding: 18px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+display: none;
+flex-direction: column;
+background: white;
+width: 100%;
+padding: 20px;
+border-bottom: 1px solid #e0e0e0;
 }
 
 #mobileMenu a {
-  text-decoration: none;
-  font-weight: 500;
-  color: #333;
-  padding: 12px 0;
+text-decoration: none;
+color: #333;
+padding: 10px 0;
+font-weight: 500;
 }
 
-/* ========================================================
-   HERO
-======================================================== */
+/* =========================================
+HERO SECTION (INDEX)
+========================================= */
 .hero {
-  max-width: 900px;
-  margin: 150px auto 40px auto;
-  padding: 20px;
-  text-align: center;
+max-width: 900px;
+margin: 140px auto 40px auto;
+padding: 20px;
+text-align: center;
 }
 
 .hero h1 {
-  font-size: 36px;
-  font-weight: 700;
-  background: linear-gradient(90deg,#0d6efd,#0b53c9);
-  -webkit-background-clip: text;
-  color: transparent;
+font-size: 32px;
+margin-bottom: 20px;
+color: #0d6efd;
 }
 
 .hero p {
-  margin-top: 14px;
-  font-size: 17px;
-  color: #444;
+font-size: 17px;
+color: #333;
+margin-bottom: 25px;
 }
 
-/* ========================================================
-   SECTIONS — JUSTIFY FINAL
-======================================================== */
+/* =========================================
+SECTIONS
+========================================= */
+
 section {
-  max-width: 1100px;
-  margin: auto;
-  padding: 40px 22px;
-  text-align: justify;
+max-width: 1100px;
+margin: auto;
+padding: 35px 20px;
 }
 
 section h2 {
-  font-size: 28px;
-  font-weight: 700;
-  color: #0d6efd;
-  text-align: left;
-  margin-bottom: 12px;
+font-size: 26px;
+margin-bottom: 12px;
+color: #0d6efd;
 }
 
 section p {
-  font-size: 16px;
-  margin-bottom: 14px;
+font-size: 16px;
+color: #333;
+margin-bottom: 15px;
 }
 
-/* ========================================================
-   CARD GRID (GLASSMORPHIC PREMIUM)
-======================================================== */
+/* =========================================
+CARD GRID
+========================================= */
+
 .card-grid {
-  display: grid;
-  gap: 24px;
-  padding-top: 14px;
-  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+display: grid;
+gap: 20px;
+padding-top: 10px;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .card {
-  background: rgba(255,255,255,0.55);
-  backdrop-filter: blur(16px);
-  padding: 24px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.45);
-  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
-  transition: 0.25s ease;
+background: white;
+padding: 22px;
+border-radius: 14px;
+box-shadow: 0px 4px 12px #00000011;
+transition: 0.2s;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.16);
+transform: translateY(-4px);
+box-shadow: 0px 6px 18px #00000022;
 }
 
-.card h3 { font-size: 20px; margin-bottom: 8px; }
+.card h3 {
+font-size: 20px;
+margin-bottom: 8px;
+color: #333;
+}
 
-.card ul { margin-left: 20px; }
-.card ul li { margin-bottom: 6px; }
+.card p {
+margin-bottom: 10px;
+color: #444;
+}
 
+/* List inside card */
+.card ul {
+margin-left: 18px;
+padding-bottom: 10px;
+}
+
+.card ul li {
+margin-bottom: 5px;
+color: #333;
+}
+
+/* Founder images, legal images */
 .founder-img,
 .legal-img {
-  width: 100%;
-  border-radius: 14px;
-  margin: 12px 0;
+width: 100%;
+border-radius: 12px;
+margin: 10px 0;
+object-fit: cover;
 }
 
-/* ========================================================
-   BUTTONS — ISLAND + LOCK
-======================================================== */
-
-/* ISLAND BUTTON */
-.island-btn {
-  display: inline-block;
-  padding: 13px 24px;
-  background: #fff;
-  border: 1px solid #d6ddea;
-  border-radius: 50px;
-  font-weight: 600;
-  color: #0d6efd;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-  transform: translateY(0);
+/* =========================================
+BUTTONS
+========================================= */
+.btn-primary {
+display: inline-block;
+padding: 12px 20px;
+background: #0d6efd;
+color: white;
+border-radius: 12px;
+text-decoration: none;
+font-weight: 600;
+transition: 0.2s;
 }
 
-.island-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
-}
-
-.island-btn:disabled {
-  opacity: .45;
-  cursor: not-allowed;
-  transform: none;
+.btn-primary:hover {
+background: #0b5ed7;
 }
 
 /* LOCK BUTTON */
 .lock-button {
-  width: 100%;
-  padding: 14px 20px;
-  border-radius: 14px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 700;
-  color: #fff;
+padding: 12px 20px;
+border: 0;
+border-radius: 12px;
+cursor: pointer;
+font-weight: bold;
+font-size: 16px;
+transition: 0.2s;
 }
 
-.locked { background: #e14d4d; }
-.unlocked { background: #28c76f; }
+.locked {
+background: #d9534f;
+color: white;
+}
 
-/* ========================================================
-   FLOATING BLUR FOOTER
-======================================================== */
+.unlocked {
+background: #28a745;
+color: white;
+}
+
+/* =========================================
+FOOTER
+========================================= */
 footer {
-  margin-top: 60px;
-  padding: 26px 18px;
-  text-align: center;
-  font-size: 14px;
-  background: rgba(250,250,255,0.55);
-  backdrop-filter: blur(18px);
-  border-top: 1px solid rgba(255,255,255,0.6);
+margin-top: 40px;
+background: #f0f3f8;
+text-align: center;
+padding: 20px;
+font-size: 14px;
 }
 
-/* ========================================================
-   DARK MODE (Automatic)
-======================================================== */
-@media (prefers-color-scheme: dark) {
+/* =========================================
+RESPONSIVE
+========================================= */
 
-  body {
-    background: #13151a;
-    color: #e6e6e6;
-  }
-
-  header {
-    background: rgba(22,22,24,0.75);
-    border-bottom-color: rgba(255,255,255,0.1);
-  }
-
-  nav ul li a { color: #dcdcdc; }
-  nav ul li a:hover,
-  nav ul li a.active { color: #4d8cff; }
-
-  #mobileMenu { background: rgba(20,20,24,0.88); }
-  .card {
-    background: rgba(255,255,255,0.07);
-    border-color: rgba(255,255,255,0.12);
-  }
-
-  .island-btn {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(255,255,255,0.2);
-    color: #5fa2ff;
-  }
-
-  footer { background: rgba(25,25,30,0.65); }
-}
-
-/* ========================================================
-   RESPONSIVE
-======================================================== */
 @media (max-width: 860px) {
-  nav ul { display: none; }
-  #menuIcon { display: block; }
-  #mobileMenu.active { display: flex; }
-  .hero h1 { font-size: 30px; }
-    }
+nav ul {
+display: none;
+}
+
+#menuIcon {
+display: block;
+}
+
+#mobileMenu.active {
+display: flex;
+}
+}
