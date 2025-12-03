@@ -25,31 +25,7 @@
 }
 
 
-/* ========================================================
-   GLOBAL RESET & BASE
-======================================================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
-}
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: #f5f7fb;
-  color: #1e1e1e;
-  line-height: 1.75;
-  transition: background 0.4s ease, color 0.4s ease;
-}
-
-/* Global hover smoothness */
-a, button {
-  transition: 0.25s ease;
-}
 
 
 /* ========================================================
@@ -64,7 +40,26 @@ header {
   border-bottom: 1px solid rgba(255,255,255,0.4);
   box-shadow: 0 8px 24px rgba(0,0,0,0.05);
   z-index: 9999;
+}/* ========================================================
+   GLOBAL RESET & BASE
+======================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter","Segoe UI",Arial,sans-serif;
 }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #f5f7fb;
+  color: #1e1e1e;
+  line-height: 1.75;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+a, button { transition: 0.25s ease; }
 
 .navbar {
   max-width: 1200px;
