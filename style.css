@@ -14,7 +14,7 @@ body {
   line-height: 1.6;
 }
 
-/* Container helper */
+/* Global section wrapper */
 section {
   padding: 60px 20px;
   max-width: 960px;
@@ -68,6 +68,7 @@ p {
   height: 42px;
 }
 
+
 /* Mobile icon */
 #menuIcon {
   display: none;
@@ -84,7 +85,7 @@ p {
   display: none;
   flex-direction: column;
   gap: 15px;
-  background: white;
+  background: #fff;
   padding: 20px;
   border-top: 1px solid #ccc;
 }
@@ -168,10 +169,16 @@ p {
   color: #005ec4;
 }
 
+.card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
 
 
 /* ===========================
-   FLOATING WHATSAPP
+   FLOATING WHATSAPP BUTTON
 =========================== */
 .wa-floating img {
   width: 60px;
@@ -222,10 +229,18 @@ footer {
   box-shadow: 0px 4px 12px rgba(217, 83, 79, 0.4);
 }
 
+.locked:hover {
+  background: #c9302c;
+}
+
 .unlocked {
   background: #5cb85c;
   color: white;
-  box-shadow: 0px 4px 12px rgba(92, 184, 92, 0.4);
+  box-shadow: 0px 4px 12px rgba(92,184,92,0.4);
+}
+
+.unlocked:hover {
+  background: #449d44;
 }
 
 
@@ -296,14 +311,35 @@ footer {
 
 
 /* ===========================
-   RESPONSIVE
+   RESPONSIVE FIXES
 =========================== */
 @media (max-width: 768px) {
+
+  /* Tampilkan hamburger */
   #menuIcon {
     display: block;
   }
 
+  /* Sembunyikan menu desktop */
   nav ul {
     display: none;
   }
-                   }
+
+  /* Logo lebih kecil */
+  .logo {
+    height: 38px;
+  }
+
+  /* Hero text */
+  .hero h1 {
+    font-size: 26px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  section {
+    padding: 45px 18px;
+  }
+   }
