@@ -1,34 +1,32 @@
 /* =========================================================
-   ASSISTENKU ULTRA DESIGN SYSTEM — LEVEL MENTOK
-   by ChatGPT
+   ASSISTENKU ULTRA DESIGN SYSTEM — FINAL
 ========================================================= */
 
 /* ========================
-   0. ROOT DESIGN TOKENS
+   0. ROOT TOKENS
 ======================== */
 :root {
   --font-main: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
-  --color-text: #1c1c1e;
-  --color-subtext: #6b6b6e;
+  --color-text: #1a1a1c;
+  --color-subtext: #6c6c70;
   --color-primary: #0a6bff;
   --color-primary-dark: #0050d8;
 
-  --bg-light: #f5f7fb;
+  --bg-light: #f3f6fb;
   --bg-white: #ffffff;
-  --bg-glass: rgba(255,255,255,0.72);
-  --bg-glass-strong: rgba(255,255,255,0.86);
+  --bg-glass: rgba(255,255,255,0.75);
 
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 22px;
 
-  --shadow-1: 0 2px 8px rgba(0,0,0,0.05);
-  --shadow-2: 0 8px 24px rgba(0,0,0,0.08);
-  --shadow-3: 0 18px 40px rgba(0,0,0,0.12);
+  --shadow-sm: 0 3px 10px rgba(0,0,0,0.06);
+  --shadow-md: 0 10px 24px rgba(0,0,0,0.09);
+  --shadow-lg: 0 18px 40px rgba(0,0,0,0.14);
 
   --transition-fast: 0.2s;
-  --transition-medium: 0.35s;
+  --transition-mid: 0.35s;
 }
 
 /* ========================
@@ -46,14 +44,16 @@ body {
   color: var(--color-text);
   line-height: 1.7;
   opacity: 0;
-  animation: fadeIn 0.7s forwards ease-out;
+  animation: fadeInPage 0.7s forwards ease-out;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInPage {
   to { opacity: 1; }
 }
 
-img { user-select: none; pointer-events: none; }
+img {
+  user-select: none;
+}
 
 section {
   padding: 90px 20px;
@@ -64,25 +64,26 @@ section {
 
 
 /* =========================================================
-   2. NAVBAR — ULTRA
+   2. NAVBAR — ULTRA GLASS
 ========================================================= */
 .navbar {
   position: fixed;
   top: 0;
   width: 100%;
   padding: 18px 34px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   background: var(--bg-glass);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-sm);
 
-  border-bottom: 1px solid rgba(0,0,0,0.07);
-  box-shadow: var(--shadow-1);
   z-index: 200;
-  transition: var(--transition-medium);
+  transition: var(--transition-mid);
 }
 
 .navbar.hide {
@@ -90,7 +91,8 @@ section {
 }
 
 .logo {
-  height: 48px;
+  height: 50px;
+  object-fit: contain;
 }
 
 .navbar ul {
@@ -120,17 +122,20 @@ section {
 
 
 /* =========================================================
-   3. MOBILE NAV ULTRA
+   3. MOBILE MENU — ULTRA
 ========================================================= */
 #mobileMenu {
   display: none;
   flex-direction: column;
   gap: 20px;
-  background: var(--bg-glass-strong);
-  padding: 25px;
+
+  padding: 24px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
   border-top: 1px solid rgba(0,0,0,0.08);
-  backdrop-filter: blur(14px);
-  box-shadow: var(--shadow-2);
+  box-shadow: var(--shadow-md);
 }
 
 #mobileMenu.show {
@@ -146,54 +151,58 @@ section {
 
 
 /* =========================================================
-   4. HERO SECTION — ULTRA
+   4. HERO SECTION
 ========================================================= */
 .hero {
   text-align: center;
-  padding: 180px 20px 120px;
-  background: linear-gradient(135deg, #eaf2ff, #f9fbff);
+  padding: 180px 20px 130px;
+  background: linear-gradient(145deg, #e9f1ff, #f9fbff);
 }
 
 .hero h1 {
-  font-size: 46px;
+  font-size: 44px;
   font-weight: 800;
   color: #0a4bad;
 }
 
 .hero p {
-  max-width: 760px;
+  max-width: 780px;
   margin: auto;
   font-size: 19px;
-  opacity: 0.9;
-  margin-top: 12px;
-}
-
-
-
-/* BUTTON ULTRA */
-.btn-primary {
-  display: inline-block;
-  background: var(--color-primary);
-  padding: 15px 36px;
-  border-radius: var(--radius-md);
-  color: #fff;
-  font-size: 17px;
-  font-weight: 600;
-  margin-top: 35px;
-  text-decoration: none;
-  box-shadow: 0 8px 26px rgba(0,119,255,0.3);
-  transition: transform 0.25s, box-shadow 0.25s;
-}
-
-.btn-primary:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0,119,255,0.4);
+  opacity: 0.92;
+  margin-top: 10px;
 }
 
 
 
 /* =========================================================
-   5. CARD ULTRA
+   5. BUTTONS
+========================================================= */
+.btn-primary {
+  display: inline-block;
+  padding: 15px 36px;
+  background: var(--color-primary);
+  border-radius: var(--radius-md);
+
+  color: #fff;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+
+  box-shadow: 0 10px 28px rgba(0,119,255,0.35);
+  transition: var(--transition-mid);
+  margin-top: 30px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 38px rgba(0,119,255,0.45);
+}
+
+
+
+/* =========================================================
+   6. CARD SECTION — ULTRA PREMIUM
 ========================================================= */
 .card-grid {
   display: grid;
@@ -211,26 +220,26 @@ section {
   background: var(--bg-white);
   padding: 32px;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-2);
-  transition: var(--transition-medium);
+
+  box-shadow: var(--shadow-md);
   border: 1px solid rgba(0,0,0,0.05);
+  transition: var(--transition-mid);
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-3);
+  box-shadow: var(--shadow-lg);
 }
 
 .card h3 {
-  font-size: 22px;
-  margin-bottom: 14px;
   color: var(--color-primary);
+  margin-bottom: 12px;
 }
 
 
 
 /* =========================================================
-   6. FOOTER ULTRA
+   7. FOOTER
 ========================================================= */
 footer {
   background: var(--bg-white);
@@ -238,77 +247,70 @@ footer {
   padding: 35px;
   border-top: 1px solid rgba(0,0,0,0.08);
   color: var(--color-subtext);
+  margin-top: 60px;
 }
 
 
 
 /* =========================================================
-   7. WHATSAPP FLOATING ULTRA
-========================================================= */
-.wa-floating img {
-  width: 66px;
-  filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25));
-}
-
-.wa-floating {
-  position: fixed;
-  bottom: 32px;
-  right: 32px;
-  z-index: 999;
-}
-
-
-
-/* =========================================================
-   8. PASSWORD LOCK SYSTEM — ULTRA
+   8. LOCK BUTTON (FOOTER MODE)
 ========================================================= */
 .lock-button {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  padding: 16px 26px;
+  position: static;           /* BUKAN FLOATING */
+  margin-top: 20px;
+  padding: 14px 22px;
+
   font-size: 16px;
-  border-radius: var(--radius-md);
-  border: none;
-  cursor: pointer;
   font-weight: 600;
-  z-index: 9999;
+
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
   transition: var(--transition-fast);
+
+  display: inline-block;
 }
 
 .locked {
-  background: #f14646;
+  background: #e74c3c;
   color: #fff;
-  box-shadow: 0 8px 18px rgba(241,70,70,0.35);
+  box-shadow: 0 4px 12px rgba(231,76,60,0.35);
 }
 
 .unlocked {
-  background: #4caf55;
+  background: #2ecc71;
   color: #fff;
-  box-shadow: 0 8px 18px rgba(76,175,80,0.35);
+  box-shadow: 0 4px 12px rgba(46,204,113,0.35);
 }
 
 
-/* POPUP ULTRA */
+
+/* =========================================================
+   9. PASSWORD POPUP ULTRA
+========================================================= */
 #popupOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+
+  background: rgba(0,0,0,0.45);
   backdrop-filter: blur(8px);
+
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
   z-index: 99999;
 }
 
 .popup-box {
   width: 92%;
   max-width: 380px;
-  background: var(--bg-glass-strong);
-  backdrop-filter: blur(18px);
-  padding: 30px;
+
+  padding: 28px;
+  background: var(--bg-white);
+
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-3);
+  box-shadow: var(--shadow-lg);
 }
 
 .popup-box input {
@@ -319,14 +321,58 @@ footer {
   margin-top: 18px;
 }
 
+.popup-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.popup-actions button {
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#cancelPopup {
+  background: #ccc;
+  color: #333;
+}
+
+#confirmPass {
+  background: var(--color-primary);
+  color: white;
+}
+
+
 
 /* =========================================================
-   9. RESPONSIVE TUNING ULTRA
+   10. RESPONSIVE TUNING (REDMI NOTE OK)
 ========================================================= */
 @media (max-width: 768px) {
-  #menuIcon { display: block; }
-  nav ul { display: none; }
+  #menuIcon {
+    display: block;
+  }
 
-  .hero h1 { font-size: 32px; }
-  section { padding: 70px 18px; }
-   }
+  nav ul {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  section {
+    padding: 70px 18px;
+  }
+
+  .card {
+    padding: 26px;
+  }
+
+  .navbar {
+    padding: 16px 22px;
+  }
+}
