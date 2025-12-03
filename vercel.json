@@ -11,26 +11,22 @@
   "routes": [
     {
       "src": "/",
-      "dest": "/index"
+      "dest": "/index.html"
     },
-
-    {
-      "src": "/(.*)/",
-      "dest": "/$1"
-    },
-
     {
       "src": "/([^\\.]+)$",
       "dest": "/$1.html"
     },
-
     {
-      "src": "/.*\\.html$",
+      "src": "/(.*)\\.html$",
       "status": 301,
       "headers": { "Location": "/$1" },
-      "dest": "/"
+      "dest": "/$1"
     },
-
+    {
+      "src": "/404",
+      "dest": "/404.html"
+    },
     {
       "src": "/(.*)",
       "headers": {
