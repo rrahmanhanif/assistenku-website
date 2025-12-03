@@ -1,178 +1,75 @@
-/* =========================================================
-   ASSISTENKU — SCRIPT FINAL SESUAI PERMINTAAN
-========================================================= */
-
-/* =========================================================
-   1. MOBILE MENU
-========================================================= */
+/* ================================
+   HAMBURGER MENU
+================================ */
 const menuIcon = document.getElementById("menuIcon");
 const mobileMenu = document.getElementById("mobileMenu");
 
-if (menuIcon && mobileMenu) {
+if (menuIcon) {
   menuIcon.addEventListener("click", () => {
-    mobileMenu.classList.toggle("show");
-  });
-
-  mobileMenu.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      mobileMenu.classList.remove("show");
-    });
+    mobileMenu.classList.toggle("active");
   });
 }
 
+/* ================================
+   LOCK / UNLOCK SYSTEM
+================================ */
+const lockBtn = document.getElementById("lockBtn");
 
+// Link GDrive halaman layanan & karir
+const layananLink = "https://drive.google.com/file/d/1Hwzol_d_aAM0OGxPR_un04nPyTUrR5gW/view?usp=drivesdk";
+const gajiLink = "https://drive.google.com/file/d/1UKaP7oSB11vBh2wI1u0qBCkwVF-YHEeD/view?usp=drivesdk";
 
-/* =========================================================
-   2. NAVBAR AUTO-HIDE
-========================================================= */
-let lastScroll = 0;
-const navbar = document.querySelector(".navbar");
+// 24 jam lock timer
+const ONE_DAY = 24 * 60 * 60 * 1000;
 
-window.addEventListener("scroll", () => {
-  const currentScroll = window.pageYOffset;
+if (lockBtn) {
+  let unlockedAt = localStorage.getItem("unlock_time");
+  let now = Date.now();
 
-  if (currentScroll > lastScroll && currentScroll > 80) {
-    navbar.classList.add("hide");
+  // Jika sudah lebih dari 24 jam → kunci ulang
+  if (unlockedAt && now - unlockedAt > ONE_DAY) {
+    localStorage.removeItem("unlock_time");
+    unlockedAt = null;
+  }
+
+  // Set status awal
+  if (unlockedAt) {
+    unlock();
   } else {
-    navbar.classList.remove("hide");
+    lock();
   }
 
-  lastScroll = currentScroll;
-});
-
-
-
-/* =========================================================
-   3. LOCK SYSTEM — HALAMAN TERKUNCI
-========================================================= */
-
-// Menentukan halaman berdasarkan path
-const path = window.location.pathname;
-
-// Layanan = /layanan
-// Karir   = /karir
-let lockButtonId = null;
-
-if (path === "/layanan") lockButtonId = "lockBtn";
-if (path === "/karir") lockButtonId = "lockKarirBtn";
-
-if (lockButtonId) initLock(lockButtonId);
-
-function initLock(id) {
-  const btn = document.getElementById(id);
-  if (!btn) return;
-
-  btn.classList.add("locked");
-  btn.innerHTML = "🔒 Akses Terkunci";
-
-  btn.addEventListener("click", () => {
-    showPasswordPopup(id);
+  lockBtn.addEventListener("click", () => {
+    if (lockBtn.classList.contains("locked")) {
+      unlock();
+      localStorage.setItem("unlock_time", Date.now());
+    } else {
+      lock();
+      localStorage.removeItem("unlock_time");
+    }
   });
 }
 
+/* ===== FUNCTIONS ===== */
 
+function unlock() {
+  lockBtn.textContent = "🔓 Akses Dibuka";
+  lockBtn.classList.remove("locked");
+  lockBtn.classList.add("unlocked");
 
-/* =========================================================
-   4. POPUP PASSWORD
-========================================================= */
-function showPasswordPopup(buttonId) {
-  const old = document.getElementById("popupOverlay");
-  if (old) old.remove();
+  const path = window.location.pathname;
 
-  const overlay = document.createElement("div");
-  overlay.id = "popupOverlay";
+  if (path.includes("layanan")) {
+    window.open(layananLink, "_blank");
+  }
 
-  overlay.innerHTML = `
-    <div class="popup-box">
-      <h3>Masukkan Password</h3>
-      <p>Halaman ini dilindungi. Masukkan password untuk membuka akses.</p>
-
-      <input type="password" id="userPassword" placeholder="Password">
-
-      <div class="popup-actions">
-        <button id="cancelPopup">Batal</button>
-        <button id="confirmPass">Buka</button>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(overlay);
-
-  document.getElementById("cancelPopup").onclick = () => overlay.remove();
-  document.getElementById("confirmPass").onclick = () => validatePassword(buttonId);
-}
-
-
-
-/* =========================================================
-   5. MD5 — HASH PASSWORD
-========================================================= */
-async function md5(str) {
-  const buffer = new TextEncoder().encode(str);
-  const digest = await crypto.subtle.digest("MD5", buffer);
-
-  return Array.from(new Uint8Array(digest))
-    .map(b => b.toString(16).padStart(2, "0"))
-    .join("");
-}
-
-// Password: assistenku2025
-const correctHash = "b3a793bcee664f645dd5bb58d60f89c8";
-
-
-
-/* =========================================================
-   6. VALIDASI PASSWORD
-========================================================= */
-async function validatePassword(buttonId) {
-  const input = document.getElementById("userPassword").value.trim();
-  const hashed = await md5(input);
-
-  if (hashed === correctHash) {
-    unlockAccess(buttonId);
-    document.getElementById("popupOverlay").remove();
-  } else {
-    alert("Password salah.");
+  if (path.includes("karir")) {
+    window.open(gajiLink, "_blank");
   }
 }
 
-
-
-/* =========================================================
-   7. AKSI SETELAH PASSWORD BENAR
-========================================================= */
-function unlockAccess(buttonId) {
-  const btn = document.getElementById(buttonId);
-  if (!btn) return;
-
-  btn.classList.remove("locked");
-  btn.classList.add("unlocked");
-  btn.innerHTML = "🔓 Akses Dibuka";
-
-  // redirect halaman sesuai tombol
-  if (buttonId === "lockBtn") {
-    window.location.href =
-      "https://drive.google.com/file/d/1Hwzol_d_aAM0OGxPR_un04nPyTUrR5gW/view?usp=drivesdk";
-  }
-
-  if (buttonId === "lockKarirBtn") {
-    window.location.href =
-      "https://drive.google.com/file/d/1UKaP7oSB11vBh2wI1u0qBCkwVF-YHEeD/view?usp=drivesdk";
-  }
+function lock() {
+  lockBtn.textContent = "🔒 Akses Terkunci";
+  lockBtn.classList.add("locked");
+  lockBtn.classList.remove("unlocked");
 }
-
-
-
-/* =========================================================
-   8. ANTI INSPECT
-========================================================= */
-document.addEventListener("contextmenu", e => e.preventDefault());
-document.addEventListener("keydown", e => {
-  if (
-    e.key === "F12" ||
-    (e.ctrlKey && e.shiftKey && ["I", "C", "J"].includes(e.key)) ||
-    (e.ctrlKey && e.key === "U")
-  ) {
-    e.preventDefault();
-  }
-});
