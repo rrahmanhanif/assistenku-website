@@ -16,8 +16,8 @@
       <ul>
         <li><a href="index.html">Beranda</a></li>
         <li><a href="profil.html">Profil</a></li>
-        <li><a href="layanan.html" class="active" id="navLayanan">Layanan</a></li>
-        <li><a href="karir.html" id="navKarir">Karir</a></li>
+        <li><a href="layanan.html" class="active">Layanan</a></li>
+        <li><a href="karir.html">Karir</a></li>
         <li><a href="kontak.html">Kontak</a></li>
       </ul>
     </nav>
@@ -28,59 +28,113 @@
   <div id="mobileMenu">
     <a href="index.html">Beranda</a>
     <a href="profil.html">Profil</a>
-    <a href="layanan.html" id="navLayanan">Layanan</a>
-    <a href="karir.html" id="navKarir">Karir</a>
+    <a href="layanan.html">Layanan</a>
+    <a href="karir.html">Karir</a>
     <a href="kontak.html">Kontak</a>
   </div>
 </header>
 
+
 <section style="padding-top:130px;">
   <h2>Layanan Assistenku</h2>
+
   <p>
-    Kami menyediakan berbagai jenis layanan yang dapat disesuaikan dengan kebutuhan keluarga
-    dan operasional bisnis. Semua tenaga kerja melalui proses rekrutmen, wawancara, dan pelatihan.
+    Assistenku menyediakan berbagai jenis layanan asistensi untuk keluarga dan bisnis modern.
+    Setiap tenaga kerja telah melalui proses seleksi, wawancara, verifikasi identitas, serta 
+    pelatihan dasar sebelum siap ditugaskan. Kami berkomitmen memberikan tenaga profesional 
+    yang sopan, sigap, jujur, dan memiliki etika kerja tinggi.
   </p>
 </section>
 
+
 <section>
+  <h2>Daftar Layanan</h2>
+
   <div class="card-grid">
 
+    <!-- ART -->
     <div class="card">
-      <h3>Asisten Rumah Tangga</h3>
-      <p>ART terlatih untuk membersihkan rumah, memasak, mencuci, dan pekerjaan umum lainnya.</p>
+      <h3>Asisten Rumah Tangga (ART)</h3>
+      <p>
+        Tenaga ART terlatih untuk membersihkan rumah, mencuci, menyetrika, menata ruangan, dan 
+        membantu pekerjaan rumah tangga lainnya. Setiap kandidat dibekali pelatihan dasar 
+        kebersihan, etika kerja, komunikasi, dan SOP rumah tangga.
+      </p>
     </div>
 
+    <!-- Babysitter -->
     <div class="card">
-      <h3>Babysitter & Perawat Lansia</h3>
-      <p>Perawat ramah, sabar, dan profesional untuk bayi, balita, hingga lansia.</p>
+      <h3>Babysitter & Pengasuh Anak</h3>
+      <p>
+        Pengasuh bayi dan anak dengan pelatihan dasar, termasuk cara menggendong aman, 
+        penanganan bayi, jadwal makan, hingga pendampingan aktivitas harian anak. 
+        Cocok untuk keluarga yang membutuhkan pengawasan ekstra dengan keamanan penuh.
+      </p>
     </div>
 
+    <!-- Driver -->
     <div class="card">
-      <h3>Sopir Pribadi</h3>
-      <p>Driver profesional yang memahami rute, etika berkendara, dan keamanan.</p>
+      <h3>Driver / Sopir Pribadi</h3>
+      <p>
+        Sopir pribadi berpengalaman, memahami rute kota, disiplin, sopan, dan berkendara 
+        sesuai aturan lalu lintas. Cocok untuk kebutuhan mobilitas keluarga maupun bisnis.
+      </p>
     </div>
 
+    <!-- Office -->
     <div class="card">
-      <h3>Petugas Kebersihan</h3>
-      <p>Pembersihan harian, mingguan, atau bulanan untuk rumah dan kantor.</p>
+      <h3>Office Boy/Girl</h3>
+      <p>
+        Membantu kebersihan kantor, penyajian minuman, penataan ruangan, serta kebutuhan operasional 
+        kantor lainnya. Sangat cocok untuk UMKM, kantor startup, dan perusahaan skala besar.
+      </p>
     </div>
 
+    <!-- Kebersihan -->
     <div class="card">
-      <h3>Tukang Kebun</h3>
-      <p>Merawat taman, tanaman hias, dan kebutuhan perkebunan kecil.</p>
+      <h3>Jasa Kebersihan Harian</h3>
+      <p>
+        Layanan cleaning harian untuk rumah, kost, apartemen, hingga ruko. 
+        Tenaga cleaning telah dibekali SOP pembersihan dan penggunaan alat pembersih standar.
+      </p>
+    </div>
+
+    <!-- Personal Assistant -->
+    <div class="card">
+      <h3>Asisten Pribadi</h3>
+      <p>
+        Mendampingi kegiatan harian, mengatur jadwal, membantu belanja, arsip, administrasi ringan, 
+        hingga kegiatan operasional lainnya. Cocok untuk pebisnis dan individu dengan aktivitas padat.
+      </p>
     </div>
 
   </div>
 </section>
 
-<section>
-  <h2>Biaya Layanan</h2>
-  <p>Untuk melihat detail biaya layanan terbaru, klik tombol di bawah:</p>
 
-  <a class="btn-primary" href="https://drive.google.com/file/d/1Hwzol_d_aAM0OGxPR_un04nPyTUrR5gW/view?usp=drivesdk" target="_blank">
-    Akses Dokumen Biaya Layanan
-  </a>
+<section>
+  <h2>Akses Daftar Kandidat & Dokumen</h2>
+
+  <p>
+    Kami menyediakan daftar kandidat siap kerja beserta data pendukungnya dalam Google Drive.
+    Untuk menjaga keamanan data, tombol akses ini dilengkapi sistem **Lock–Unlock** sederhana.
+  </p>
+
+  <div style="margin-top:20px;">
+    <button id="unlockBtn" class="btn-primary">Buka Akses</button>
+    <button id="lockBtn" class="btn-secondary" style="margin-left:10px;">Kunci Akses</button>
+  </div>
+
+  <div id="fileAccess" style="margin-top:25px; display:none;">
+    <a href="https://drive.google.com/drive/folders/1lfn1aA2T2zoqHmspt_BKgtp-tclZLPnF?usp=sharing"
+       target="_blank"
+       class="btn-primary"
+       style="display:inline-block;">
+       📂 Buka File Kandidat
+    </a>
+  </div>
 </section>
+
 
 <footer>
   © 2025 Assistenku
