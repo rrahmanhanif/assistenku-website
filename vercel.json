@@ -1,13 +1,21 @@
 {
   "version": 2,
+  "cleanUrls": true,
+
   "builds": [
     { "src": "**/*.html", "use": "@vercel/static" },
-    { "src": "*.css", "use": "@vercel/static" },
-    { "src": "*.js", "use": "@vercel/static" },
-    { "src": "*.png", "use": "@vercel/static" },
-    { "src": "*.jpg", "use": "@vercel/static" }
+    { "src": "**/*.css", "use": "@vercel/static" },
+    { "src": "**/*.js", "use": "@vercel/static" },
+    { "src": "**/*.{png,jpg,jpeg,gif,svg,webp}", "use": "@vercel/static" }
   ],
+
   "routes": [
+    { "src": "/profil", "dest": "/profil.html" },
+    { "src": "/layanan", "dest": "/layanan.html" },
+    { "src": "/karir", "dest": "/karir.html" },
+    { "src": "/kontak", "dest": "/kontak.html" },
+    { "src": "/index", "dest": "/index.html" },
+
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
