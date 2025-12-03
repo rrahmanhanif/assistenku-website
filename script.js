@@ -16,13 +16,9 @@ if (menuIcon && mobileMenu) {
 // HALAMAN TERKUNCI
 // =======================
 
-// Halaman yang harus pakai password untuk membuka file
 const lockedPages = ["layanan.html", "karir.html"];
-
-// Nama file halaman saat ini
 const currentPage = window.location.pathname.split("/").pop();
 
-// Jika halaman termasuk yang locked → tampilkan tombol lock
 if (lockedPages.includes(currentPage)) {
   createLockButton();
 }
@@ -32,7 +28,6 @@ function createLockButton() {
   btn.id = "lockBtn";
   btn.className = "lock-button locked";
   btn.innerHTML = "🔒 Akses Terkunci";
-
   document.body.appendChild(btn);
 
   btn.addEventListener("click", () => {
@@ -43,7 +38,7 @@ function createLockButton() {
 
 
 // =======================
-// POPUP MEMASUKKAN PASSWORD
+// POPUP PASSWORD
 // =======================
 function showPasswordPopup() {
   const old = document.getElementById("popupOverlay");
@@ -75,7 +70,7 @@ function showPasswordPopup() {
 
 
 // =======================
-// MD5 HASH TANPA LIBRARY
+// MD5
 // =======================
 async function md5(str) {
   const buffer = new TextEncoder().encode(str);
@@ -85,13 +80,12 @@ async function md5(str) {
     .join("");
 }
 
-// Hash password: "assistenku2025"
 const correctHash = "b3a793bcee664f645dd5bb58d60f89c8";
 
 
 
 // =======================
-// VALIDASI PASSWORD
+// VALIDASI
 // =======================
 async function validatePassword() {
   const input = document.getElementById("userPassword").value.trim();
@@ -108,17 +102,15 @@ async function validatePassword() {
 
 
 // =======================
-// AKSI SETELAH PASSWORD BENAR
+// JIKA PASSWORD BENAR
 // =======================
 function unlockAccess() {
   const btn = document.getElementById("lockBtn");
-  if (!btn) return;
 
   btn.classList.remove("locked");
   btn.classList.add("unlocked");
   btn.innerHTML = "🔓 Akses Dibuka";
 
-  // Redirect sesuai halaman
   if (currentPage === "layanan.html") {
     window.location.href =
       "https://drive.google.com/file/d/1Hwzol_d_aAM0OGxPR_un04nPyTUrR5gW/view";
@@ -133,7 +125,7 @@ function unlockAccess() {
 
 
 // =======================
-// ANTI INSPECT (AMAN)
+// ANTI INSPECT
 // =======================
 document.addEventListener("contextmenu", (e) => e.preventDefault());
 
