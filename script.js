@@ -41,7 +41,7 @@ if (lockBtn) {
   const unlocked = localStorage.getItem("unlock_status");
 
   if (unlocked === "true") {
-    unlock(false); // jangan auto open
+    unlock(false); // jangan auto-open
   } else {
     lock();
   }
@@ -58,12 +58,13 @@ if (lockBtn) {
 
 
 /* ================================
-   ISLAND BUTTONS (SELALU AKTIF)
+   ISLAND BUTTONS (AKTIF SELALU)
 ================================ */
 if (btnBiayaLayanan) {
   btnBiayaLayanan.addEventListener("click", () => {
-    localStorage.setItem("opened_layanan", "true"); // kunci silang
+    localStorage.setItem("opened_layanan", "true"); 
     window.open(layananLink, "_blank");
+    kunciSilang(); // <-- langsung lock silang
   });
 }
 
@@ -75,8 +76,9 @@ if (btnUnduhFormulir) {
 
 if (btnSistemGaji) {
   btnSistemGaji.addEventListener("click", () => {
-    localStorage.setItem("opened_karir", "true"); // kunci silang
+    localStorage.setItem("opened_karir", "true");
     window.open(gajiLink, "_blank");
+    kunciSilang(); // <-- langsung lock silang
   });
 }
 
@@ -86,7 +88,6 @@ if (btnSistemGaji) {
    PASSWORD POPUP
 ================================ */
 function showPasswordPopup() {
-
   const overlay = document.createElement("div");
   overlay.id = "popupOverlay";
   overlay.style.position = "fixed";
@@ -167,13 +168,6 @@ function unlock(openDocument = true) {
   lockBtn.textContent = "🔓 Akses Dibuka";
   lockBtn.classList.remove("locked");
   lockBtn.classList.add("unlocked");
-
-  if (openDocument) {
-    const path = window.location.pathname;
-
-    if (path.includes("layanan")) window.open(layananLink, "_blank");
-    if (path.includes("karir")) window.open(gajiLink, "_blank");
-  }
 }
 
 
@@ -190,21 +184,24 @@ function lock() {
 
 
 /* ================================
-   SISTEM KUNCI SILANG (NO TIMER)
+   SISTEM KUNCI SILANG
 ================================ */
-(function kunciSilang() {
+function kunciSilang() {
 
-  // Jika sedang di halaman layanan → kunci jika karir pernah dibuka
+  // Jika sedang di halaman layanan → lock jika karir pernah dibuka
   if (window.location.pathname.includes("layanan")) {
     if (localStorage.getItem("opened_karir") === "true") {
       lock();
     }
   }
 
-  // Jika sedang di halaman karir → kunci jika layanan pernah dibuka
+  // Jika sedang di halaman karir → lock jika layanan pernah dibuka
   if (window.location.pathname.includes("karir")) {
     if (localStorage.getItem("opened_layanan") === "true") {
       lock();
     }
   }
-})();
+}
+
+// panggil saat pertama load
+kunciSilang();
