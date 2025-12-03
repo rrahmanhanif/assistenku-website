@@ -1,26 +1,30 @@
 {
   "version": 2,
-  "public": true,
+
   "builds": [
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "*.css", "use": "@vercel/static" },
+    { "src": "*.js", "use": "@vercel/static" },
+    { "src": "*.{png,jpg,jpeg,svg,webp}", "use": "@vercel/static" }
+  ],
+
+  "routes": [
+
+    { "src": "/?", "dest": "/index.html" },
+
+    { "src": "/profil/?", "dest": "/profil.html" },
+    { "src": "/layanan/?", "dest": "/layanan.html" },
+    { "src": "/karir/?", "dest": "/karir.html" },
+    { "src": "/kontak/?", "dest": "/kontak.html" },
+
+    { "src": "/404/?", "dest": "/404.html" },
+
     {
-      "src": "index.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "script.js",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "style.css",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "assets/**",
-      "use": "@vercel/static"
+      "src": "/(.*)",
+      "dest": "/$1",
+      "headers": {
+        "Cache-Control": "no-store"
+      }
     }
   ]
 }
