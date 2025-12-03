@@ -1,6 +1,10 @@
-// ======================================
-// MOBILE NAVIGATION
-// ======================================
+/* =========================================================
+   ASSISTENKU — SCRIPT FINAL
+========================================================= */
+
+/* =========================================================
+   1. MOBILE MENU
+========================================================= */
 const menuIcon = document.getElementById("menuIcon");
 const mobileMenu = document.getElementById("mobileMenu");
 
@@ -8,40 +12,68 @@ if (menuIcon && mobileMenu) {
   menuIcon.addEventListener("click", () => {
     mobileMenu.classList.toggle("show");
   });
+
+  // Tutup menu ketika klik link
+  mobileMenu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("show");
+    });
+  });
 }
 
 
 
-// ======================================
-// LOCK / UNLOCK SYSTEM (KHUSUS LAYANAN & KARIR)
-// ======================================
+/* =========================================================
+   2. NAVBAR AUTO-HIDE
+========================================================= */
+let lastScroll = 0;
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll > lastScroll && currentScroll > 80) {
+    navbar.classList.add("hide");
+  } else {
+    navbar.classList.remove("hide");
+  }
+
+  lastScroll = currentScroll;
+});
+
+
+
+/* =========================================================
+   3. LOCK SYSTEM — HALAMAN TERKUNCI
+========================================================= */
+
+// halaman yg dikunci
 const lockedPages = ["layanan.html", "karir.html"];
-const currentPage = window.location.pathname.split("/").pop() || "index.html";
+
+// nama file halaman
+const currentPage = window.location.pathname.split("/").pop();
 
 if (lockedPages.includes(currentPage)) {
-  addFooterLockButton();
+  attachLockButton();
 }
 
-function addFooterLockButton() {
-  const footer = document.querySelector("footer");
+function attachLockButton() {
+  const btn = document.getElementById("lockBtn");
+  if (!btn) return;
 
-  if (!footer) return;
+  btn.classList.add("locked");
+  btn.innerHTML = "🔒 Akses Terkunci";
 
-  const btn = document.createElement("button");
-  btn.id = "lockBtn";
-  btn.className = "lock-footer locked";
-  btn.innerHTML = "🔒 Akses File Dikunci";
-
-  footer.appendChild(btn);
-
-  btn.addEventListener("click", () => showPasswordPopup());
+  btn.addEventListener("click", () => {
+    showPasswordPopup();
+  });
 }
 
 
 
-// ======================================
-// POPUP PASSWORD
-// ======================================
+/* =========================================================
+   4. POPUP PASSWORD
+========================================================= */
 function showPasswordPopup() {
   const old = document.getElementById("popupOverlay");
   if (old) old.remove();
@@ -52,87 +84,87 @@ function showPasswordPopup() {
   overlay.innerHTML = `
     <div class="popup-box">
       <h3>Masukkan Password</h3>
-      <p>Dokumen ini dilindungi. Masukkan password untuk membuka akses.</p>
+      <p>Halaman ini dilindungi. Masukkan password untuk membuka akses.</p>
 
-      <input type="password" id="inputPass" placeholder="Password" />
+      <input type="password" id="userPassword" placeholder="Password">
 
       <div class="popup-actions">
-        <button id="btnCancel">Batal</button>
-        <button id="btnOpen">Buka</button>
+        <button id="cancelPopup">Batal</button>
+        <button id="confirmPass">Buka</button>
       </div>
     </div>
   `;
 
   document.body.appendChild(overlay);
 
-  document.getElementById("btnCancel").onclick = () => overlay.remove();
-  document.getElementById("btnOpen").onclick = validatePassword;
+  document.getElementById("cancelPopup").onclick = () => overlay.remove();
+  document.getElementById("confirmPass").onclick = validatePassword;
 }
 
 
 
-// ======================================
-// MD5 HASH (TANPA LIBRARY)
-// ======================================
+/* =========================================================
+   5. MD5 — HASH PASSWORD
+========================================================= */
 async function md5(str) {
   const buffer = new TextEncoder().encode(str);
   const digest = await crypto.subtle.digest("MD5", buffer);
+
   return Array.from(new Uint8Array(digest))
     .map(b => b.toString(16).padStart(2, "0"))
     .join("");
 }
 
-// password: assistenku2025
+// Password = assistenku2025
 const correctHash = "b3a793bcee664f645dd5bb58d60f89c8";
 
 
 
-// ======================================
-// VALIDASI PASSWORD
-// ======================================
+/* =========================================================
+   6. VALIDASI PASSWORD
+========================================================= */
 async function validatePassword() {
-  const value = document.getElementById("inputPass").value.trim();
-  const hashed = await md5(value);
+  const input = document.getElementById("userPassword").value.trim();
+  const hashed = await md5(input);
 
-  if (hashed !== correctHash) {
+  if (hashed === correctHash) {
+    unlockAccess();
+    document.getElementById("popupOverlay").remove();
+  } else {
     alert("Password salah.");
-    return;
   }
-
-  document.getElementById("popupOverlay").remove();
-  unlockAccess();
 }
 
 
 
-// ======================================
-// AKSI SETELAH PASSWORD VALID
-// ======================================
+/* =========================================================
+   7. AKSI SETELAH PASSWORD BENAR
+========================================================= */
 function unlockAccess() {
   const btn = document.getElementById("lockBtn");
-  if (btn) {
-    btn.classList.remove("locked");
-    btn.classList.add("unlocked");
-    btn.innerHTML = "🔓 Akses Dibuka";
-  }
+  if (!btn) return;
 
-  // Redirect sesuai halaman
+  btn.classList.remove("locked");
+  btn.classList.add("unlocked");
+  btn.innerHTML = "🔓 Akses Dibuka";
+
+  // redirect sesuai halaman
   if (currentPage === "layanan.html") {
     window.location.href =
-      "https://drive.google.com/file/d/1Hwzol_d_aAM0OGxPR_un04nPyTUrR5gW/view";
+      "https://drive.google.com/file/d/1Hwzol_d_aAM0OGxPR_un04nPyTUrR5gW/view?usp=drivesdk";
   }
 
   if (currentPage === "karir.html") {
     window.location.href =
-      "https://drive.google.com/file/d/1UKaP7oSB11vBh2wI1u0qBCkwVF-YHEeD/view";
+      "https://drive.google.com/file/d/1UKaP7oSB11vBh2wI1u0qBCkwVF-YHEeD/view?usp=drivesdk";
   }
 }
 
 
 
-// ======================================
-// ANTI INSPECT (AMAN DI PONSEL)
-// ======================================
+/* =========================================================
+   8. ANTI INSPECT — SAFE MODE
+========================================================= */
 document.addEventListener("contextmenu", e => e.preventDefault());
 
 document.addEventListener("keydown", e => {
