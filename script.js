@@ -1,43 +1,43 @@
-// ===== MOBILE MENU =====
-const menuBtn = document.getElementById("menuBtn");
-const mainNav = document.querySelector(".main-nav");
+// ===== LOCK UNLOCK SYSTEM =====
+function updateLockState() {
+  const currentPage = window.location.pathname;
 
-if (menuBtn) {
-  menuBtn.addEventListener("click", () => {
-    mainNav.classList.toggle("open");
-  });
+  const layananBtn = document.getElementById("navLayanan");
+  const karirBtn = document.getElementById("navKarir");
+
+  if (!layananBtn || !karirBtn) return;
+
+  // Jika sedang di halaman layanan → karir terkunci
+  if (currentPage.includes("layanan")) {
+    localStorage.setItem("akses_layanan", "true");
+    localStorage.removeItem("akses_karir");
+
+    karirBtn.classList.add("locked");
+    karirBtn.onclick = (e) => e.preventDefault();
+
+  // Jika sedang di halaman karir → layanan terkunci
+  } else if (currentPage.includes("karir")) {
+    localStorage.setItem("akses_karir", "true");
+    localStorage.removeItem("akses_layanan");
+
+    layananBtn.classList.add("locked");
+    layananBtn.onclick = (e) => e.preventDefault();
+
+  // Beranda / profil / kontak → reset
+  } else {
+    localStorage.removeItem("akses_layanan");
+    localStorage.removeItem("akses_karir");
+  }
 }
 
-// ===== LOCK / UNLOCK SYSTEM =====
-document.addEventListener("DOMContentLoaded", () => {
-  const path = window.location.pathname;
+document.addEventListener("DOMContentLoaded", updateLockState);
 
-  // Halaman layanan membuka → karir terkunci
-  if (path.includes("layanan")) {
-    localStorage.setItem("lockKarir", "true");
-  }
+// ===== MOBILE MENU =====
+const menuIcon = document.getElementById("menuIcon");
+const mobileMenu = document.getElementById("mobileMenu");
 
-  // Halaman karir membuka → layanan terkunci
-  if (path.includes("karir")) {
-    localStorage.setItem("lockLayanan", "true");
-  }
-
-  const linkLayanan = document.querySelector("a[href='layanan.html']");
-  const linkKarir   = document.querySelector("a[href='karir.html']");
-
-  if (localStorage.getItem("lockLayanan") === "true" && linkLayanan) {
-    linkLayanan.classList.add("locked");
-    linkLayanan.onclick = (e) => {
-      e.preventDefault();
-      alert("Halaman Layanan terkunci setelah membuka Karir.");
-    };
-  }
-
-  if (localStorage.getItem("lockKarir") === "true" && linkKarir) {
-    linkKarir.classList.add("locked");
-    linkKarir.onclick = (e) => {
-      e.preventDefault();
-      alert("Halaman Karir terkunci setelah membuka Layanan.");
-    };
-  }
-});
+if (menuIcon && mobileMenu) {
+  menuIcon.addEventListener("click", () => {
+    mobileMenu.classList.toggle("show");
+  });
+}
