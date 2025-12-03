@@ -1,167 +1,43 @@
-/* script.js — Assistenku common scripts
-   - mobile nav
-   - dark mode toggle
-   - lock/unlock cross-page (layanan <-> karir)
-   - simple contact form behavior
-*/
+// ===== MOBILE MENU =====
+const menuBtn = document.getElementById("menuBtn");
+const mainNav = document.querySelector(".main-nav");
 
-(() => {
-  // Mobile nav toggle
-  const menu = document.getElementById('menuIcon');
-  const nav = document.getElementById('mainNav');
-  if (menu && nav) {
-    menu.addEventListener('click', () => nav.classList.toggle('open'));
-  }
-
-  // Dark mode toggle (simple)
-  document.querySelectorAll('.dark-toggle').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.documentElement.classList.toggle('dark');
-      if (document.documentElement.classList.contains('dark')) {
-        localStorage.setItem('assistenku_dark','1');
-      } else {
-        localStorage.removeItem('assistenku_dark');
-      }
-    });
+if (menuBtn) {
+  menuBtn.addEventListener("click", () => {
+    mainNav.classList.toggle("open");
   });
-  if (localStorage.getItem('assistenku_dark')) {
-    document.documentElement.classList.add('dark');
+}
+
+// ===== LOCK / UNLOCK SYSTEM =====
+document.addEventListener("DOMContentLoaded", () => {
+  const path = window.location.pathname;
+
+  // Halaman layanan membuka → karir terkunci
+  if (path.includes("layanan")) {
+    localStorage.setItem("lockKarir", "true");
   }
 
-  // ---------- LOCK / UNLOCK SYSTEM ----------
-  // localStorage key holds which page currently "open" ('layanan' or 'karir') or null
-  const LOCK_KEY = 'assistenku_doc_open_page';
-
-  function setOpenPage(page) {
-    if (!page) {
-      localStorage.removeItem(LOCK_KEY);
-    } else {
-      localStorage.setItem(LOCK_KEY, page);
-    }
-    // fire storage event for same-tab listeners
-    window.dispatchEvent(new Event('storage'));
-  }
-  function getOpenPage(){ return localStorage.getItem(LOCK_KEY); }
-
-  const page = document.body.getAttribute('data-page') || '';
-
-  const btnBiaya = document.getElementById('btn-biaya');
-  const linkBiaya = document.getElementById('doc-biaya');
-
-  const btnGaji = document.getElementById('btn-gaji');
-  const linkGaji = document.getElementById('doc-gaji');
-
-  function applyLocks() {
-    const open = getOpenPage();
-
-    // Layanan doc UI
-    if (btnBiaya && linkBiaya) {
-      if (open && open !== 'layanan') {
-        btnBiaya.classList.remove('unlocked');
-        linkBiaya.classList.add('locked');
-        btnBiaya.textContent = '🔒 Kunci — Biaya Layanan';
-      } else if (open === 'layanan') {
-        btnBiaya.classList.add('unlocked');
-        linkBiaya.classList.remove('locked');
-        btnBiaya.textContent = '🔓 Unlock — Biaya Layanan';
-      } else {
-        btnBiaya.classList.remove('unlocked');
-        linkBiaya.classList.add('locked');
-        btnBiaya.textContent = '🔒 Kunci — Biaya Layanan';
-      }
-    }
-
-    // Karir doc UI
-    if (btnGaji && linkGaji) {
-      if (open && open !== 'karir') {
-        btnGaji.classList.remove('unlocked');
-        linkGaji.classList.add('locked');
-        btnGaji.textContent = '🔒 Kunci — Sistem Gaji';
-      } else if (open === 'karir') {
-        btnGaji.classList.add('unlocked');
-        linkGaji.classList.remove('locked');
-        btnGaji.textContent = '🔓 Unlock — Sistem Gaji';
-      } else {
-        btnGaji.classList.remove('unlocked');
-        linkGaji.classList.add('locked');
-        btnGaji.textContent = '🔒 Kunci — Sistem Gaji';
-      }
-    }
+  // Halaman karir membuka → layanan terkunci
+  if (path.includes("karir")) {
+    localStorage.setItem("lockLayanan", "true");
   }
 
-  // Toggle handlers
-  if (btnBiaya) {
-    btnBiaya.addEventListener('click', () => {
-      const current = getOpenPage();
-      if (current === 'layanan') {
-        setOpenPage(null);
-      } else {
-        setOpenPage('layanan');
-      }
-      applyLocks();
-    });
-  }
+  const linkLayanan = document.querySelector("a[href='layanan.html']");
+  const linkKarir   = document.querySelector("a[href='karir.html']");
 
-  if (btnGaji) {
-    btnGaji.addEventListener('click', () => {
-      const current = getOpenPage();
-      if (current === 'karir') {
-        setOpenPage(null);
-      } else {
-        setOpenPage('karir');
-      }
-      applyLocks();
-    });
-  }
-
-  // Clicking link: only allow if this page is not locked by other page
-  if (linkBiaya) {
-    linkBiaya.addEventListener('click', (e) => {
-      const open = getOpenPage();
-      if (open && open !== 'layanan') {
-        e.preventDefault();
-        alert('Dokumen sedang dibuka pada halaman lain. Tunggu sampai tersedia.');
-        return;
-      }
-      // mark as opened by this page so other page locks
-      setOpenPage('layanan');
-      applyLocks();
-      // allow link to open in new tab
-    });
-  }
-
-  if (linkGaji) {
-    linkGaji.addEventListener('click', (e) => {
-      const open = getOpenPage();
-      if (open && open !== 'karir') {
-        e.preventDefault();
-        alert('Dokumen sedang dibuka pada halaman lain. Tunggu sampai tersedia.');
-        return;
-      }
-      setOpenPage('karir');
-      applyLocks();
-    });
-  }
-
-  // Listen across tabs
-  window.addEventListener('storage', applyLocks);
-  window.addEventListener('focus', applyLocks);
-
-  // init
-  applyLocks();
-
-  // Simple contact form (demo)
-  const form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', (e) => {
+  if (localStorage.getItem("lockLayanan") === "true" && linkLayanan) {
+    linkLayanan.classList.add("locked");
+    linkLayanan.onclick = (e) => {
       e.preventDefault();
-      if (sessionStorage.getItem('formSubmitted')) {
-        alert('Form sudah dikirim. Tunggu beberapa saat.');
-        return;
-      }
-      sessionStorage.setItem('formSubmitted','1');
-      alert('Terima kasih — pesan Anda telah dikirim (demo).');
-      form.reset();
-    });
+      alert("Halaman Layanan terkunci setelah membuka Karir.");
+    };
   }
-})();
+
+  if (localStorage.getItem("lockKarir") === "true" && linkKarir) {
+    linkKarir.classList.add("locked");
+    linkKarir.onclick = (e) => {
+      e.preventDefault();
+      alert("Halaman Karir terkunci setelah membuka Layanan.");
+    };
+  }
+});
