@@ -10,16 +10,10 @@ if (menuIcon && mobileMenu) {
   });
 }
 
-
-
 // =======================
 // LOCK / UNLOCK SYSTEM
 // =======================
-
-// Halaman yang memerlukan password
 const lockedPages = ["layanan.html", "karir.html"];
-
-// Cek halaman saat ini
 const currentPage = window.location.pathname.split("/").pop();
 
 if (lockedPages.includes(currentPage)) {
@@ -39,12 +33,9 @@ function insertLockButton() {
   });
 }
 
-
-
 // =======================
 // POPUP PASSWORD
 // =======================
-
 function showPasswordPopup() {
   const existing = document.getElementById("popupOverlay");
   if (existing) existing.remove();
@@ -72,12 +63,9 @@ function showPasswordPopup() {
   document.getElementById("confirmPass").onclick = validatePassword;
 }
 
-
-
 // =======================
-// MD5 INTERNAL (Tanpa CryptoJS)
+// MD5 INTERNAL
 // =======================
-
 function md5(str) {
   return crypto.subtle.digest("MD5", new TextEncoder().encode(str))
     .then(buf => {
@@ -87,15 +75,11 @@ function md5(str) {
     });
 }
 
-// Hash password (MD5 dari: assistenku2025)
 const correctHash = "b3a793bcee664f645dd5bb58d60f89c8";
-
-
 
 // =======================
 // VALIDASI PASSWORD
 // =======================
-
 async function validatePassword() {
   const pass = document.getElementById("userPassword").value.trim();
   const overlay = document.getElementById("popupOverlay");
@@ -110,12 +94,9 @@ async function validatePassword() {
   }
 }
 
-
-
 // =======================
 // UNLOCK SUCCESS
 // =======================
-
 function unlockSuccess() {
   const btn = document.getElementById("lockBtn");
 
@@ -134,12 +115,9 @@ function unlockSuccess() {
   }
 }
 
-
-
 // =======================
 // ANTI INSPECT ELEMENT
 // =======================
-
 document.addEventListener("contextmenu", (e) => e.preventDefault());
 
 document.addEventListener("keydown", (e) => {
