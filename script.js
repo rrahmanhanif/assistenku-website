@@ -16,13 +16,12 @@ if (menuIcon && mobileMenu) {
 // LOCK / UNLOCK SYSTEM
 // =======================
 
-// Halaman yang membutuhkan kunci
+// Halaman yang memerlukan password
 const lockedPages = ["layanan.html", "karir.html"];
 
 // Cek halaman saat ini
 const currentPage = window.location.pathname.split("/").pop();
 
-// Jika halaman termasuk yang dikunci → tampilkan tombol
 if (lockedPages.includes(currentPage)) {
   insertLockButton();
 }
@@ -32,6 +31,7 @@ function insertLockButton() {
   lockBtn.id = "lockBtn";
   lockBtn.className = "lock-button locked";
   lockBtn.innerHTML = "🔒 Akses Terkunci";
+
   document.body.appendChild(lockBtn);
 
   lockBtn.addEventListener("click", () => {
@@ -46,7 +46,6 @@ function insertLockButton() {
 // =======================
 
 function showPasswordPopup() {
-  // Jika sudah ada popup → hapus dulu
   const existing = document.getElementById("popupOverlay");
   if (existing) existing.remove();
 
@@ -70,30 +69,40 @@ function showPasswordPopup() {
   document.body.appendChild(overlay);
 
   document.getElementById("cancelPopup").onclick = () => overlay.remove();
-
-  document.getElementById("confirmPass").onclick = () => {
-    validatePassword();
-  };
+  document.getElementById("confirmPass").onclick = validatePassword;
 }
 
 
 
 // =======================
-// HASH VERIFICATION
+// MD5 INTERNAL (Tanpa CryptoJS)
 // =======================
-
-// Hash password yang benar (contoh: "assistenku2025")
-const correctHash = "b3a793bcee664f645dd5bb58d60f89c8"; // MD5
 
 function md5(str) {
-  return CryptoJS.MD5(str).toString();
+  return crypto.subtle.digest("MD5", new TextEncoder().encode(str))
+    .then(buf => {
+      return Array.from(new Uint8Array(buf))
+        .map(x => x.toString(16).padStart(2, "0"))
+        .join("");
+    });
 }
 
-function validatePassword() {
+// Hash password (MD5 dari: assistenku2025)
+const correctHash = "b3a793bcee664f645dd5bb58d60f89c8";
+
+
+
+// =======================
+// VALIDASI PASSWORD
+// =======================
+
+async function validatePassword() {
   const pass = document.getElementById("userPassword").value.trim();
   const overlay = document.getElementById("popupOverlay");
 
-  if (md5(pass) === correctHash) {
+  const hashed = await md5(pass);
+
+  if (hashed === correctHash) {
     unlockSuccess();
     if (overlay) overlay.remove();
   } else {
@@ -114,13 +123,14 @@ function unlockSuccess() {
   btn.classList.add("unlocked");
   btn.innerHTML = "🔓 Akses Dibuka";
 
-  // Anda bisa ganti link sesuai halaman
   if (currentPage === "layanan.html") {
-    window.location.href = "https://drive.google.com/file/d/1Hwzol_d_aAM0OGxPR_un04nPyTUrR5gW/view"; 
+    window.location.href =
+      "https://drive.google.com/file/d/1Hwzol_d_aAM0OGxPR_un04nPyTUrR5gW/view";
   }
 
   if (currentPage === "karir.html") {
-    window.location.href = "https://drive.google.com/file/d/1UKaP7oSB11vBh2wI1u0qBCkwVF-YHEeD/view";
+    window.location.href =
+      "https://drive.google.com/file/d/1UKaP7oSB11vBh2wI1u0qBCkwVF-YHEeD/view";
   }
 }
 
@@ -130,13 +140,12 @@ function unlockSuccess() {
 // ANTI INSPECT ELEMENT
 // =======================
 
-document.addEventListener("contextmenu", e => e.preventDefault());
-document.addEventListener("keydown", e => {
+document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+document.addEventListener("keydown", (e) => {
   if (
     e.key === "F12" ||
-    (e.ctrlKey && e.shiftKey && e.key === "I") ||
-    (e.ctrlKey && e.shiftKey && e.key === "C") ||
-    (e.ctrlKey && e.shiftKey && e.key === "J") ||
+    (e.ctrlKey && e.shiftKey && ["I", "C", "J"].includes(e.key)) ||
     (e.ctrlKey && e.key === "U")
   ) {
     e.preventDefault();
