@@ -16,6 +16,29 @@ color: #222;
 line-height: 1.7;
 }
 
+// ====== HAMBURGER FAST & RESPONSIVE ======
+const hamburger = document.querySelector('.hamburger');
+const mobileNav = document.querySelector('.mobile-nav');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileNav.classList.toggle('active');
+});
+
+// ====== LOCK & UNLOCK ======
+const lockBtn = document.querySelector('.lock-btn');
+const unlockBtn = document.querySelector('.unlock-btn');
+
+lockBtn.addEventListener('click', () => {
+  document.body.classList.add('locked-screen');
+  alert("Layar dikunci ❌");
+});
+
+unlockBtn.addEventListener('click', () => {
+  document.body.classList.remove('locked-screen');
+  alert("Layar dibuka kembali ✔");
+});
+
 /* =========================================
 NAVBAR
 ========================================= */
