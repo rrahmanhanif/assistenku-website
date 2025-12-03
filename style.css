@@ -1,4 +1,31 @@
 /* ========================================================
+   PREMIUM PAGE CONTENT JUSTIFY (FINAL)
+======================================================== */
+.page-content {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px 20px 20px;
+  text-align: justify;
+  line-height: 1.72;
+  color: inherit;
+}
+
+/* Agar teks tidak terlalu mepet di mobile */
+@media (max-width: 600px) {
+  .page-content {
+    padding: 0 18px 22px 18px;
+  }
+}
+
+/* Perbaikan justify agar tetap halus di dark mode */
+@media (prefers-color-scheme: dark) {
+  .page-content {
+    color: #e2e2e2;
+  }
+}
+
+
+/* ========================================================
    GLOBAL RESET & BASE
 ======================================================== */
 * {
@@ -171,7 +198,6 @@ section p {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-/* Premium glassmorphism */
 .card {
   background: rgba(255,255,255,0.55);
   backdrop-filter: blur(16px);
@@ -187,7 +213,6 @@ section p {
   box-shadow: 0 12px 32px rgba(0,0,0,0.16);
 }
 
-/* Text */
 .card h3 {
   font-size: 20px;
   margin-bottom: 8px;
@@ -201,7 +226,6 @@ section p {
   margin-bottom: 6px;
 }
 
-/* Images */
 .founder-img,
 .legal-img {
   width: 100%;
@@ -214,7 +238,7 @@ section p {
    BUTTONS
 ======================================================== */
 
-/* --- ISLAND BUTTON (Floating Animation) --- */
+/* Island button (floating) */
 .island-btn {
   display: inline-block;
   padding: 13px 24px;
@@ -228,20 +252,18 @@ section p {
   transform: translateY(0);
 }
 
-/* Floating button hover */
 .island-btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 22px rgba(0,0,0,0.12);
 }
 
-/* Disabled island */
 .island-btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
   transform: none;
 }
 
-/* --- LOCK BUTTON --- */
+/* Lock button */
 .lock-button {
   width: 100%;
   padding: 14px 20px;
@@ -281,7 +303,6 @@ footer {
    DARK MODE (Automatic)
 ======================================================== */
 @media (prefers-color-scheme: dark) {
-
   body {
     background: #13151a;
     color: #e6e6e6;
