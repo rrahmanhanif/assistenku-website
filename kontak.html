@@ -1,77 +1,72 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontak | Assistenku</title>
   <link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Assistenku — Kontak</title>
-  <link rel="stylesheet" href="style.css" />
 </head>
-<body data-page="kontak">
-  <header class="site-header floating">
-    <div class="container header-inner">
-      <div class="brand">
-        <img src="logo.png" alt="Assistenku Logo" class="logo-img" />
-        <div class="brand-text">
-          <div class="logo-text">ASSISTENKU</div>
-        </div>
-      </div>
+<body>
 
-      <div class="controls">
-        <button class="dark-toggle">🌙</button>
-        <button id="menuIcon" class="menu-icon">☰</button>
-      </div>
+<header>
+  <div class="navbar">
+    <img src="logo.png" class="logo" alt="Logo Assistenku">
+
+    <nav>
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="profil.html">Profil</a></li>
+        <li><a href="layanan.html" id="navLayanan">Layanan</a></li>
+        <li><a href="karir.html" id="navKarir">Karir</a></li>
+        <li><a href="kontak.html" class="active">Kontak</a></li>
+      </ul>
+    </nav>
+
+    <div id="menuIcon">☰</div>
+  </div>
+
+  <div id="mobileMenu">
+    <a href="index.html">Beranda</a>
+    <a href="profil.html">Profil</a>
+    <a href="layanan.html" id="navLayanan">Layanan</a>
+    <a href="karir.html" id="navKarir">Karir</a>
+    <a href="kontak.html">Kontak</a>
+  </div>
+</header>
+
+<section style="padding-top:130px;">
+  <h2>Hubungi Kami</h2>
+  <p>
+    Silakan hubungi tim kami apabila Anda memerlukan layanan, informasi rekrutmen,
+    atau konsultasi. Kami siap membantu kapan saja.
+  </p>
+</section>
+
+<section>
+  <div class="card-grid">
+    <div class="card">
+      <h3>WhatsApp</h3>
+      <p>Chat langsung dengan admin layanan.</p>
+      <p><b>+62 857-xxx-xxxx</b></p>
     </div>
 
-    <nav id="mainNav" class="main-nav">
-      <a href="index.html">Beranda</a>
-      <a href="profil.html">Profil</a>
-      <a href="layanan.html">Layanan</a>
-      <a href="karir.html">Karir</a>
-      <a href="kontak.html" class="active">Kontak</a>
-    </nav>
-  </header>
+    <div class="card">
+      <h3>Email</h3>
+      <p>Kirimkan pertanyaan Anda kapan saja.</p>
+      <p><b>support@assistenku.com</b></p>
+    </div>
 
-  <main class="container">
-    <section class="section page-header">
-      <h1>Kontak Kami</h1>
-      <p class="lead">Hubungi kami untuk layanan, rekrutmen atau partnership.</p>
-    </section>
+    <div class="card">
+      <h3>Lokasi</h3>
+      <p>Depok – Jakarta – Bekasi – Bogor</p>
+    </div>
+  </div>
+</section>
 
-    <section class="section contact-cards">
-      <div class="grid-3">
-        <div class="card">
-          <h3>WhatsApp</h3>
-          <p><a href="https://wa.me/6280000000000" target="_blank" rel="noopener">Klik untuk chat</a></p>
-        </div>
-        <div class="card">
-          <h3>Email</h3>
-          <p><a href="mailto:admin@assistenku.com">admin@assistenku.com</a></p>
-        </div>
-        <div class="card">
-          <h3>Alamat</h3>
-          <p>Jakarta, Indonesia — kunjungan berdasarkan janji</p>
-        </div>
-      </div>
-    </section>
+<footer>
+  © 2025 Assistenku
+</footer>
 
-    <section class="section form-section">
-      <h3>Formulir Pertanyaan</h3>
-      <form id="contactForm" class="form">
-        <label>Nama <input type="text" name="name" required></label>
-        <label>Email <input type="email" name="email" required></label>
-        <label>Pesan <textarea name="message" rows="5" required></textarea></label>
-        <button type="submit" class="btn primary">Kirim</button>
-      </form>
-      <p class="muted">Kami akan membalas dalam 1–2 hari kerja.</p>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container"><p>© 2025 Assistenku</p></div>
-  </footer>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
