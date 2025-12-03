@@ -29,19 +29,35 @@ const btnSistemGaji = document.getElementById("btnSistemGaji");
 
 
 /* ================================
+   DISABLE / ENABLE BUTTON
+================================ */
+function disableBtn(btn) {
+  if (!btn) return;
+  btn.style.opacity = "0.5";
+  btn.style.pointerEvents = "none";
+}
+
+function enableBtn(btn) {
+  if (!btn) return;
+  btn.style.opacity = "1";
+  btn.style.pointerEvents = "auto";
+}
+
+
+/* ================================
    PASSWORD (MD5 HASH)
 ================================ */
 const correctHash = "0f23ae0ee0fa9a1c81efc8d43f22c25d"; // "Hanif@123"
 
 
 /* ================================
-   INITIAL LOCK STATUS (NO TIMER)
+   INITIAL LOCK STATUS
 ================================ */
 if (lockBtn) {
   const unlocked = localStorage.getItem("unlock_status");
 
   if (unlocked === "true") {
-    unlock(false); // jangan auto-open
+    unlock(false);
   } else {
     lock();
   }
@@ -58,13 +74,20 @@ if (lockBtn) {
 
 
 /* ================================
-   ISLAND BUTTONS (AKTIF SELALU)
+   ISLAND BUTTONS (SESUAI SKENARIO)
 ================================ */
 if (btnBiayaLayanan) {
   btnBiayaLayanan.addEventListener("click", () => {
-    localStorage.setItem("opened_layanan", "true"); 
     window.open(layananLink, "_blank");
-    kunciSilang(); // <-- langsung lock silang
+
+    // kunci silang → mark layanan dibuka
+    localStorage.setItem("opened_layanan", "true");
+
+    // langsung kunci tombol gaji
+    disableBtn(btnSistemGaji);
+
+    // kunci footer juga
+    lock();
   });
 }
 
@@ -76,12 +99,18 @@ if (btnUnduhFormulir) {
 
 if (btnSistemGaji) {
   btnSistemGaji.addEventListener("click", () => {
-    localStorage.setItem("opened_karir", "true");
     window.open(gajiLink, "_blank");
-    kunciSilang(); // <-- langsung lock silang
+
+    // kunci silang → mark karir dibuka
+    localStorage.setItem("opened_karir", "true");
+
+    // langsung kunci tombol biaya layanan
+    disableBtn(btnBiayaLayanan);
+
+    // kunci footer juga
+    lock();
   });
 }
-
 
 
 /* ================================
@@ -129,7 +158,6 @@ function showPasswordPopup() {
 }
 
 
-
 /* ================================
    MD5 FUNCTION
 ================================ */
@@ -142,7 +170,6 @@ async function md5(str) {
 }
 
 
-
 /* ================================
    PASSWORD VALIDATION
 ================================ */
@@ -151,7 +178,7 @@ async function validatePassword() {
   const hashed = await md5(val);
 
   if (hashed === correctHash) {
-    unlock(true);
+    unlock(false);
     localStorage.setItem("unlock_status", "true");
     document.getElementById("popupOverlay").remove();
   } else {
@@ -160,16 +187,18 @@ async function validatePassword() {
 }
 
 
-
 /* ================================
    UNLOCK FUNCTION
 ================================ */
-function unlock(openDocument = true) {
+function unlock() {
   lockBtn.textContent = "🔓 Akses Dibuka";
   lockBtn.classList.remove("locked");
   lockBtn.classList.add("unlocked");
-}
 
+  // enable both island buttons kembali
+  enableBtn(btnBiayaLayanan);
+  enableBtn(btnSistemGaji);
+}
 
 
 /* ================================
@@ -182,26 +211,16 @@ function lock() {
 }
 
 
-
 /* ================================
-   SISTEM KUNCI SILANG
+   SISTEM KUNCI SILANG (PAGE LOAD)
 ================================ */
-function kunciSilang() {
+(function kunciSilangAwal() {
+  const openedLayanan = localStorage.getItem("opened_layanan") === "true";
+  const openedKarir = localStorage.getItem("opened_karir") === "true";
 
-  // Jika sedang di halaman layanan → lock jika karir pernah dibuka
-  if (window.location.pathname.includes("layanan")) {
-    if (localStorage.getItem("opened_karir") === "true") {
-      lock();
-    }
-  }
+  // Jika layanan pernah dibuka → sistem gaji terkunci
+  if (openedLayanan) disableBtn(btnSistemGaji);
 
-  // Jika sedang di halaman karir → lock jika layanan pernah dibuka
-  if (window.location.pathname.includes("karir")) {
-    if (localStorage.getItem("opened_layanan") === "true") {
-      lock();
-    }
-  }
-}
-
-// panggil saat pertama load
-kunciSilang();
+  // Jika gaji pernah dibuka → biaya layanan terkunci
+  if (openedKarir) disableBtn(btnBiayaLayanan);
+})();
