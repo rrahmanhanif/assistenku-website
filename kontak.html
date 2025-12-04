@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta-name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kontak | Assistenku</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
@@ -15,48 +15,30 @@
   <div class="navbar">
     <img src="/logo.png" class="logo" alt="Logo Assistenku">
 
-    <nav>
-      <ul>
-        <li><a href="/">Beranda</a></li>
-        <li><a href="/profil">Profil</a></li>
-        <li><a href="/layanan">Layanan</a></li>
-        <li><a href="/karir">Karir</a></li>
-        <li><a href="/kontak" class="active">Kontak</a></li>
-      </ul>
+    <nav class="nav-links">
+      <a href="/index.html">Beranda</a>
+      <a href="/profil.html">Profil</a>
+      <a href="/layanan.html">Layanan</a>
+      <a href="/karir.html">Karir</a>
+      <a href="/kontak.html" class="active">Kontak</a>
     </nav>
 
-    <div id="menuIcon">☰</div>
-  </div>
-
-  <div id="mobileMenu">
-    <a href="/">Beranda</a>
-    <a href="/profil">Profil</a>
-    <a href="/layanan">Layanan</a>
-    <a href="/karir">Karir</a>
-    <a href="/kontak">Kontak</a>
+    <div class="hamburger">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </header>
 
 
-
-<!-- =============================
-     HERO
-============================= -->
-<section style="padding-top:160px;">
+<section class="page-section">
   <h1>Hubungi Kami</h1>
-
   <p>
-    Kami siap membantu Anda kapan saja. Jika Anda memiliki pertanyaan mengenai layanan,
-    perekrutan, atau ingin berkonsultasi sebelum memesan, silakan hubungi kami melalui
-    pilihan kontak berikut. Tim Assistenku akan membalas dengan ramah dan profesional.
+    Tim Assistenku siap membantu Anda terkait pemesanan layanan, konsultasi kebutuhan,
+    atau informasi lowongan kerja.
   </p>
 </section>
 
 
-
-<!-- =============================
-     KONTAK CARD
-============================= -->
 <section>
   <h2>Informasi Kontak</h2>
 
@@ -64,14 +46,14 @@
 
     <div class="card">
       <h3>WhatsApp Resmi</h3>
-      <p>Hubungi kami untuk pertanyaan apa pun.</p>
+      <p>Respons cepat untuk semua kebutuhan.</p>
       <a class="btn-primary" href="https://wa.me/628986570020" target="_blank">
         Hubungi via WhatsApp
       </a>
     </div>
 
     <div class="card">
-      <h3>Email Informasi Layanan</h3>
+      <h3>Email Layanan</h3>
       <p>Untuk pertanyaan seputar pemesanan layanan.</p>
       <a class="btn-primary" href="mailto:kontakassistenku@gmail.com">
         Email Layanan
@@ -79,8 +61,8 @@
     </div>
 
     <div class="card">
-      <h3>Email Lowongan Kerja</h3>
-      <p>Untuk pertanyaan mengenai rekrutmen dan lamaran kerja.</p>
+      <h3>Email Rekrutmen</h3>
+      <p>Untuk informasi lowongan kerja & lamaran.</p>
       <a class="btn-primary" href="mailto:karirassistenku@gmail.com">
         Email Rekrutmen
       </a>
@@ -89,9 +71,7 @@
   </div>
 </section>
 
-
 <footer>© 2025 Assistenku</footer>
-
 <script src="/script.js"></script>
 </body>
 </html>
