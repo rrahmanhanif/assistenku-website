@@ -1,133 +1,355 @@
 /* ========================================================
-   GLOBAL RESET
+   PREMIUM PAGE CONTENT JUSTIFY (FINAL)
+======================================================== */
+.page-content {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px 20px 20px;
+  text-align: justify;
+  line-height: 1.72;
+  color: inherit;
+}
+
+/* Agar teks tidak terlalu mepet di mobile */
+@media (max-width: 600px) {
+  .page-content {
+    padding: 0 18px 22px 18px;
+  }
+}
+
+/* Perbaikan justify agar tetap halus di dark mode */
+@media (prefers-color-scheme: dark) {
+  .page-content {
+    color: #e2e2e2;
+  }
+}
+
+
+/* ========================================================
+   GLOBAL RESET & BASE
 ======================================================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Inter", Arial, sans-serif;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: #f5f7fb;
   color: #1e1e1e;
-  line-height: 1.6;
+  line-height: 1.75;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
+/* Global hover smoothness */
+a, button {
+  transition: 0.25s ease;
+}
+
+
 /* ========================================================
-   NAVBAR BASIC RESPONSIVE (TANPA HAMBURGER)
+   NAVBAR -- AI SaaS STYLE
 ======================================================== */
 header {
+  position: fixed;
+  top: 0;
   width: 100%;
-  background: white;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 12px 16px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  z-index: 9999;
 }
 
 .navbar {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: auto;
+  padding: 14px 22px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
 }
 
-.navbar .logo {
-  font-size: 20px;
-  font-weight: 700;
-  color: #1b5cff;
-  text-decoration: none;
+.logo {
+  width: 120px;
+  user-select: none;
 }
 
-.nav-links {
-  list-style: none;
+/* Desktop navigation */
+nav ul {
   display: flex;
-  gap: 24px;
+  gap: 30px;
+  list-style: none;
 }
 
-.nav-links a {
+nav ul li a {
+  position: relative;
   text-decoration: none;
-  color: #1e1e1e;
   font-weight: 500;
-  transition: 0.2s;
+  color: #333;
+  padding: 6px 0;
 }
 
-.nav-links a:hover {
-  color: #1b5cff;
+/* Premium underline animation */
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background: #0d6efd;
+  transition: 0.25s ease;
+  border-radius: 4px;
 }
 
-/* Smartphone: menu jadi horizontal scroll */
-@media (max-width: 520px) {
-  .nav-links {
-    overflow-x: auto;
-    white-space: nowrap;
-    gap: 16px;
-    padding-bottom: 4px;
-  }
+nav ul li a:hover::after,
+nav ul li a.active::after {
+  left: 0;
+  width: 100%;
 }
 
-/* ========================================================
-   MOBILE NAV (UNTUK JAGA-JAGA KALAU DIPAKAI)
-======================================================== */
-.hamburger {
+nav ul li a:hover,
+nav ul li a.active {
+  color: #0d6efd;
+}
+
+/* Mobile */
+#menuIcon {
   display: none;
-}
-
-.mobile-nav {
-  display: none;
-}
-
-/* ========================================================
-   ISLAND BUTTON
-======================================================== */
-.island-btn {
-  background: white;
-  border: 1px solid #d7d7d7;
-  padding: 12px 18px;
-  border-radius: 14px;
   cursor: pointer;
-  transition: 0.2s;
+  font-size: 30px;
 }
 
-.island-btn:hover {
-  background: #eef3ff;
+#mobileMenu {
+  display: none;
+  flex-direction: column;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  padding: 18px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
+
+#mobileMenu a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #333;
+  padding: 12px 0;
+}
+
 
 /* ========================================================
-   LOCK / UNLOCK SCREEN
+   HERO SECTION
 ======================================================== */
-.locked {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-  backdrop-filter: blur(2px);
-  z-index: 9999;
-  color: white;
-  justify-content: center;
-  align-items: center;
+.hero {
+  max-width: 900px;
+  margin: 150px auto 40px auto;
+  padding: 20px;
   text-align: center;
 }
 
-.locked.active {
-  display: flex;
+.hero h1 {
+  font-size: 36px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #0d6efd, #0b53c9);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
-#unlock-btn {
-  margin-top: 18px;
-  background: white;
-  color: #1e1e1e;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 14px;
-  cursor: pointer;
+.hero p {
+  margin-top: 14px;
+  font-size: 17px;
+  color: #444;
 }
+
 
 /* ========================================================
-   CONTENT WRAPPER
+   SECTIONS
 ======================================================== */
-main {
+section {
   max-width: 1100px;
-  margin: 20px auto;
-  padding: 0 16px;
+  margin: auto;
+  padding: 40px 22px;
+}
+
+section h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0d6efd;
+}
+
+section p {
+  font-size: 16px;
+}
+
+
+/* ========================================================
+   GLASSMORPHIC CARD GRID
+======================================================== */
+.card-grid {
+  display: grid;
+  gap: 24px;
+  padding-top: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.card {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(16px);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+  transition: 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.16);
+}
+
+.card h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.card ul {
+  margin-left: 20px;
+}
+
+.card ul li {
+  margin-bottom: 6px;
+}
+
+.founder-img,
+.legal-img {
+  width: 100%;
+  border-radius: 14px;
+  margin: 12px 0;
+}
+
+
+/* ========================================================
+   BUTTONS
+======================================================== */
+
+/* Island button (floating) */
+.island-btn {
+  display: inline-block;
+  padding: 13px 24px;
+  background: #ffffff;
+  border: 1px solid #d6ddea;
+  border-radius: 50px;
+  font-weight: 600;
+  color: #0d6efd;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  transform: translateY(0);
+}
+
+.island-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+}
+
+.island-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Lock button */
+.lock-button {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.locked {
+  background: #e14d4d;
+}
+
+.unlocked {
+  background: #28c76f;
+}
+
+
+/* ========================================================
+   FLOATING BLUR FOOTER
+======================================================== */
+footer {
+  margin-top: 60px;
+  padding: 26px 18px;
+  text-align: center;
+  font-size: 14px;
+
+  background: rgba(250,250,255,0.55);
+  backdrop-filter: blur(18px);
+  border-top: 1px solid rgba(255,255,255,0.6);
+}
+
+
+/* ========================================================
+   DARK MODE (Automatic)
+======================================================== */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #13151a;
+    color: #e6e6e6;
+  }
+
+  header {
+    background: rgba(22,22,24,0.75);
+    border-bottom-color: rgba(255,255,255,0.09);
+  }
+
+  nav ul li a {
+    color: #dcdcdc;
+  }
+
+  nav ul li a:hover,
+  nav ul li a.active {
+    color: #4d8cff;
+  }
+
+  #mobileMenu {
+    background: rgba(20,20,24,0.88);
+  }
+
+  .card {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.12);
+  }
+
+  .island-btn {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.2);
+    color: #5fa2ff;
+  }
+
+  footer {
+    background: rgba(25,25,30,0.65);
+  }
+}
+
+
+/* ========================================================
+   RESPONSIVE
+======================================================== */
+@media (max-width: 860px) {
+  nav ul { display: none; }
+  #menuIcon { display: block; }
+  #mobileMenu.active { display: flex; }
+
+  .hero h1 { font-size: 30px; }
 }
