@@ -1,125 +1,55 @@
-/* ========================================================
-   MOBILE MENU TOGGLE
-======================================================== */
-const menuIcon = document.getElementById("menuIcon");
-const mobileMenu = document.getElementById("mobileMenu");
+// ========================================================
+// SAFE QUERY SELECTOR
+// ========================================================
+function $(selector) {
+  return document.querySelector(selector);
+}
 
-if (menuIcon && mobileMenu) {
-  menuIcon.addEventListener("click", () => {
-    mobileMenu.classList.toggle("show");
+// ========================================================
+// MOBILE NAVIGATION (HAMBURGER OPEN/CLOSE)
+// ========================================================
+const hamburger = $(".hamburger");
+const mobileNav = $(".mobile-nav");
+
+if (hamburger && mobileNav) {
+  hamburger.addEventListener("click", () => {
+    mobileNav.classList.toggle("show");
+    hamburger.classList.toggle("active");
   });
 }
 
+// ========================================================
+// ISLAND BUTTON LINKS
+// ========================================================
+const islandButtons = document.querySelectorAll(".island-btn");
 
-/* ========================================================
-   AUTO ACTIVE NAV - DETEKSI HALAMAN OTOMATIS
-======================================================== */
-const currentPath = window.location.pathname;
-
-document.querySelectorAll("nav a").forEach(a => {
-  if (a.getAttribute("href") === currentPath) {
-    a.classList.add("active");
-  }
-});
-
-
-/* ========================================================
-   SISTEM LOCK / UNLOCK (GLOBAL)
-   - Menyimpan status di localStorage
-   - Tombol footer lock
-======================================================== */
-const lockBtn = document.getElementById("lockBtn");
-
-// Default jika belum ada
-if (!localStorage.getItem("lockStatus")) {
-  localStorage.setItem("lockStatus", "locked");
-}
-
-// Update tampilan tombol sesuai status
-function updateLockUI() {
-  if (!lockBtn) return;
-
-  const locked = localStorage.getItem("lockStatus") === "locked";
-
-  if (locked) {
-    lockBtn.classList.add("locked");
-    lockBtn.textContent = "🔒 Akses Terkunci";
-  } else {
-    lockBtn.classList.remove("locked");
-    lockBtn.textContent = "🔓 Akses Terbuka";
-  }
-}
-
-if (lockBtn) {
-  updateLockUI();
-
-  lockBtn.addEventListener("click", () => {
-    const nowLocked = localStorage.getItem("lockStatus") === "locked";
-
-    if (nowLocked) {
-      localStorage.setItem("lockStatus", "unlocked");
-    } else {
-      localStorage.setItem("lockStatus", "locked");
-    }
-
-    updateLockUI();
+if (islandButtons) {
+  islandButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const link = btn.getAttribute("data-link");
+      if (link) window.location.href = link;
+    });
   });
 }
 
+// ========================================================
+// LOCK / UNLOCK SYSTEM
+// ========================================================
+const lockBtn = $("#lock-btn");
+const unlockBtn = $("#unlock-btn");
+const lockScreen = $(".locked");
 
-/* ========================================================
-   FUNGSI CEK LOCK
-======================================================== */
-function isLocked() {
-  return localStorage.getItem("lockStatus") === "locked";
+function lockSite() {
+  if (lockScreen) lockScreen.classList.add("active");
 }
 
-function requireUnlock() {
-  alert("Akses terkunci 🔒\n\nSilakan buka kunci terlebih dahulu.");
+function unlockSite() {
+  if (lockScreen) lockScreen.classList.remove("active");
 }
 
+if (lockBtn) lockBtn.addEventListener("click", lockSite);
+if (unlockBtn) unlockBtn.addEventListener("click", unlockSite);
 
-/* ========================================================
-   TOMBOL DOKUMEN SPESIFIK PER HALAMAN
-   - Sistem Gaji
-   - Biaya Layanan
-   - Unduh Formulir
-======================================================== */
-
-/* ==== HALAMAN KARIR: Sistem Gaji ==== */
-const btnSistemGaji = document.getElementById("btnSistemGaji");
-
-if (btnSistemGaji) {
-  btnSistemGaji.addEventListener("click", () => {
-    if (isLocked()) return requireUnlock();
-
-    // Link dokumen (ganti sesuai file Anda)
-    window.open("/dokumen/sistem-gaji.pdf", "_blank");
-  });
-}
-
-
-/* ==== HALAMAN LAYANAN: Biaya Layanan ==== */
-const btnBiayaLayanan = document.getElementById("btnBiayaLayanan");
-
-if (btnBiayaLayanan) {
-  btnBiayaLayanan.addEventListener("click", () => {
-    if (isLocked()) return requireUnlock();
-
-    // Link dokumen biaya layanan
-    window.open("/dokumen/biaya-layanan.pdf", "_blank");
-  });
-}
-
-
-/* ==== HALAMAN LAYANAN: Unduh Formulir ==== */
-const btnUnduhFormulir = document.getElementById("btnUnduhFormulir");
-
-if (btnUnduhFormulir) {
-  btnUnduhFormulir.addEventListener("click", () => {
-    if (isLocked()) return requireUnlock();
-
-    // Link formulir
-    window.open("/dokumen/formulir-layanan.pdf", "_blank");
-  });
-}
+// ========================================================
+// END OF SCRIPT
+// ========================================================
