@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta-name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Layanan | Assistenku</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
@@ -15,165 +15,124 @@
   <div class="navbar">
     <img src="/logo.png" class="logo" alt="Logo Assistenku">
 
-    <nav>
-      <ul>
-        <li><a href="/">Beranda</a></li>
-        <li><a href="/profil">Profil</a></li>
-        <li><a href="/layanan" class="active">Layanan</a></li>
-        <li><a href="/karir">Karir</a></li>
-        <li><a href="/kontak">Kontak</a></li>
-      </ul>
+    <nav class="nav-links">
+      <a href="/index.html">Beranda</a>
+      <a href="/profil.html">Profil</a>
+      <a href="/layanan.html" class="active">Layanan</a>
+      <a href="/karir.html">Karir</a>
+      <a href="/kontak.html">Kontak</a>
     </nav>
 
-    <div id="menuIcon">☰</div>
-  </div>
-
-  <div id="mobileMenu">
-    <a href="/">Beranda</a>
-    <a href="/profil">Profil</a>
-    <a href="/layanan">Layanan</a>
-    <a href="/karir">Karir</a>
-    <a href="/kontak">Kontak</a>
+    <div class="hamburger">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </header>
 
-<!-- =============================
-     LAYANAN - SECTION
-============================= -->
 
-<section style="padding-top:160px;">
+<section class="page-section">
   <h1>Layanan Kami</h1>
   <p>
     Assistenku menyediakan berbagai layanan asistensi yang dirancang untuk mempermudah aktivitas
-    rumah tangga, kebutuhan pribadi, hingga pendampingan profesional. Setiap layanan dibangun
-    dengan standar tinggi, proses seleksi yang ketat, dan pelatihan yang terstruktur, agar
-    setiap klien merasakan kenyamanan, keamanan, dan profesionalitas.
+    rumah tangga, kebutuhan pribadi, hingga pendampingan profesional. Semua layanan dibangun
+    dengan standar tinggi, proses seleksi ketat, serta pelatihan terstruktur.
   </p>
 </section>
 
-<!-- =============================
-     GRID LAYANAN
-============================= -->
 
 <section>
   <h2>Daftar Layanan</h2>
 
   <div class="card-grid">
 
-    <!-- ART -->
     <div class="card">
       <h3>Asisten Rumah Tangga (ART)</h3>
-      <p>
-        Tenaga kerja terlatih untuk membantu pekerjaan rumah harian. Cocok untuk keluarga yang
-        membutuhkan bantuan jangka panjang ataupun jangka pendek.
-      </p>
+      <p>Membantu pekerjaan rumah harian dengan standar profesional.</p>
       <ul>
-        <li>Pembersihan rumah</li>
+        <li>Pembersihan</li>
         <li>Mencuci & menyetrika</li>
         <li>Memasak dasar</li>
-        <li>Mengelola kebutuhan rumah tangga</li>
+        <li>Manajemen rumah tangga</li>
       </ul>
-      <a href="https://wa.me/628986570020?text=Halo%20Assistenku,%20saya%20ingin%20menanyakan%20layanan%20ART."
-         class="btn-primary">Pesan Sekarang</a>
+      <a class="btn-primary"
+         href="https://wa.me/628986570020?text=Halo%20Assistenku,%20saya%20ingin%20menanyakan%20layanan%20ART."
+         target="_blank">Pesan Sekarang</a>
     </div>
 
-    <!-- BABY SITTER -->
     <div class="card">
       <h3>Baby Sitter</h3>
-      <p>
-        Tenaga profesional yang terlatih dalam merawat bayi dan balita dengan pendekatan lembut,
-        penuh perhatian, serta memahami standar kesehatan bayi.
-      </p>
+      <p>Perawatan bayi & balita dengan penuh perhatian.</p>
       <ul>
-        <li>Perawatan harian bayi/balita</li>
+        <li>Perawatan harian</li>
         <li>Pendamping aktivitas</li>
-        <li>Pemantauan pola makan & istirahat</li>
+        <li>Pengawasan makan & tidur</li>
         <li>Kebersihan area bayi</li>
       </ul>
-      <a href="https://wa.me/628986570020?text=Halo%20Assistenku,%20saya%20ingin%20menanyakan%20layanan%20Baby%20Sitter."
-         class="btn-primary">Pesan Sekarang</a>
+      <a class="btn-primary"
+         href="https://wa.me/628986570020?text=Saya%20ingin%20menanyakan%20layanan%20Baby%20Sitter."
+         target="_blank">Pesan Sekarang</a>
     </div>
 
-    <!-- LANSIA -->
     <div class="card">
       <h3>Pendamping Lansia</h3>
-      <p>
-        Didesain untuk mendampingi dan membantu orang tua/lansia dengan pendekatan penuh empati
-        dan kesabaran. Tersedia layanan non-medis.
-      </p>
+      <p>Mendampingi dan membantu lansia dengan empati.</p>
       <ul>
         <li>Pendamping harian</li>
-        <li>Membantu aktivitas ringan</li>
-        <li>Pendamping jalan & kontrol</li>
-        <li>Sahabat bicara & pengawasan</li>
+        <li>Aktivitas ringan</li>
+        <li>Pendamping jalan</li>
+        <li>Dukungan sosial</li>
       </ul>
-      <a href="https://wa.me/628986570020?text=Halo%20Assistenku,%20saya%20ingin%20menanyakan%20layanan%20Pendamping%20Lansia."
-         class="btn-primary">Pesan Sekarang</a>
+      <a class="btn-primary"
+         href="https://wa.me/628986570020?text=Halo,%20Saya%20ingin%20menanyakan%20Pendamping%20Lansia."
+         target="_blank">Pesan Sekarang</a>
     </div>
 
-    <!-- OFFICE BOY -->
     <div class="card">
-      <h3>Office Boy / Office Girl</h3>
-      <p>
-        Tenaga kerja untuk kebutuhan kantor, toko, gudang, maupun usaha kecil.
-        Menjaga kebersihan dan membantu pekerjaan operasional ringan.
-      </p>
+      <h3>Office Boy / Girl</h3>
+      <p>Tenaga kebersihan & operasional kantor.</p>
       <ul>
-        <li>Pembersihan area kantor</li>
-        <li>Penyediaan minuman</li>
+        <li>Membersihkan kantor</li>
+        <li>Menyajikan minuman</li>
         <li>Pengepel & pengelapan</li>
         <li>Bantuan operasional</li>
       </ul>
-      <a href="https://wa.me/628986570020?text=Halo%20Assistenku,%20saya%20ingin%20menanyakan%20layanan%20Office%20Boy/Girl."
-         class="btn-primary">Pesan Sekarang</a>
+      <a class="btn-primary"
+         href="https://wa.me/628986570020?text=Halo,%20Saya%20ingin%20menanyakan%20layanan%20Office%20Boy."
+         target="_blank">Pesan Sekarang</a>
     </div>
 
-    <!-- DRIVER -->
     <div class="card">
       <h3>Pengemudi Pribadi</h3>
-      <p>
-        Pengemudi berpengalaman untuk kebutuhan harian atau sementara. Mengutamakan keamanan,
-        ketepatan waktu, dan kenyamanan dalam perjalanan.
-      </p>
+      <p>Pengemudi profesional yang mengutamakan keamanan.</p>
       <ul>
         <li>Pengemudi harian</li>
         <li>Pengemudi keluarga</li>
         <li>Perjalanan dinas</li>
-        <li>Keamanan dan etika berkendara</li>
+        <li>Berkendara aman</li>
       </ul>
-      <a href="https://wa.me/628986570020?text=Halo%20Assistenku,%20saya%20ingin%20menanyakan%20layanan%20Driver."
-         class="btn-primary">Pesan Sekarang</a>
+      <a class="btn-primary"
+         href="https://wa.me/628986570020?text=Halo,%20saya%20ingin%20menanyakan%20layanan%20Driver."
+         target="_blank">Pesan Sekarang</a>
     </div>
 
   </div>
 </section>
 
-<!-- =============================
-     CATATAN TAMBAHAN
-============================= -->
 
 <section>
   <h2>Catatan & Kebijakan</h2>
 
   <p>
-    Seluruh tenaga kerja telah melalui proses seleksi, wawancara, dan pemeriksaan latar belakang.
-    Untuk tenaga khusus seperti baby sitter dan pendamping lansia, tersedia pelatihan tambahan.
+    Tenaga kerja sudah melalui seleksi, wawancara, dan pengecekan latar belakang.
   </p>
 
   <p>
-    Assistenku menjaga keamanan, kenyamanan, dan komunikasi dua arah agar hubungan antara klien
-    dan tenaga kerja berjalan harmonis serta saling menghormati.
-  </p>
-
-  <p>
-    Lama kontrak, jadwal kerja, area penempatan, dan detail tugas dapat disesuaikan dengan
-    kebutuhan klien.
+    Jadwal kerja, kontrak, dan detail tugas dapat disesuaikan dengan kebutuhan klien.
   </p>
 </section>
 
 <footer>© 2025 Assistenku</footer>
 
 <script src="/script.js"></script>
-
 </body>
 </html>
