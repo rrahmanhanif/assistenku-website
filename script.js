@@ -1,32 +1,48 @@
-/* ============================================================
-   MOBILE MENU HANDLER
-============================================================ */
+/* =============================
+   MOBILE MENU
+============================= */
+
 const menuIcon = document.getElementById("menuIcon");
 const mobileMenu = document.getElementById("mobileMenu");
 
 if (menuIcon && mobileMenu) {
   menuIcon.addEventListener("click", () => {
-    mobileMenu.classList.toggle("mobile-open");
+    mobileMenu.classList.toggle("active");
   });
 
-  // Tutup menu saat link diklik
-  const links = mobileMenu.querySelectorAll("a");
-  links.forEach(link => {
+  // Auto close after clicking link
+  mobileMenu.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
-      mobileMenu.classList.remove("mobile-open");
+      mobileMenu.classList.remove("active");
     });
   });
 }
 
+/* =============================
+   SMOOTH SCROLL
+============================= */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener("click", (e) => {
+    const target = document.querySelector(link.getAttribute("href"));
+    if (target) {
+      e.preventDefault();
+      window.scrollTo({
+        top: target.offsetTop - 120,
+        behavior: "smooth"
+      });
+    }
+  });
+});
 
-/* ============================================================
-   OPTIONAL — FUTURE BUTTON HANDLING (SAFE EMPTY)
-============================================================ */
-/*  
-   Jika nanti kamu ingin menambah tombol handler PDF,
-   tinggal aktifkan kembali block ini.
-*/
+/* =============================
+   PDF BUTTONS (Only if exist)
+============================= */
+function openPDF(id, file) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.onclick = () => window.open(file, "_blank");
+  }
+}
 
-// Example:
-// const btnBiaya = document.getElementById("btnBiayaLayanan");
-// if (btnBiaya) btnBiaya.onclick = () => window.open("/file.pdf", "_blank");
+openPDF("btnBiayaLayanan", "/penawaran.pdf");
+openPDF("btnUnduhFormulir", "/formulir.pdf");
