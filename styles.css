@@ -12,29 +12,40 @@ body {
   background: #f7f9fc;
   color: #222;
   line-height: 1.7;
+  text-align: justify;
 }
 
 /* =========================================
-NAVBAR
+HEADER + TAGLINE
 ========================================= */
 header {
+  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
   background: #ffffffee;
   backdrop-filter: blur(8px);
   border-bottom: 1px solid #e0e0e0;
   z-index: 999;
 }
 
+.top-header {
+  width: 100%;
+  text-align: center;
+  background: #0057ff;
+  color: white;
+  padding: 6px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .navbar {
   max-width: 1200px;
   margin: auto;
-  padding: 15px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 15px 20px;
 }
 
 .logo {
@@ -42,6 +53,7 @@ header {
   object-fit: contain;
 }
 
+/* NAVIGATION */
 nav ul {
   display: flex;
   gap: 30px;
@@ -60,7 +72,7 @@ nav ul li a {
 
 nav ul li a:hover,
 nav ul li a.active {
-  color: #0d6efd;
+  color: #0057ff;
 }
 
 /* HAMBURGER */
@@ -87,29 +99,7 @@ nav ul li a.active {
 }
 
 /* =========================================
-HERO SECTION (INDEX)
-========================================= */
-.hero {
-  max-width: 900px;
-  margin: 140px auto 40px auto;
-  padding: 20px;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
-  color: #0d6efd;
-}
-
-.hero p {
-  font-size: 17px;
-  color: #333;
-  margin-bottom: 25px;
-}
-
-/* =========================================
-SECTIONS
+PAGE SECTIONS
 ========================================= */
 section {
   max-width: 1100px;
@@ -117,20 +107,19 @@ section {
   padding: 35px 20px;
 }
 
-section h2 {
-  font-size: 26px;
-  margin-bottom: 12px;
-  color: #0d6efd;
+section h1, section h2 {
+  color: #0057ff;
+  text-align: left;
+  margin-bottom: 15px;
 }
 
 section p {
-  font-size: 16px;
   color: #333;
   margin-bottom: 15px;
 }
 
 /* =========================================
-CARD GRID
+CARDS
 ========================================= */
 .card-grid {
   display: grid;
@@ -154,41 +143,18 @@ CARD GRID
 
 .card h3 {
   font-size: 20px;
-  margin-bottom: 8px;
-  color: #333;
-}
-
-.card p {
   margin-bottom: 10px;
-  color: #444;
-}
-
-.card ul {
-  margin-left: 18px;
-  padding-bottom: 10px;
-}
-
-.card ul li {
-  margin-bottom: 5px;
   color: #333;
-}
-
-/* Founder images, legal images */
-.founder-img,
-.legal-img {
-  width: 100%;
-  border-radius: 12px;
-  margin: 10px 0;
-  object-fit: cover;
 }
 
 /* =========================================
 BUTTONS
 ========================================= */
-.btn-primary {
+.btn-primary,
+.island-btn {
   display: inline-block;
   padding: 12px 20px;
-  background: #0d6efd;
+  background: #0057ff;
   color: white;
   border-radius: 12px;
   text-decoration: none;
@@ -196,29 +162,9 @@ BUTTONS
   transition: 0.2s;
 }
 
-.btn-primary:hover {
-  background: #0b5ed7;
-}
-
-/* LOCK BUTTON */
-.lock-button {
-  padding: 12px 20px;
-  border: 0;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-  transition: 0.2s;
-}
-
-.locked {
-  background: #d9534f;
-  color: white;
-}
-
-.unlocked {
-  background: #28a745;
-  color: white;
+.btn-primary:hover,
+.island-btn:hover {
+  background: #0044cc;
 }
 
 /* =========================================
@@ -239,11 +185,9 @@ RESPONSIVE
   nav ul {
     display: none;
   }
-
   #menuIcon {
     display: block;
   }
-
   #mobileMenu.active {
     display: flex;
   }
