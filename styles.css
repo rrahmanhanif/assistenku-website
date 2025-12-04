@@ -1,6 +1,6 @@
-/* =========================================
-GLOBAL RESET
-========================================= */
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
 * {
   margin: 0;
   padding: 0;
@@ -10,35 +10,34 @@ GLOBAL RESET
 
 body {
   background: #f7f9fc;
-  color: #222;
+  color: #1f1f1f;
   line-height: 1.7;
   text-align: justify;
 }
 
-/* =========================================
-TOP HEADER
-========================================= */
+/* =========================================================
+   TOP HEADER
+========================================================= */
 .top-header {
   width: 100%;
   background: #0d6efd;
   color: white;
+  padding: 8px 0;
   text-align: center;
-  padding: 6px 0;
   font-size: 14px;
   font-weight: 500;
 }
 
-/* =========================================
-NAVBAR
-========================================= */
+/* =========================================================
+   NAVBAR
+========================================================= */
 header {
+  position: fixed;
+  top: 0;
   width: 100%;
   background: #ffffffee;
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid #e0e0e0;
-  position: fixed;
-  top: 0;
-  left: 0;
+  border-bottom: 1px solid #e5e5e5;
   z-index: 999;
 }
 
@@ -56,7 +55,6 @@ header {
   object-fit: contain;
 }
 
-/* Desktop nav */
 nav ul {
   display: flex;
   gap: 30px;
@@ -68,7 +66,7 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  color: #1a1a1a;
+  color: #1f1f1f;
   font-weight: 500;
   transition: 0.2s;
 }
@@ -78,41 +76,34 @@ nav ul li a.active {
   color: #0d6efd;
 }
 
-/* =========================================
-HAMBURGER (Mobile Only)
-========================================= */
+/* MOBILE MENU BUTTON */
 #menuIcon {
   display: none;
   cursor: pointer;
   font-size: 30px;
-  user-select: none;
 }
 
-/* Mobile Menu */
+/* MOBILE MENU */
 #mobileMenu {
   display: none;
   flex-direction: column;
   background: white;
   width: 100%;
   padding: 20px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 #mobileMenu a {
   text-decoration: none;
-  color: #333;
+  color: #222;
   padding: 12px 0;
   font-weight: 500;
   border-bottom: 1px solid #f0f0f0;
 }
 
-#mobileMenu a:last-child {
-  border-bottom: none;
-}
-
-/* =========================================
-PAGE SECTION BASE
-========================================= */
+/* =========================================================
+   PAGE STRUCTURE
+========================================================= */
 section {
   max-width: 1100px;
   margin: auto;
@@ -121,19 +112,25 @@ section {
 
 h1 {
   font-size: 32px;
+  margin-bottom: 20px;
   color: #0d6efd;
-  margin-bottom: 15px;
+  text-align: center;
 }
 
 h2 {
   font-size: 26px;
+  margin: 25px 0 12px;
   color: #0d6efd;
-  margin-bottom: 10px;
 }
 
-/* =========================================
-CARD GRID
-========================================= */
+p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+/* =========================================================
+   CARD GRID
+========================================================= */
 .card-grid {
   display: grid;
   gap: 20px;
@@ -146,7 +143,7 @@ CARD GRID
   padding: 22px;
   border-radius: 14px;
   box-shadow: 0px 4px 12px #00000011;
-  transition: 0.2s;
+  transition: 0.25s;
 }
 
 .card:hover {
@@ -157,12 +154,6 @@ CARD GRID
 .card h3 {
   font-size: 20px;
   margin-bottom: 8px;
-  color: #333;
-}
-
-.card p {
-  margin-bottom: 10px;
-  color: #444;
 }
 
 .card ul {
@@ -171,11 +162,52 @@ CARD GRID
 }
 
 .card ul li {
-  margin-bottom: 5px;
-  color: #333;
+  margin-bottom: 6px;
 }
 
-/* Founder / Legal images */
+/* =========================================================
+   BUTTONS
+========================================================= */
+.btn-primary,
+.btn-secondary,
+.btn-email {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: 0.2s;
+  margin-top: 10px;
+}
+
+/* Biru */
+.btn-primary {
+  background: #0d6efd;
+}
+.btn-primary:hover {
+  background: #0b5ed7;
+}
+
+/* Abu */
+.btn-secondary {
+  background: #6c757d;
+}
+.btn-secondary:hover {
+  background: #5a6268;
+}
+
+/* Hijau */
+.btn-email {
+  background: #198754;
+}
+.btn-email:hover {
+  background: #157347;
+}
+
+/* =========================================================
+   IMAGE STYLES
+========================================================= */
 .founder-img,
 .legal-img {
   width: 100%;
@@ -184,49 +216,9 @@ CARD GRID
   object-fit: cover;
 }
 
-/* =========================================
-BUTTONS
-========================================= */
-.btn-primary {
-  display: inline-block;
-  padding: 12px 20px;
-  background: #0d6efd;
-  color: white;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.2s;
-}
-
-.btn-primary:hover {
-  background: #0b5ed7;
-}
-
-/* Secondary Button */
-.btn-secondary {
-  display: inline-block;
-  padding: 10px 18px;
-  background: #6c757d;
-  color: white;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.2s;
-}
-
-.btn-secondary:hover {
-  background: #5a6268;
-}
-
-.apply-box {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-/* =========================================
-FOOTER
-========================================= */
+/* =========================================================
+   FOOTER
+========================================================= */
 footer {
   margin-top: 40px;
   background: #f0f3f8;
@@ -235,9 +227,9 @@ footer {
   font-size: 14px;
 }
 
-/* =========================================
-RESPONSIVE RULES
-========================================= */
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 @media (max-width: 860px) {
   nav ul {
     display: none;
@@ -251,7 +243,7 @@ RESPONSIVE RULES
     display: flex;
   }
 
-  .apply-box {
-    flex-direction: column;
+  h1 {
+    font-size: 26px;
   }
-}
+  }
