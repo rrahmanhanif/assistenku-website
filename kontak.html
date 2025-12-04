@@ -1,299 +1,77 @@
-/* ============================================================
-   GLOBAL RESET
-============================================================ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontak | Assistenku</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
 
-html {
-  scroll-behavior: smooth;
-}
+<body>
 
-body {
-  background: #f8f9fb;
-  color: #1a1a1a;
-  line-height: 1.75;
-  text-align: justify;
-  padding-top: 110px; /* compensate header fixed */
-}
+<header>
+  <div class="top-header">Assistenku — Kemudahan Ada Dalam Genggaman</div>
 
+  <div class="navbar">
+    <img src="/logo.png" class="logo" alt="Logo Assistenku">
 
-/* ============================================================
-   TOP HEADER
-============================================================ */
-.top-header {
-  width: 100%;
-  text-align: center;
-  background: #0066ff;
-  color: white;
-  padding: 6px 0;
-  font-size: 14px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999;
-}
+    <nav class="nav-links">
+      <a href="/index.html">Beranda</a>
+      <a href="/profil.html">Profil</a>
+      <a href="/layanan.html">Layanan</a>
+      <a href="/karir.html">Karir</a>
+      <a href="/kontak.html" class="active">Kontak</a>
+    </nav>
+
+    <div class="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
 
 
-/* ============================================================
-   NAVBAR
-============================================================ */
-.navbar {
-  width: 100%;
-  height: 70px;
-  background: white;
-  border-bottom: 1px solid #e5e7eb;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-
-  position: fixed;
-  top: 30px;
-  left: 0;
-  z-index: 998;
-}
-
-.logo {
-  height: 48px;
-  object-fit: contain;
-}
-
-.nav-links {
-  display: flex;
-  gap: 25px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  font-size: 15px;
-  color: #1a1a1a;
-  font-weight: 500;
-  transition: 0.2s ease;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: #0066ff;
-}
+<section class="page-section">
+  <h1>Hubungi Kami</h1>
+  <p>
+    Tim Assistenku siap membantu Anda terkait pemesanan layanan, konsultasi kebutuhan,
+    atau informasi lowongan kerja.
+  </p>
+</section>
 
 
-/* ============================================================
-   HAMBURGER + MOBILE MENU
-============================================================ */
-.hamburger {
-  width: 35px;
-  height: 25px;
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
-}
+<section>
+  <h2>Informasi Kontak</h2>
 
-.hamburger span {
-  width: 100%;
-  height: 4px;
-  background: #1a1a1a;
-  border-radius: 5px;
-}
+  <div class="card-grid">
 
-#mobileMenu {
-  position: fixed;
-  top: 100px;
-  right: -100%;
-  width: 70%;
-  height: 100vh;
-  background: white;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-  padding: 20px;
-  transition: 0.35s ease;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  z-index: 997;
-}
+    <div class="card">
+      <h3>WhatsApp Resmi</h3>
+      <p>Respons cepat untuk semua kebutuhan.</p>
+      <a class="btn-primary" href="https://wa.me/628986570020" target="_blank">
+        Hubungi via WhatsApp
+      </a>
+    </div>
 
-#mobileMenu a {
-  text-decoration: none;
-  color: #1a1a1a;
-  font-size: 16px;
-  font-weight: 500;
-}
+    <div class="card">
+      <h3>Email Layanan</h3>
+      <p>Untuk pertanyaan seputar pemesanan layanan.</p>
+      <a class="btn-primary" href="mailto:kontakassistenku@gmail.com">
+        Email Layanan
+      </a>
+    </div>
 
-#mobileMenu a:hover {
-  color: #0066ff;
-}
+    <div class="card">
+      <h3>Email Rekrutmen</h3>
+      <p>Untuk informasi lowongan kerja & lamaran.</p>
+      <a class="btn-primary" href="mailto:karirassistenku@gmail.com">
+        Email Rekrutmen
+      </a>
+    </div>
 
-.mobile-open {
-  right: 0 !important;
-}
+  </div>
+</section>
 
-
-/* ============================================================
-   PAGE SECTION
-============================================================ */
-.page-section {
-  padding: 40px 20px;
-  max-width: 900px;
-  margin: auto;
-}
-
-.page-section h1 {
-  font-size: 34px;
-  text-align: center;
-  margin-bottom: 25px;
-  color: #0f172a;
-}
-
-.page-section p {
-  margin-bottom: 18px;
-  color: #2a2a2a;
-}
-
-
-/* ============================================================
-   HEADINGS
-============================================================ */
-h1, h2, h3 {
-  color: #0f172a;
-  font-weight: 700;
-}
-
-h2 {
-  text-align: center;
-  font-size: 28px;
-  margin: 40px 0 20px;
-}
-
-h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-
-/* ============================================================
-   CARD GRID
-============================================================ */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 22px;
-  padding: 0 20px;
-  max-width: 1100px;
-  margin: auto;
-}
-
-.card {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-  border: 1px solid #e5e7eb;
-}
-
-.card p {
-  margin-bottom: 14px;
-}
-
-.card ul {
-  margin: 10px 0 15px 18px;
-}
-
-.card ul li {
-  margin-bottom: 6px;
-}
-
-
-/* ============================================================
-   BUTTONS
-============================================================ */
-.btn-primary,
-.btn-secondary {
-  display: inline-block;
-  padding: 10px 18px;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 14px;
-  margin-top: 8px;
-}
-
-.btn-primary {
-  background: #0066ff;
-  color: white;
-}
-
-.btn-primary:hover {
-  background: #0052cc;
-}
-
-.btn-secondary {
-  background: #e5e7eb;
-  color: #1a1a1a;
-}
-
-.btn-secondary:hover {
-  background: #d4d4d8;
-}
-
-
-/* ============================================================
-   APPLY BOX
-============================================================ */
-.apply-box {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-}
-
-
-/* ============================================================
-   FOOTER
-============================================================ */
-footer {
-  text-align: center;
-  margin-top: 60px;
-  padding: 25px 0;
-  background: #f1f5f9;
-  font-size: 14px;
-  border-top: 1px solid #e5e7eb;
-}
-
-
-/* ============================================================
-   RESPONSIVE (MOBILE)
-============================================================ */
-@media (max-width: 850px) {
-
-  .nav-links {
-    display: none;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  body {
-    padding-top: 120px;
-  }
-
-  .top-header {
-    font-size: 13px;
-  }
-
-  .navbar {
-    height: 66px;
-  }
-
-  h1 {
-    font-size: 28px;
-  }
-
-  h2 {
-    font-size: 24px;
-  }
-}
+<footer>© 2025 Assistenku</footer>
+<script src="/script.js"></script>
+</body>
+</html>
