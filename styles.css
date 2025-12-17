@@ -267,3 +267,16 @@ footer {
   border-radius: 4px;
   font-weight: 600;
 }
+.card-image {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
