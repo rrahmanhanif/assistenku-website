@@ -201,9 +201,15 @@ p {
 .btn-email {
   background: #198754;
 }
+
 .btn-email:hover {
   background: #157347;
 }
+.btn-outline:hover {
+  background: #0b5ed7;
+  color: #fff;
+}
+
 
 /* =========================================================
    IMAGE STYLES
@@ -268,9 +274,4 @@ footer {
   text-decoration: none;
   border-radius: 4px;
   font-weight: 600;
-}
-
-.btn-outline:hover {
-  background: #0b5ed7;
-  color: #fff;
 }
