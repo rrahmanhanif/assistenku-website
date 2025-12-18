@@ -213,6 +213,14 @@ p {
   margin: 10px 0;
   object-fit: cover;
 }
+.card-image {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
 
 /* =========================================================
    FOOTER
