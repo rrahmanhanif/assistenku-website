@@ -48,10 +48,11 @@ openPDF("btnBiayaLayanan", "/penawaran.pdf");
 openPDF("btnUnduhFormulir", "/formulir.pdf");
 
 /* =============================
-   PWA: SERVICE WORKER + INSTALL (SINGLE SOURCE OF TRUTH)
-   - Tanpa panduan
-   - Tanpa deklarasi ganda
-   - Aman jika tombol tidak ada
+   PWA: SERVICE WORKER + ANDROID INSTALL + iOS HINT
+   - Single source of truth (no duplicates)
+   - Uses:
+     - Android button: #pwaInstallBtn
+     - iOS hint: #iosInstallHint
 ============================= */
 
 // Register Service Worker
@@ -61,69 +62,68 @@ if ("serviceWorker" in navigator) {
   });
 }
 
-// Install prompt (Chrome Android)
+/* -----------------------------
+   Platform detection
+----------------------------- */
+function isIOS() {
+  return /iphone|ipad|ipod/i.test(navigator.userAgent);
+}
+
+// Detect "standalone" (installed PWA)
+function isStandaloneMode() {
+  return (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true
+  );
+}
+
+/* -----------------------------
+   Android install prompt
+----------------------------- */
 let deferredPrompt = null;
 
-// Tangkap event install (kalau browser mengizinkan)
+// Show Android install button only when eligible and not iOS
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   deferredPrompt = e;
 
-  // Jika Anda mau tombol hanya muncul saat eligible, set default tombol display:none di HTML/CSS
-  const btn = document.getElementById("installAppBtn");
-  if (btn) {
-    btn.style.display = "inline-block";
-    // optional: btn.textContent = "Install App";
+  if (!isIOS()) {
+    const btn = document.getElementById("pwaInstallBtn");
+    if (btn) btn.style.display = "inline-block";
   }
 });
 
-// Klik tombol install
+// Click handler for Android install button
 document.addEventListener("click", async (e) => {
-  const target = e.target;
-  if (!target || target.id !== "installAppBtn") return;
+  const t = e.target;
+  if (!t || t.id !== "pwaInstallBtn") return;
 
-  // Jika belum eligible, tidak ada prompt (wajar)
+  // If already installed / standalone, do nothing
+  if (isStandaloneMode()) return;
+
+  // If not eligible yet, do nothing (normal)
   if (!deferredPrompt) return;
 
   deferredPrompt.prompt();
   await deferredPrompt.userChoice;
   deferredPrompt = null;
 
-  // Optional: sembunyikan tombol setelah install prompt dipakai
-  const btn = document.getElementById("installAppBtn");
+  // Optional: hide button after prompt used
+  const btn = document.getElementById("pwaInstallBtn");
   if (btn) btn.style.display = "none";
 });
 
-/* =============================
-   iOS SAFARI: ADD TO HOME SCREEN HELPER
-============================= */
-
-function isIOS() {
-  return /iphone|ipad|ipod/i.test(navigator.userAgent);
-}
-
-function isSafari() {
-  // Safari iOS (exclude Chrome/Firefox/Edge iOS)
-  return /^((?!chrome|crios|fxios|edgios|android).)*safari/i.test(
-    navigator.userAgent
-  );
-}
-
-function isInStandaloneIOS() {
-  return window.navigator.standalone === true;
-}
-
-function showIOSInstallHint() {
-  const el = document.getElementById("iosInstallHint");
-  if (el) el.style.display = "block";
-}
-
-// Tampilkan instruksi hanya jika:
-// - iOS
-// - Safari
-// - BELUM standalone
+/* -----------------------------
+   iOS hint
+----------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
-  if (isIOS() && isSafari() && !isInStandaloneIOS()) {
-    showIOSInstallHint();
+  // iOS: show hint only if not installed yet
+  if (isIOS() && !isStandaloneMode()) {
+    const iosHint = document.getElementById("iosInstallHint");
+    if (iosHint) iosHint.style.display = "block";
+
+    // Ensure Android button hidden on iOS
+    const btn = document.getElementById("pwaInstallBtn");
+    if (btn) btn.style.display = "none";
   }
 });
