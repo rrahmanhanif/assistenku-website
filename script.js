@@ -48,10 +48,9 @@ openPDF("btnBiayaLayanan", "/penawaran.pdf");
 openPDF("btnUnduhFormulir", "/formulir.pdf");
 
 /* =============================
-   PWA: ANDROID ONLY (STANDBY, NO GUIDE)
+   PWA: ANDROID ONLY (STANDBY, NO GUIDE, NO "DEAD" BUTTON)
 ============================= */
 
-// Register Service Worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("/sw.js").catch(console.warn);
@@ -60,20 +59,41 @@ if ("serviceWorker" in navigator) {
 
 let deferredPrompt = null;
 
-// Simpan prompt saat eligible
+function setInstallButtonState(enabled) {
+  const btn = document.getElementById("pwaInstallBtn");
+  if (!btn) return;
+
+  btn.disabled = !enabled;
+  btn.style.opacity = enabled ? "1" : "0.6";
+  btn.style.cursor = enabled ? "pointer" : "not-allowed";
+}
+
+// Default: tombol tampil tapi nonaktif sampai eligible
+document.addEventListener("DOMContentLoaded", () => {
+  setInstallButtonState(false);
+});
+
+// Eligible event dari Chrome
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   deferredPrompt = e;
+  setInstallButtonState(true);
 });
 
-// Klik tombol: hanya bekerja jika eligible
+// Klik tombol
 document.addEventListener("click", async (e) => {
   const t = e.target;
   if (!t || t.id !== "pwaInstallBtn") return;
 
   if (!deferredPrompt) return;
 
+  // Setelah dipakai, langsung nonaktifkan agar tidak terasa "mati"
+  setInstallButtonState(false);
+
   deferredPrompt.prompt();
   await deferredPrompt.userChoice;
+
   deferredPrompt = null;
+  // Setelah user memilih, tetap nonaktif (Chrome biasanya cooldown)
+  setInstallButtonState(false);
 });
