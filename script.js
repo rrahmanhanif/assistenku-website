@@ -77,15 +77,8 @@ window.installAssistenku = async function () {
 };
 
 /* =============================
-   PWA GLOBAL INSTALL POPUP
+   PWA: STANDBY INSTALL (MODE A)
 ============================= */
-
-// Register Service Worker (sekali, berlaku semua halaman)
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js").catch(console.warn);
-  });
-}
 
 let deferredPrompt = null;
 
@@ -94,45 +87,46 @@ function isStandaloneMode() {
     || window.navigator.standalone === true;
 }
 
-function canShowInstallBanner() {
-  if (isStandaloneMode()) return false;
-  try {
-    if (localStorage.getItem("pwa_install_dismissed") === "1") return false;
-  } catch {}
-  return true;
+function openInstallHelp() {
+  const modal = document.getElementById("installHelpModal");
+  if (modal) modal.style.display = "block";
 }
 
-function showInstallBanner() {
-  if (!canShowInstallBanner()) return;
-  const banner = document.getElementById("pwaInstallBanner");
-  if (!banner) return;
-  banner.style.display = "flex";
-  banner.classList.add("is-show");
+function closeInstallHelp() {
+  const modal = document.getElementById("installHelpModal");
+  if (modal) modal.style.display = "none";
 }
 
-function hideInstallBanner(persist = false) {
-  const banner = document.getElementById("pwaInstallBanner");
-  if (!banner) return;
-  banner.style.display = "none";
-  if (persist) {
-    try { localStorage.setItem("pwa_install_dismissed", "1"); } catch {}
-  }
-}
-
-// Tangkap event install dari browser
+// Tangkap event install dari browser (kalau Chrome mengizinkan)
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  showInstallBanner();
+
+  // Optional: ubah label tombol biar lebih jelas saat eligible
+  const btn = document.getElementById("installAppBtn");
+  if (btn) btn.textContent = "Install App";
 });
 
-// Klik tombol Install
+// Klik tombol Install: prompt jika tersedia, kalau tidak tampilkan panduan
 document.addEventListener("click", async (e) => {
-  if (e.target && e.target.id === "pwaInstallBtn") {
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-    hideInstallBanner(true);
+  if (e.target && e.target.id === "installAppBtn") {
+    if (isStandaloneMode()) return; // sudah terpasang
+
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      return;
+    }
+
+    openInstallHelp();
+  }
+
+  if (e.target && e.target.id === "closeInstallHelp") {
+    closeInstallHelp();
+  }
+
+  if (e.target && e.target.id === "installHelpModal") {
+    closeInstallHelp();
   }
 });
