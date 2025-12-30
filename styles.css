@@ -386,3 +386,7 @@ footer {
 .pwa-install.is-show{
   animation: pwaSlideUp .22s ease-out;
 }
+#installAppBtn { display: none; }
+@media (max-width: 768px) {
+  #installAppBtn { display: inline-block; }
+}
