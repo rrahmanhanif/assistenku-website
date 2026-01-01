@@ -201,16 +201,27 @@ p {
   background: #0b5ed7;
   color: #fff;
 }
-.btn-tertiary{
-  display:inline-block;
-  width:100%;
-  text-align:center;
-  padding:12px 14px;
-  border-radius:10px;
-  border:1px solid #0B5ED7;
-  text-decoration:none;
-  font-weight:600;
+
+.btn-tertiary {
+  display: inline-block;
+  padding: 12px 20px;      /* samakan dengan tombol lain */
+  border-radius: 12px;     /* samakan dengan tombol lain */
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+  margin-top: 10px;        /* samakan dengan tombol lain */
+
+  background: transparent; /* outline */
+  color: #0d6efd;          /* biru */
+  border: 1px solid #0d6efd;
 }
+
+.btn-tertiary:hover {
+  background: #0b5ed7;     /* hover biru gelap */
+  border-color: #0b5ed7;
+  color: #fff;
+}
+
 
 
 /* =========================================================
