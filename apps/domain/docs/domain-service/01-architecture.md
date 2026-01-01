@@ -30,4 +30,57 @@ Tujuan utama:
 ---
 
 ## 3. High-Level Architecture
+Customer App
+↓
+Assistenku Admin (Core)
+↓
+┌──────────────────┬───────────────────┐
+│ Domain Layer │ Hosting Layer │
+│ (Registrar API) │ (Web / App Server)│
+└──────────────────┴───────────────────┘
 
+
+---
+
+## 4. Domain Layer
+
+### Fungsi:
+- Registrasi domain
+- Renewal otomatis
+- Suspend & release
+- Transfer manual via Admin
+
+### Data yang Disimpan:
+- domain_name
+- tld
+- customer_id
+- registrar
+- registrar_domain_id
+- expiry_date
+- status
+- auto_renew
+
+Password registrar **tidak pernah disimpan**.
+
+---
+
+## 5. Hosting Layer
+
+Hosting digunakan untuk:
+- Website profil klien
+- Landing page bisnis
+- Aplikasi Assistenku
+
+Hosting:
+- Tidak dijual mentah
+- Selalu bundled
+- Dikelola oleh Admin
+
+---
+
+## 6. Keputusan Final
+
+- Domain atas nama customer
+- Kontrol penuh di Admin
+- Renewal wajib
+- Tidak ada domain tanpa kontrak layanan
