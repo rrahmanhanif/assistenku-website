@@ -1,5 +1,8 @@
 :root{
   --bg: #0b0d10;
+  --panel: #14161a;
+  --panel2: #171a1f;
+
   --text: rgba(255,255,255,.92);
   --muted: rgba(255,255,255,.70);
   --line: rgba(255,255,255,.10);
@@ -8,46 +11,45 @@
   --brand-orange: #f0a21a;
   --brand-gold: #ffcc4d;
 
-  /* Shadow diringankan */
-  --shadow: 0 10px 26px rgba(0,0,0,.32);
   --radius: 18px;
   --radius2: 24px;
   --max: 1120px;
+
+  /* Shadow super ringan (ramah Snapdragon 680) */
+  --shadow: 0 6px 16px rgba(0,0,0,.28);
 }
 
-*{ box-sizing: border-box; }
-html,body{ height: 100%; }
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
 
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", Noto Sans, "Liberation Sans", sans-serif;
   color: var(--text);
+  background: linear-gradient(180deg, #07080a 0%, #0b0d10 60%, #07080a 100%);
+  overflow-x:hidden;
 
-  /* Background disederhanakan (hilangkan radial besar yang berat) */
-  background: linear-gradient(180deg, #07080a 0%, #0b0d10 55%, #07080a 100%);
-  overflow-x: hidden;
+  /* Stabilitas scroll di Chrome Android */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-a{ color: inherit; text-decoration: none; }
-.container{ width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+a{ color: inherit; text-decoration:none; }
+.container{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
 
-/* Top bar (tanpa backdrop blur = jauh lebih ringan) */
+/* TOPBAR: tanpa backdrop-filter (wajib untuk Redmi Note 11) */
 .topbar{
-  position: sticky; top: 0; z-index: 30;
-  background: rgba(7,8,10,.88);
+  position: sticky; top:0; z-index:30;
+  background: rgba(10,11,13,.92);
   border-bottom: 1px solid var(--line);
 }
-
 .topbar-inner{
   display:flex; align-items:center; justify-content:space-between;
-  padding: 14px 0;
-  gap: 14px;
+  padding: 12px 0;
+  gap: 12px;
 }
 
-.brand{
-  display:flex; align-items:center; gap: 12px;
-  min-width: 220px;
-}
+.brand{ display:flex; align-items:center; gap:12px; min-width:220px; }
 .brand img{
   width: 44px; height: 44px; object-fit: contain;
   border-radius: 12px;
@@ -56,16 +58,16 @@ a{ color: inherit; text-decoration: none; }
   padding: 6px;
 }
 .brand .title{ display:flex; flex-direction:column; line-height:1.1; }
-.brand .title strong{ font-size: 14px; letter-spacing:.3px; }
-.brand .title span{ font-size: 12px; color: var(--muted); }
+.brand .title strong{ font-size:14px; letter-spacing:.3px; }
+.brand .title span{ font-size:12px; color: var(--muted); }
 
 .nav{
-  display:flex; align-items:center; gap: 10px;
+  display:flex; align-items:center; gap:10px;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content:flex-end;
 }
 .nav a{
-  font-size: 13px;
+  font-size:13px;
   color: var(--muted);
   padding: 8px 10px;
   border-radius: 12px;
@@ -77,70 +79,67 @@ a{ color: inherit; text-decoration: none; }
   background: rgba(255,255,255,.04);
 }
 
-/* Buttons (tanpa transform hover agar stabil & ringan) */
+/* BUTTONS: tanpa transform untuk stabilitas FPS */
 .btn{
-  display:inline-flex; align-items:center; justify-content:center; gap: 10px;
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
   padding: 12px 14px;
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,.12);
   background: rgba(255,255,255,.06);
   color: var(--text);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14px;
-  transition: background .12s ease, border-color .12s ease;
+  transition: background .12s ease, border-color .12s ease, opacity .12s ease;
   white-space: nowrap;
 }
 .btn:hover{ background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.18); }
 
 .btn-primary{
   border-color: rgba(240,162,26,.35);
-  background: linear-gradient(135deg, rgba(240,162,26,.26), rgba(214,70,32,.16));
+  background: linear-gradient(135deg, rgba(240,162,26,.22), rgba(214,70,32,.14));
 }
 .btn-primary:hover{
   border-color: rgba(255,204,77,.55);
-  background: linear-gradient(135deg, rgba(240,162,26,.34), rgba(214,70,32,.20));
+  background: linear-gradient(135deg, rgba(240,162,26,.30), rgba(214,70,32,.18));
 }
 .btn-whatsapp{
   border-color: rgba(37,211,102,.35);
-  background: linear-gradient(135deg, rgba(37,211,102,.20), rgba(255,255,255,.06));
+  background: rgba(37,211,102,.16);
 }
 .btn-email{
   border-color: rgba(207,215,220,.30);
-  background: linear-gradient(135deg, rgba(207,215,220,.12), rgba(255,255,255,.06));
+  background: rgba(207,215,220,.10);
 }
 
-/* Hero */
-.hero{ padding: 48px 0 24px; }
+/* HERO */
+.hero{ padding: 42px 0 20px; }
 
 .hero-grid{
   display:grid;
   grid-template-columns: 1.1fr .9fr;
-  gap: 24px;
+  gap: 20px;
   align-items: stretch;
 }
-
 @media (max-width: 980px){
   .hero-grid{ grid-template-columns: 1fr; }
   .brand{ min-width: unset; }
 }
 
-/* Card style disederhanakan (hapus pseudo overlay radial) */
+/* CARD SYSTEM: flat + shadow ringan (hilangkan pseudo overlay) */
 .hero-card,
 .side,
 .card,
 .cta-band{
   border-radius: var(--radius2);
-  background: rgba(255,255,255,.055);
+  background: var(--panel);
   border: 1px solid rgba(255,255,255,.10);
   box-shadow: var(--shadow);
 }
 
-/* Hero card */
 .hero-card{
-  padding: 26px;
+  padding: 24px;
   position: relative;
   overflow: hidden;
-  transform: translateZ(0);
 }
 .hero-card:before{ display:none; }
 
@@ -173,50 +172,41 @@ h1{
   max-width: 58ch;
 }
 
-.cta-row{
-  display:flex; gap: 12px; flex-wrap: wrap;
-  margin-top: 18px;
-}
+.cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top: 16px; }
 
 .trust{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin-top: 18px;
+  margin-top: 16px;
 }
 @media (max-width: 620px){
   .trust{ grid-template-columns: 1fr; }
 }
 .trust .pill{
   border-radius: 16px;
-  background: rgba(255,255,255,.05);
+  background: var(--panel2);
   border: 1px solid rgba(255,255,255,.10);
-  padding: 12px 12px;
+  padding: 12px;
 }
 .trust .pill strong{ display:block; font-size: 13px; margin-bottom: 4px; }
 .trust .pill span{ display:block; color: var(--muted); font-size: 12.5px; line-height: 1.35; }
 
-/* Side card */
-.side{
-  padding: 22px;
-  overflow: hidden;
-  position: relative;
-  transform: translateZ(0);
-}
+/* SIDE */
+.side{ padding: 18px; overflow:hidden; }
 .logo-big{
   display:flex; align-items:center; justify-content:center;
-  padding: 18px;
-  border-radius: 22px;
-  background: rgba(255,255,255,.06);
+  padding: 14px;
+  border-radius: 18px;
+  background: var(--panel2);
   border: 1px solid rgba(255,255,255,.10);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .logo-big img{
   width: min(240px, 70%);
   height: auto;
   object-fit: contain;
-  /* drop-shadow dihilangkan agar ringan */
-  filter: none;
+  filter: none; /* wajib: hilangkan drop-shadow */
 }
 .side h2{ margin: 10px 0 6px; font-size: 18px; }
 .side p{ margin: 0 0 12px; color: var(--muted); line-height: 1.55; font-size: 13.8px; }
@@ -227,14 +217,14 @@ h1{
   gap: 12px;
   padding: 10px 12px;
   border-radius: 14px;
-  background: rgba(255,255,255,.05);
+  background: var(--panel2);
   border: 1px solid rgba(255,255,255,.10);
 }
 .info .row span{ color: var(--muted); font-size: 12.5px; }
 .info .row strong{ font-size: 13px; }
 
-/* Sections */
-section{ padding: 26px 0; }
+/* SECTIONS */
+section{ padding: 24px 0; }
 .section-head{
   display:flex; align-items:flex-end; justify-content:space-between;
   gap: 12px;
@@ -244,7 +234,7 @@ section{ padding: 26px 0; }
 .section-head h3{ margin: 0; font-size: 20px; letter-spacing: -.2px; }
 .section-head p{ margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.5; max-width: 70ch; }
 
-/* Menu grid */
+/* MENU GRID */
 .grid{
   display:grid;
   grid-template-columns: repeat(3, 1fr);
@@ -260,9 +250,8 @@ section{ padding: 26px 0; }
 .card{
   border-radius: var(--radius);
   padding: 16px;
-  position: relative;
-  overflow: hidden;
-  transform: translateZ(0);
+  overflow:hidden;
+  background: var(--panel);
 }
 .card:before{ display:none; }
 
@@ -292,20 +281,21 @@ section{ padding: 26px 0; }
   font-size: 13px;
 }
 
-/* CTA band */
+/* CTA BAND */
 .cta-band{
-  padding: 20px;
+  padding: 18px;
   display:flex; align-items:center; justify-content:space-between;
   gap: 14px;
   flex-wrap: wrap;
-  transform: translateZ(0);
+  background: linear-gradient(135deg, rgba(240,162,26,.16), rgba(214,70,32,.12));
 }
 .cta-band h4{ margin:0 0 6px; font-size: 18px; }
 .cta-band p{ margin:0; color: var(--muted); font-size: 13.5px; line-height: 1.45; max-width: 70ch; }
 .cta-actions{ display:flex; gap:12px; flex-wrap:wrap; }
 
+/* FOOTER */
 footer{
-  padding: 28px 0 40px;
+  padding: 26px 0 40px;
   color: var(--muted);
   border-top: 1px solid var(--line);
   margin-top: 10px;
@@ -322,16 +312,16 @@ footer{
 .foot-title{ display:block; margin-bottom:6px; }
 .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
-/* SCROLL BOOST: saat scroll cepat, ringankan repaint sementara */
+/* SCROLL BOOST: kurangi repaint saat scroll cepat */
 html.is-scrolling .hero-card,
 html.is-scrolling .side,
 html.is-scrolling .card,
 html.is-scrolling .cta-band{
   box-shadow: none;
-  background: rgba(255,255,255,.045);
+  border-color: rgba(255,255,255,.08);
 }
 
-/* Aksesibilitas/performa: stop animasi jika user memilih reduce motion */
+/* Aksesibilitas/performa */
 @media (prefers-reduced-motion: reduce){
   *{
     animation: none !important;
@@ -340,10 +330,10 @@ html.is-scrolling .cta-band{
   }
 }
 
-/* Mobile padding disesuaikan */
+/* Mobile spacing */
 @media (max-width: 620px){
   .topbar-inner{ padding: 10px 0; }
-  .hero{ padding: 28px 0 16px; }
+  .hero{ padding: 26px 0 14px; }
   .hero-card{ padding: 18px; }
-  .side{ padding: 16px; }
+  .side{ padding: 14px; }
 }
