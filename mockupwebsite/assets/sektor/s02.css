@@ -1,0 +1,86 @@
+/* =========================================================
+   s02.css — S02 Pertambangan & Penggalian
+   Nuansa: industrial • bold • maskulin
+========================================================= */
+
+:root{
+  --accent:#546e7a;
+  --accent-2:#37474f;
+  --accent-soft: rgba(84,110,122,.10);
+}
+
+/* Hero industrial */
+.hero-industrial{
+  background:
+    linear-gradient(135deg,#fff,var(--accent-soft));
+  border-left:6px solid var(--accent);
+}
+
+/* Headline lebih tebal */
+.hero-industrial h1{
+  font-weight:900;
+  letter-spacing:-.6px;
+}
+
+/* Statistik */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:12px;
+}
+
+.stat{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:22px;
+  color:var(--accent);
+}
+.stat span{
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* Timeline proyek */
+.timeline{
+  border-left:3px solid var(--accent);
+  padding-left:16px;
+  margin-top:10px;
+}
+
+.t-item{
+  margin-bottom:14px;
+}
+
+.t-item h4{
+  margin:0 0 4px;
+  font-size:14px;
+}
+.t-item p{
+  margin:0;
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* Compliance box */
+.compliance{
+  background:linear-gradient(180deg,#fff,rgba(84,110,122,.04));
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px;
+}
+
+/* Button override */
+.btn-primary{
+  background:var(--accent);
+}
+.btn-primary:hover{
+  background:var(--accent-2);
+}
