@@ -1,17 +1,20 @@
-// dapurputri.js
-(function () {
-  const yearEl = document.getElementById("year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+// Tahun footer
+(() => {
+  const el = document.getElementById("year");
+  if (el) el.textContent = String(new Date().getFullYear());
+})();
 
-  // Optional: smooth scroll untuk anchor internal
-  document.querySelectorAll('a[href^="#"]').forEach((a) => {
-    a.addEventListener("click", (e) => {
-      const id = a.getAttribute("href");
-      if (!id || id === "#") return;
-      const target = document.querySelector(id);
-      if (!target) return;
-      e.preventDefault();
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  });
+// SCROLL BOOST: saat user scroll, kurangi beban repaint sementara.
+// Menggunakan event passive + timeout kecil agar ringan.
+(() => {
+  let t = null;
+  const root = document.documentElement;
+
+  const onScroll = () => {
+    root.classList.add("is-scrolling");
+    if (t) clearTimeout(t);
+    t = setTimeout(() => root.classList.remove("is-scrolling"), 140);
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
 })();
