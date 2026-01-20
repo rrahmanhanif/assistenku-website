@@ -1,0 +1,168 @@
+/* =========================================================
+   s05.css — S05 Air & Pengelolaan Limbah
+   Nuansa: teal • clean • environmental/impact
+========================================================= */
+
+:root{
+  --accent:#00897b;
+  --accent-2:#00695c;
+  --accent-soft: rgba(0,137,123,.11);
+}
+
+/* Hero environmental */
+.hero-eco{
+  background:linear-gradient(135deg,#fff,var(--accent-soft));
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-eco::after{
+  content:"";
+  position:absolute;
+  width:360px;height:360px;
+  left:-220px; top:-240px;
+  border-radius:999px;
+  background:radial-gradient(circle at 65% 65%, rgba(0,137,123,.22), transparent 60%);
+  pointer-events:none;
+}
+
+/* Impact metrics */
+.metrics{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin-top:14px;
+}
+
+.metric{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 10px 24px rgba(20,24,31,.06);
+  padding:14px;
+}
+
+.metric strong{
+  display:block;
+  font-size:18px;
+  color:var(--accent);
+}
+.metric span{
+  display:block;
+  margin-top:4px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* Service grid */
+.eco-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+
+.eco-card{
+  background:linear-gradient(180deg,#fff,rgba(0,137,123,.03));
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 10px 24px rgba(20,24,31,.06);
+  padding:16px;
+  position:relative;
+  overflow:hidden;
+}
+
+.eco-card::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:5px;
+  background:var(--accent);
+}
+
+.eco-card h3{margin:0 0 6px;font-size:15px}
+.eco-card p{margin:0;color:var(--muted);font-size:13px}
+
+/* Before/After mock */
+.before-after{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.ba{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  padding:16px;
+}
+
+.ba strong{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  font-weight:900;
+}
+
+.dot{
+  width:10px;height:10px;border-radius:999px;
+  display:inline-block;
+  background:var(--accent);
+}
+
+.ba p{margin:8px 0 0;color:var(--muted);font-size:13px}
+
+/* Compliance band */
+.compliance-band{
+  background:rgba(17,24,39,.94);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  padding:18px;
+}
+
+.compliance-band p{margin:6px 0 0;color:rgba(255,255,255,.78)}
+.compliance-tags{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+
+.tag{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:850;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  color:#fff;
+}
+.tag i{
+  width:9px;height:9px;border-radius:999px;
+  background:var(--accent);
+  display:inline-block;
+}
+
+/* Buttons sektor */
+.btn-primary{background:var(--accent)}
+.btn-primary:hover{background:var(--accent-2)}
+
+/* Responsive */
+@media(max-width:980px){
+  .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .eco-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .before-after{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .eco-grid{grid-template-columns:1fr}
+  .metrics{grid-template-columns:1fr}
+}
