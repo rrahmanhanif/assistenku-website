@@ -1,0 +1,169 @@
+/* =========================================================
+   s11.css — S11 Keuangan & Asuransi
+   Nuansa: navy/emerald • trust • compliance
+========================================================= */
+
+:root{
+  --accent:#0f766e;      /* teal-emerald */
+  --accent-2:#115e59;
+  --accent-soft: rgba(15,118,110,.11);
+}
+
+/* Hero trust */
+.hero-trust{
+  background:linear-gradient(135deg,#fff,var(--accent-soft));
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-trust::after{
+  content:"";
+  position:absolute;
+  width:420px;height:420px;
+  left:-260px; top:-280px;
+  border-radius:999px;
+  background:radial-gradient(circle at 65% 65%, rgba(15,118,110,.24), transparent 60%);
+  pointer-events:none;
+}
+
+.hero-trust h1{
+  margin:0 0 10px;
+  font-weight:900;
+  letter-spacing:-.6px;
+  font-size:clamp(22px,3vw,40px);
+  line-height:1.15;
+}
+.hero-trust p{margin:0;color:var(--muted)}
+
+/* Compliance strip */
+.compliance{
+  margin-top:14px;
+  background:rgba(17,24,39,.94);
+  color:#fff;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  padding:14px;
+}
+
+.compliance strong{font-size:13px}
+.compliance p{margin:6px 0 0;color:rgba(255,255,255,.78);font-size:12.5px}
+
+.badges{
+  display:flex;gap:8px;flex-wrap:wrap;
+  margin-top:10px;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:850;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  color:#fff;
+}
+.badge i{
+  width:9px;height:9px;border-radius:999px;
+  background:var(--accent);
+  display:inline-block;
+}
+
+/* Offer cards */
+.fin-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+
+.fin-card{
+  background:linear-gradient(180deg,#fff,rgba(15,118,110,.03));
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 10px 24px rgba(20,24,31,.06);
+  padding:16px;
+  position:relative;
+  overflow:hidden;
+}
+
+.fin-card::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:5px;
+  background:var(--accent);
+}
+
+.fin-card h3{margin:0 0 6px;font-size:15px}
+.fin-card p{margin:0;color:var(--muted);font-size:13px}
+
+/* “Simulation” box (static) */
+.sim{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:16px;
+}
+
+.sim h3{margin:0 0 8px;font-size:15px}
+.sim p{margin:0;color:var(--muted);font-size:13px}
+
+.sim-table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  margin-top:12px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fff;
+}
+
+.sim-table th, .sim-table td{
+  text-align:left;
+  padding:10px 12px;
+  font-size:12.5px;
+  border-bottom:1px solid var(--line);
+}
+.sim-table th{
+  background:rgba(15,118,110,.06);
+  color:#0f172a;
+  font-weight:900;
+}
+.sim-table tr:last-child td{border-bottom:0}
+
+/* FAQ */
+.faq{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.qa{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 10px 24px rgba(20,24,31,.06);
+  padding:16px;
+}
+.qa strong{display:block;font-size:13px}
+.qa span{display:block;margin-top:6px;color:var(--muted);font-size:13px}
+
+/* Buttons sektor */
+.btn-primary{background:var(--accent)}
+.btn-primary:hover{background:var(--accent-2)}
+
+/* Responsive */
+@media(max-width:980px){
+  .fin-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .faq{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .fin-grid{grid-template-columns:1fr}
+}
