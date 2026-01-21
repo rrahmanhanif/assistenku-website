@@ -1,50 +1,35 @@
 (function () {
   const search = document.getElementById("sectorSearch");
   const grid = document.getElementById("sectorGrid");
-  const category = document.getElementById("categorySelect");
-  const reset = document.getElementById("resetFilters");
-  const summary = document.getElementById("filterSummary");
+  const summary = document.getElementById("filterSummary"); // optional
   if (!grid) return;
 
   const cards = Array.from(grid.querySelectorAll(".sector-card"));
   const norm = (s) => (s || "").toLowerCase().replace(/\s+/g, " ").trim();
 
-  // Mapping kategori -> daftar sektor
-  const MAP = {
-    umkm: ["S01", "S06", "S07", "S09", "S15", "S17"],
-    pro:  ["S02", "S04", "S05", "S08", "S10", "S11", "S12", "S13", "S14", "S16"],
-
-    kuliner: ["S09"],
-    toko: ["S07", "S09", "S01"],
-    jasa: ["S06", "S17", "S13", "S10"],
-    logistik: ["S08"],
-    teknologi: ["S10"],
-    keuangan: ["S11"],
-    properti: ["S12"],
-    pemerintah: ["S14"],
-    kesehatan: ["S16"],
-    edukasi: ["S15"],
-    energi: ["S04", "S05", "S02"]
+  // TAGS PER SEKTOR (fallback semantic ringan)
+  // Anda bisa tambah kata-kata sesuai kebutuhan.
+  const TAGS = {
+    S01: ["pertanian","perikanan","kehutan","pangan","sayur","buah","ternak","bibit","panen","agro","farm"],
+    S02: ["pertambangan","mining","tambang","galian","batubara","nikel","mineral","eksplorasi","drilling","kontraktor tambang"],
+    S03: ["industri","pabrik","manufaktur","produksi","olahan","makanan olahan","garment","mesin"],
+    S04: ["listrik","gas","energi","pln","instalasi listrik","panel","genset","pipa gas","utility"],
+    S05: ["air","limbah","sanitasi","waste","daur ulang","pengolahan limbah","ipal","kebersihan lingkungan"],
+    S06: ["konstruksi","bangunan","renovasi","kontraktor","arsitek","sipil","interior","proyek","tukang"],
+    S07: ["perdagangan","toko","retail","grosir","jual beli","sparepart","reparasi","servis","bengkel","market"],
+    S08: ["transportasi","logistik","kurir","ekspedisi","cargo","armada","gudang","warehouse","pergudangan","pengiriman"],
+    S09: ["akomodasi","hotel","homestay","kuliner","makan","minum","resto","cafe","katering","catering","f&b"],
+    S10: ["informasi","komunikasi","it","digital","software","aplikasi","website","startup","internet","konten","media"],
+    S11: ["keuangan","asuransi","finance","bank","pembayaran","payment","kredit","pinjaman","agen asuransi","investasi"],
+    S12: ["real estat","real estate","properti","rumah","apartemen","kavling","sewa","kontrakan","listing"],
+    S13: ["jasa perusahaan","konsultan","consulting","b2b","outsourcing","vendor","legal","hukum","kontrak","hr","rekrut","audit","compliance","perizinan","notaris"],
+    S14: ["pemerintahan","instansi","dinas","pemda","kementerian","kelembagaan","publik","regulasi","layanan publik"],
+    S15: ["pendidikan","kursus","bimbel","les","pelatihan","training","sekolah","akademi"],
+    S16: ["kesehatan","klinik","dokter","rumah sakit","rs","apotik","farmasi","medical","perawatan","care","regulasi"],
+    S17: ["jasa lainnya","jasa","service","layanan","hukum","legal","event","laundry","salon","kebersihan","security","asisten","tenaga kerja"]
   };
 
-  // Kata kunci -> rekomendasi kategori (synonym sederhana)
-  const SUGGEST = [
-    { cat: "pemerintah", keys: ["pemerintah","kelembagaan","instansi","dinas","pemda","kementerian","birokrasi","government","regulasi","perizinan"] },
-    { cat: "logistik", keys: ["logistik","transport","pengiriman","kurir","warehouse","gudang","ekspedisi","cargo","armada","pergudangan"] },
-    { cat: "kuliner", keys: ["kuliner","makan","minum","resto","cafe","katering","catering","kopi","bakery","roti","warung","f&b","food"] },
-    { cat: "toko", keys: ["toko","retail","grosir","dagang","perdagangan","market","minimarket","online shop","olshop","produk"] },
-    { cat: "kesehatan", keys: ["kesehatan","klinik","dokter","rumah sakit","rs","apotik","farmasi","medical","care","perawatan"] },
-    { cat: "edukasi", keys: ["pendidikan","kursus","bimbel","les","pelatihan","sekolah","akademi","training"] },
-    { cat: "keuangan", keys: ["keuangan","asuransi","finance","pinjaman","kredit","pembayaran","bank","investasi"] },
-    { cat: "teknologi", keys: ["teknologi","it","digital","software","aplikasi","website","komunikasi","internet","startup"] },
-    { cat: "properti", keys: ["properti","real estat","real estate","kontrakan","sewa","kos","apartemen","rumah","kavling"] },
-    { cat: "energi", keys: ["energi","listrik","gas","utility","utilitas","pln","pipa","air limbah","limbah","sanitasi"] },
-    { cat: "jasa", keys: ["jasa","konsultan","service","layanan","vendor","outsourcing","profesional"] },
-    { cat: "umkm", keys: ["umkm","usaha kecil","mikro","warung","rumahan","home industry"] },
-    { cat: "pro", keys: ["enterprise","korporat","b2b","tender","compliance","audit"] }
-  ];
-
-  // Buat box rekomendasi (dibuat via JS, tidak perlu edit HTML)
+  // Buat box rekomendasi (tidak perlu edit HTML)
   let recoBox = null;
   function ensureRecoBox() {
     if (recoBox) return recoBox;
@@ -56,160 +41,109 @@
     recoBox.style.borderRadius = "14px";
     recoBox.style.background = "rgba(255,255,255,.75)";
     recoBox.style.display = "none";
-    // taruh setelah filterSummary (paling dekat dengan filter)
-    if (summary && summary.parentElement) {
-      summary.parentElement.appendChild(recoBox);
-    } else if (grid.parentElement) {
-      grid.parentElement.insertBefore(recoBox, grid);
-    }
+    if (grid.parentElement) grid.parentElement.insertBefore(recoBox, grid);
     return recoBox;
   }
 
-  function findSuggestion(q) {
+  function scoreSector(q, code) {
     const qq = norm(q);
-    if (!qq) return null;
+    if (!qq) return 0;
 
-    // scoring sederhana: hitung berapa keyword yang match
-    let best = null;
-    let bestScore = 0;
+    const tags = TAGS[code] || [];
+    let score = 0;
 
-    for (const rule of SUGGEST) {
-      let score = 0;
-      for (const k of rule.keys) {
-        const kk = norm(k);
-        // match: substring dua arah (q mengandung k atau k mengandung q)
-        if (qq.includes(kk) || kk.includes(qq)) score++;
-      }
-      if (score > bestScore) {
-        bestScore = score;
-        best = rule.cat;
-      }
+    // 1) cocok langsung tag mengandung query atau sebaliknya
+    for (const t of tags) {
+      const tt = norm(t);
+      if (!tt) continue;
+      if (tt.includes(qq) || qq.includes(tt)) score += 3;
     }
 
-    // Minimal 1 match sudah cukup untuk rekomendasi
-    return bestScore > 0 ? best : null;
+    // 2) bonus jika query mengandung kata kunci penting (mis. "hukum" -> S13,S17)
+    // (sudah tertangani oleh tags)
+
+    return score;
   }
 
   function apply() {
     const q = search ? norm(search.value) : "";
-    const cat = category ? category.value : "";
-    const allow = cat ? new Set(MAP[cat] || []) : null;
-
     let visibleCount = 0;
 
+    // Normal filter: berdasarkan title/kode/text
     cards.forEach((card) => {
-      const code = (card.getAttribute("data-sector") || "").trim(); // ex: S07
       const title = norm(card.getAttribute("data-title"));
+      const code = (card.getAttribute("data-sector") || "").trim(); // Sxx
       const text = norm(card.innerText);
 
-      // pencarian: match title / kode / teks
-      const okSearch = !q || title.includes(q) || code.toLowerCase().includes(q) || text.includes(q);
-      const okCat = !allow || allow.has(code);
-
-      const ok = okSearch && okCat;
+      const ok = !q || title.includes(q) || code.toLowerCase().includes(q) || text.includes(q);
       card.style.display = ok ? "" : "none";
       if (ok) visibleCount++;
     });
 
-    // summary
+    // Summary (optional)
     if (summary) {
-      const label = (category && cat)
-        ? category.options[category.selectedIndex].text
-        : "Semua sektor";
-      const extra = q ? ` • Cari: "${q}"` : "";
-      summary.textContent = `${visibleCount} sektor ditampilkan • ${label}${extra}`;
+      summary.textContent = q
+        ? `${visibleCount} sektor ditampilkan • Cari: "${q}"`
+        : `${cards.length} sektor ditampilkan • Semua sektor`;
     }
 
-    // rekomendasi jika 0 hasil
     const box = ensureRecoBox();
+
+    // Fallback rekomendasi: kalau 0 hasil dan ada query
     if (visibleCount === 0 && q) {
-      const sug = findSuggestion(q);
+      // Hitung skor semua sektor, ambil top 2
+      const scored = cards.map((card) => {
+        const code = (card.getAttribute("data-sector") || "").trim();
+        return { card, code, score: scoreSector(q, code) };
+      }).sort((a, b) => b.score - a.score);
 
-      const catLabel = (cat && category)
-        ? category.options[category.selectedIndex].text
-        : "Semua sektor";
+      const best = scored.filter(x => x.score > 0).slice(0, 2);
 
-      if (sug && category) {
-        const optText = Array.from(category.options).find(o => o.value === sug)?.text || "Kategori terkait";
-        box.innerHTML = `
-          <div style="font-weight:800; margin-bottom:6px;">Tidak ada hasil untuk "${q}"</div>
-          <div style="color:rgba(15,23,42,.72); font-size:13px; margin-bottom:10px;">
-            Rekomendasi: coba kategori <strong>${optText}</strong> (agar lebih mendekati maksud Anda).
-          </div>
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <button type="button" id="btnUseSuggestion"
-              style="padding:10px 12px; border-radius:12px; border:1px solid rgba(13,110,253,.25); background:rgba(13,110,253,.10); font-weight:800;">
-              Pakai rekomendasi
-            </button>
-            <button type="button" id="btnShowAll"
-              style="padding:10px 12px; border-radius:12px; border:1px solid rgba(15,23,42,.12); background:transparent; font-weight:800;">
-              Lihat semua sektor
-            </button>
-            <div style="color:rgba(15,23,42,.55); font-size:12px; align-self:center;">
-              Filter saat ini: ${catLabel}
-            </div>
-          </div>
-        `;
-        box.style.display = "block";
+      // Kalau tidak ada skor sama sekali, fallback tampilkan S17 (paling umum) + S13 (paling fleksibel)
+      const fallbackCodes = ["S17", "S13"];
+      const finalPicks = best.length
+        ? best
+        : scored.filter(x => fallbackCodes.includes(x.code)).slice(0, 2);
 
-        // bind actions
-        const btnUse = document.getElementById("btnUseSuggestion");
-        const btnAll = document.getElementById("btnShowAll");
+      // Sembunyikan semua dulu
+      cards.forEach(c => c.style.display = "none");
 
-        if (btnUse) {
-          btnUse.onclick = () => {
-            category.value = sug;
-            // biarkan search tetap ada (agar user tahu inputnya)
-            apply();
-          };
-        }
-        if (btnAll) {
-          btnAll.onclick = () => {
-            if (category) category.value = "";
-            // agar benar-benar muncul semua, kosongkan search juga
-            if (search) search.value = "";
-            apply();
-          };
-        }
-      } else {
-        // Tidak ada saran kategori => arahkan ke semua sektor
-        box.innerHTML = `
-          <div style="font-weight:800; margin-bottom:6px;">Tidak ada hasil untuk "${q}"</div>
-          <div style="color:rgba(15,23,42,.72); font-size:13px; margin-bottom:10px;">
-            Coba lihat semua sektor atau reset filter, lalu pilih sektor terdekat.
-          </div>
-          <button type="button" id="btnShowAll2"
+      // Tampilkan yang direkomendasikan
+      finalPicks.forEach(x => x.card.style.display = "");
+
+      box.innerHTML = `
+        <div style="font-weight:800; margin-bottom:6px;">Tidak ada hasil persis untuk "${q}"</div>
+        <div style="color:rgba(15,23,42,.72); font-size:13px; margin-bottom:10px;">
+          Kami tampilkan sektor yang paling mendekati maksud Anda. Silakan klik salah satu.
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button type="button" id="btnShowAll"
             style="padding:10px 12px; border-radius:12px; border:1px solid rgba(15,23,42,.12); background:transparent; font-weight:800;">
             Lihat semua sektor
           </button>
-        `;
-        box.style.display = "block";
+        </div>
+      `;
+      box.style.display = "block";
 
-        const btnAll2 = document.getElementById("btnShowAll2");
-        if (btnAll2) {
-          btnAll2.onclick = () => {
-            if (category) category.value = "";
-            if (search) search.value = "";
-            apply();
-          };
-        }
+      const btnAll = document.getElementById("btnShowAll");
+      if (btnAll) {
+        btnAll.onclick = () => {
+          if (search) search.value = "";
+          cards.forEach(c => c.style.display = "");
+          box.style.display = "none";
+          box.innerHTML = "";
+          if (summary) summary.textContent = `${cards.length} sektor ditampilkan • Semua sektor`;
+        };
       }
-    } else {
-      box.style.display = "none";
-      box.innerHTML = "";
+
+      return; // stop di sini
     }
+
+    // Kalau ada hasil normal, sembunyikan box rekomendasi
+    box.style.display = "none";
+    box.innerHTML = "";
   }
 
   if (search) search.addEventListener("input", apply);
-  if (category) category.addEventListener("change", apply);
-
-  if (reset) {
-    reset.addEventListener("click", () => {
-      if (search) search.value = "";
-      if (category) category.value = "";
-      apply();
-    });
-  }
-
   apply();
 })();
