@@ -1,0 +1,202 @@
+/* =========================================================
+   s12.css — S12 Real Estat
+   Nuansa: slate/gold • listing • inquiry
+========================================================= */
+
+:root{
+  --accent:#8d6e63;      /* warm slate/brown */
+  --accent-2:#6d4c41;
+  --accent-soft: rgba(141,110,99,.12);
+}
+
+/* Hero property */
+.hero-property{
+  background:linear-gradient(135deg,#fff,var(--accent-soft));
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-property::after{
+  content:"";
+  position:absolute;
+  width:420px;height:420px;
+  right:-260px; bottom:-280px;
+  border-radius:999px;
+  background:radial-gradient(circle at 30% 30%, rgba(141,110,99,.22), transparent 60%);
+  pointer-events:none;
+}
+
+.hero-property h1{
+  margin:0 0 10px;
+  font-weight:900;
+  letter-spacing:-.6px;
+  font-size:clamp(22px,3vw,40px);
+  line-height:1.15;
+}
+.hero-property p{margin:0;color:var(--muted)}
+
+/* Stats */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin-top:14px;
+}
+
+.stat{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 10px 24px rgba(20,24,31,.06);
+  padding:14px;
+}
+
+.stat strong{
+  display:block;
+  font-size:18px;
+  color:var(--accent);
+}
+.stat span{
+  display:block;
+  margin-top:4px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* “Filter” UI (visual only) */
+.filters{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.f{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:850;
+  font-size:12px;
+  background:var(--card);
+  border:1px solid var(--line);
+  color:rgba(20,24,31,.85);
+}
+.f.is-active{
+  background:var(--accent-soft);
+  border-color: color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+/* Listings */
+.listings{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:12px;
+}
+
+.listing{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 10px 24px rgba(20,24,31,.06);
+  padding:16px;
+  position:relative;
+  overflow:hidden;
+}
+
+.listing::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:5px;
+  background:var(--accent);
+}
+
+.listing h3{margin:0 0 6px;font-size:15px}
+.listing p{margin:0;color:var(--muted);font-size:13px}
+.listing .meta{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+.listing .tag{
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:850;
+  background:var(--accent-soft);
+  border:1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  color:#1f2937;
+}
+.listing .row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:12px;
+}
+.listing .price{
+  font-weight:950;
+  color:var(--accent);
+  letter-spacing:-.2px;
+}
+
+/* Inquiry */
+.inq{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:12px;
+}
+
+.inq .box{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:16px;
+}
+
+.inq .box h3{margin:0 0 8px;font-size:15px}
+.inq .box p{margin:0;color:var(--muted);font-size:13px}
+
+.form{
+  display:grid;
+  gap:10px;
+  margin-top:12px;
+}
+.form label{
+  font-size:12px;
+  color:rgba(20,24,31,.7);
+  font-weight:850;
+}
+.form input, .form textarea, .form select{
+  width:100%;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:#fff;
+  padding:10px 12px;
+  font-size:14px;
+  outline:none;
+}
+.form textarea{min-height:92px;resize:vertical}
+
+/* Buttons sektor */
+.btn-primary{background:var(--accent)}
+.btn-primary:hover{background:var(--accent-2)}
+
+/* Responsive */
+@media(max-width:980px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .listings{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .inq{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .stats{grid-template-columns:1fr}
+  .listings{grid-template-columns:1fr}
+}
