@@ -510,3 +510,21 @@ img{max-width:100%;display:block}
   .topbar-actions .btn-ghost{display:none}
   .brand-text strong, .brand-text span{max-width:62vw}
    }
+
+.select{
+  height:42px;
+  padding:0 12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--text);
+  font-weight:650;
+  width:100%;
+}
+.filter-label{
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+  font-weight:700;
+  margin-bottom:6px;
+}
