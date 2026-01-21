@@ -1,0 +1,151 @@
+/* =========================================================
+   s17.css — S17 Jasa Lainnya
+   Nuansa: orange/amber • UMKM • katalog jasa • CTA cepat
+========================================================= */
+
+:root{
+  --accent:#f59e0b;      /* amber */
+  --accent-2:#d97706;
+  --accent-soft: rgba(245,158,11,.14);
+}
+
+/* Hero UMKM */
+.hero-umkm{
+  background:linear-gradient(135deg,#fff,var(--accent-soft));
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-umkm::after{
+  content:"";
+  position:absolute;
+  width:420px;height:420px;
+  right:-260px; top:-280px;
+  border-radius:999px;
+  background:radial-gradient(circle at 30% 30%, rgba(245,158,11,.24), transparent 60%);
+  pointer-events:none;
+}
+
+.hero-umkm h1{
+  margin:0 0 10px;
+  font-weight:900;
+  letter-spacing:-.6px;
+  font-size:clamp(22px,3vw,40px);
+  line-height:1.15;
+}
+.hero-umkm p{margin:0;color:var(--muted)}
+
+/* Badges */
+.umkm-badges{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.umkm-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:850;
+  background:var(--card);
+  border:1px solid var(--line);
+  color:rgba(20,24,31,.85);
+}
+.umkm-badge i{
+  width:9px;height:9px;border-radius:999px;
+  background:var(--accent);
+  display:inline-block;
+}
+
+/* Services grid */
+.umkm-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+
+.umkm-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 10px 24px rgba(20,24,31,.06);
+  padding:16px;
+  position:relative;
+  overflow:hidden;
+}
+
+.umkm-card::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:5px;
+  background:var(--accent);
+}
+
+.umkm-card h3{margin:0 0 6px;font-size:15px}
+.umkm-card p{margin:0;color:var(--muted);font-size:13px}
+
+/* Packages */
+.packages{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+
+.pkg{
+  background:linear-gradient(180deg,#fff,rgba(245,158,11,.05));
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:0 10px 24px rgba(20,24,31,.06);
+  padding:18px;
+}
+
+.pkg h3{margin:0;font-size:16px}
+.pkg .price{
+  margin:10px 0;
+  font-size:20px;
+  font-weight:900;
+  color:#0f172a;
+}
+.pkg ul{margin:0;padding-left:18px;font-size:13px;color:var(--muted)}
+
+/* Testimonials */
+.testi{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+
+.testi-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 10px 24px rgba(20,24,31,.06);
+  padding:16px;
+}
+
+.testi-card strong{display:block}
+.testi-card span{display:block;margin-top:6px;color:var(--muted);font-size:13px}
+
+/* Buttons */
+.btn-primary{background:var(--accent)}
+.btn-primary:hover{background:var(--accent-2)}
+
+/* Responsive */
+@media(max-width:980px){
+  .umkm-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .packages{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .testi{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+  .umkm-grid{grid-template-columns:1fr}
+  .packages{grid-template-columns:1fr}
+  .testi{grid-template-columns:1fr}
+}
