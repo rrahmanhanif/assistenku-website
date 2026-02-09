@@ -365,9 +365,25 @@
   </p>
 </section>
 
-<footer>
-  <strong>PT Assistenku Solusi Indonesia</strong>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <strong>PT Assistenku Solusi Indonesia</strong>
+
+    <nav class="footer-links">
+      <a href="/ketentuan-layanan.html">Ketentuan Layanan</a>
+      <span class="divider">•</span>
+      <a href="/kontak">Kontak</a>
+    </nav>
+
+    <div class="footer-copy">
+      © <span id="year"></span> Assistenku. Semua hak dilindungi.
+    </div>
+  </div>
 </footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
 <script src="/script.js"></script>
 
@@ -379,10 +395,8 @@
       <div class="pwa-install__subtitle">assistenku.com</div>
     </div>
   </div>
+
   <div class="pwa-install__right">
     <button id="pwaInstallBtn" class="pwa-install__btn">Instal</button>
   </div>
 </div>
-
-</body>
-</html>
