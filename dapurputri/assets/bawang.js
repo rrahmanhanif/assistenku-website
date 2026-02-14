@@ -1,28 +1,20 @@
 document.addEventListener("DOMContentLoaded", function(){
 
-  // =====================
-  // Tahun otomatis
-  // =====================
   const yearEl = document.getElementById("year");
   if(yearEl){
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // =====================
-  // Render Produk
-  // =====================
   function renderProduk(data, containerId){
     const container = document.getElementById(containerId);
     if(!container) return;
-
-    container.innerHTML = "";
 
     data.forEach(item=>{
       const card = document.createElement("div");
       card.className = "card";
 
       card.innerHTML = `
-        <h3>${item.size}</h3>
+        <h4>${item.size}</h4>
         <div class="price">${item.price}</div>
         <a href="https://wa.me/6285186660020"
            target="_blank"
@@ -47,32 +39,21 @@ document.addEventListener("DOMContentLoaded", function(){
   ], "mentahGrid");
 
 
-  // =====================
-  // Mobile Navigation (100% working)
-  // =====================
   const navLinks = document.querySelectorAll(".bottom-nav a");
 
   navLinks.forEach(link=>{
     link.addEventListener("click", function(e){
-
-      const href = this.getAttribute("href");
-      if(!href || !href.startsWith("#")) return;
-
       e.preventDefault();
 
-      const targetId = href.replace("#","");
+      const targetId = this.getAttribute("href").replace("#","");
       const section = document.getElementById(targetId);
 
       if(section){
-        section.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
+        section.scrollIntoView({ behavior: "smooth" });
       }
 
       navLinks.forEach(a=>a.classList.remove("active"));
       this.classList.add("active");
-
     });
   });
 
