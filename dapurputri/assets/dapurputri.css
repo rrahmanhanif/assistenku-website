@@ -352,3 +352,133 @@ footer{
   .hero h1{font-size:26px}
   .container{padding:0 16px}
 }
+
+/* ============================= */
+/* PRODUCT BADGE */
+/* ============================= */
+.badge{
+  position:absolute;
+  top:14px;
+  right:14px;
+  background:linear-gradient(135deg,#f59e0b,#ea580c);
+  color:#fff;
+  font-size:11px;
+  font-weight:700;
+  padding:6px 10px;
+  border-radius:999px;
+  letter-spacing:.3px;
+  box-shadow:0 4px 12px rgba(0,0,0,.25);
+}
+
+/* card relative position for badge */
+.card{
+  position:relative;
+}
+
+/* ============================= */
+/* MICRO INTERACTION */
+/* ============================= */
+.card,
+.btn{
+  transition:all .25s cubic-bezier(.4,0,.2,1);
+}
+
+.card:hover{
+  transform:translateY(-4px);
+}
+
+.btn:active{
+  transform:scale(.97);
+}
+
+/* subtle fade in */
+.fade-in{
+  opacity:0;
+  transform:translateY(10px);
+  animation:fadeUp .6s ease forwards;
+}
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* ============================= */
+/* SHIMMER LOADING */
+/* ============================= */
+.shimmer{
+  position:relative;
+  overflow:hidden;
+  background:#1e293b;
+}
+
+.shimmer::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-150%;
+  width:120%;
+  height:100%;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.08),
+    transparent
+  );
+  animation:shimmer 1.4s infinite;
+}
+
+@keyframes shimmer{
+  100%{
+    left:150%;
+  }
+}
+
+/* ============================= */
+/* MOBILE BOTTOM NAV */
+/* ============================= */
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#0f172a;
+  border-top:1px solid rgba(255,255,255,.08);
+  display:none;
+  justify-content:space-around;
+  padding:10px 0;
+  z-index:100;
+}
+
+.bottom-nav a{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:11px;
+  color:#94a3b8;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.bottom-nav a span{
+  font-size:18px;
+  margin-bottom:4px;
+}
+
+.bottom-nav a.active,
+.bottom-nav a:hover{
+  color:#ffffff;
+}
+
+/* show only mobile */
+@media (max-width:768px){
+  .bottom-nav{
+    display:flex;
+  }
+
+  body{
+    padding-bottom:70px;
+  }
+}
