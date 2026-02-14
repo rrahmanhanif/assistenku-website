@@ -1,136 +1,139 @@
-:root{
-  --bg:#0f172a;
-  --panel:#1e293b;
-  --stroke:#334155;
-  --text:#f1f5f9;
-  --muted:#94a3b8;
-  --primary:#2563eb;
-  --success:#16a34a;
-  --radius:14px;
-  --container:1100px;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
-*{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:Inter,system-ui,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.6;
+font-family:Inter,system-ui;
+background:#0b1220;
+color:#e2e8f0;
+line-height:1.7;
 }
 
-.container{
-  max-width:var(--container);
-  margin:auto;
-  padding:20px;
-}
+.container{max-width:1100px;margin:auto;padding:0 20px}
+.narrow{max-width:800px;margin:auto}
 
-.header{
-  background:#0b1220;
-  border-bottom:1px solid var(--stroke);
-}
+.section{padding:90px 0}
+.section.alt{background:#111a2e}
+.section-desc{color:#94a3b8;margin-top:10px}
 
-.header-inner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+h1{font-size:40px;margin-bottom:20px}
+h2{font-size:28px;margin-bottom:20px}
+p{color:#94a3b8}
 
-.brand{
-  display:flex;
-  gap:10px;
-  align-items:center;
+/* TOPBAR */
+.topbar{
+position:sticky;
+top:0;
+background:#0b1220;
+border-bottom:1px solid rgba(255,255,255,.06);
+z-index:50;
 }
-
-.brand img{
-  width:40px;
-  background:#fff;
-  padding:6px;
-  border-radius:10px;
+.topbar-inner{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 0;
 }
+.brand{display:flex;gap:12px;align-items:center}
+.brand img{width:42px;background:#fff;border-radius:12px;padding:6px}
+.brand small{color:#64748b}
 
-.brand span{
-  display:block;
-  font-size:12px;
-  color:var(--muted);
-}
+.desktop-nav{display:flex;gap:25px}
+.desktop-nav a{color:#94a3b8;text-decoration:none;font-size:14px}
+.desktop-nav a:hover{color:#fff}
 
+/* HERO */
+.hero{padding:120px 0}
+.hero-wrap{max-width:850px}
+
+/* BUTTON */
 .btn{
-  padding:10px 14px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:600;
-  font-size:14px;
-  display:inline-block;
+background:#1e293b;
+padding:12px 18px;
+border-radius:10px;
+font-weight:600;
+color:#fff;
+text-decoration:none;
+font-size:14px;
 }
+.btn-primary{background:#2563eb}
+.btn-secondary{background:#334155}
 
-.btn-primary{
-  background:var(--primary);
-  color:#fff;
-}
-
-.intro{
-  margin:30px 0;
-}
-
-.intro p{
-  color:var(--muted);
-}
-
-.product-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:16px;
-  margin-top:15px;
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+margin-top:35px;
 }
 
 .card{
-  background:var(--panel);
-  border:1px solid var(--stroke);
-  padding:16px;
-  border-radius:var(--radius);
-}
-
-.card h3{
-  margin:0 0 6px;
+background:#16233d;
+padding:25px;
+border-radius:16px;
+border:1px solid rgba(255,255,255,.05);
 }
 
 .price{
-  font-weight:800;
-  margin:8px 0;
+font-weight:700;
+margin:10px 0;
 }
 
 .card-actions{
-  display:flex;
-  gap:8px;
-  margin-top:10px;
+display:flex;
+gap:10px;
+margin-top:10px;
 }
 
-.btn-wa{
-  background:var(--success);
-  color:#fff;
+.btn-wa{background:#16a34a}
+.btn-email{background:#334155}
+
+/* CTA */
+.cta-group{
+display:flex;
+gap:15px;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:20px;
 }
 
-.btn-email{
-  background:#334155;
-  color:#fff;
+/* FOOTER */
+footer{
+padding:40px 0;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.05);
+margin-top:80px;
+color:#64748b;
 }
 
-.footer{
-  border-top:1px solid var(--stroke);
-  margin-top:40px;
-  padding:20px 0;
-  font-size:14px;
-  color:var(--muted);
+/* FLOAT WA */
+.floating-wa{
+position:fixed;
+bottom:90px;
+right:20px;
+background:#16a34a;
+padding:14px 18px;
+border-radius:50px;
+font-weight:bold;
+z-index:100;
 }
 
-.footer-inner{
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:10px;
+/* MOBILE NAV */
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+display:none;
+justify-content:space-around;
+background:#0b1220;
+padding:14px 0;
+border-top:1px solid rgba(255,255,255,.05);
 }
+.bottom-nav a{color:#94a3b8;font-size:20px}
+.bottom-nav a.active{color:#fff}
 
-small{
-  display:block;
+@media(max-width:900px){
+.grid{grid-template-columns:1fr}
+.desktop-nav{display:none}
+.bottom-nav{display:flex}
+body{padding-bottom:70px}
 }
