@@ -1,31 +1,21 @@
 document.addEventListener("DOMContentLoaded", function(){
 
-  // Tahun otomatis (aman)
+  // ==============================
+  // Tahun otomatis
+  // ==============================
   const yearEl = document.getElementById("year");
   if(yearEl){
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // =============================
-  // RENDER PRODUK (SAFE VERSION)
-  // =============================
-
-  const gorengData = [
-    { size: "100g", price: "Rp 12.000" },
-    { size: "250g", price: "Rp 28.000" },
-    { size: "500g", price: "Rp 52.000" }
-  ];
-
-  const mentahData = [
-    { size: "500g", price: "Rp 18.000" },
-    { size: "1kg", price: "Rp 34.000" }
-  ];
-
+  // ==============================
+  // Render Produk (AMAN)
+  // ==============================
   function renderProduk(data, containerId){
     const container = document.getElementById(containerId);
+    if(!container) return; // <-- penting agar tidak error
 
-    // STOP jika container tidak ada
-    if(!container) return;
+    container.innerHTML = "";
 
     data.forEach(item=>{
       const card = document.createElement("div");
@@ -35,7 +25,11 @@ document.addEventListener("DOMContentLoaded", function(){
         <h3>${item.size}</h3>
         <div class="price">${item.price}</div>
         <div class="card-actions">
-          <a href="https://wa.me/6285186660020" target="_blank" class="btn btn-wa">WA</a>
+          <a href="https://wa.me/6285186660020"
+             target="_blank"
+             class="btn btn-wa">
+             WA
+          </a>
         </div>
       `;
 
@@ -43,34 +37,43 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   }
 
-  renderProduk(gorengData, "gorengGrid");
-  renderProduk(mentahData, "mentahGrid");
+  // Data hanya dirender kalau container ada
+  renderProduk([
+    { size: "100g", price: "Rp 12.000" },
+    { size: "250g", price: "Rp 28.000" },
+    { size: "500g", price: "Rp 52.000" }
+  ], "gorengGrid");
 
-  // =============================
-  // MOBILE NAVIGATION (FIXED)
-  // =============================
+  renderProduk([
+    { size: "500g", price: "Rp 18.000" },
+    { size: "1kg", price: "Rp 34.000" }
+  ], "mentahGrid");
 
+
+  // ==============================
+  // Mobile Bottom Navigation
+  // ==============================
   const navLinks = document.querySelectorAll(".bottom-nav a");
 
-  if(navLinks.length){
-    navLinks.forEach(link=>{
-      link.addEventListener("click", function(){
+  navLinks.forEach(link=>{
+    link.addEventListener("click", function(e){
 
-        const target = this.dataset.target;
-        const section = document.getElementById(target);
+      const targetId = this.getAttribute("data-target");
+      const section = document.getElementById(targetId);
 
-        if(section){
-          section.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        }
+      if(section){
+        e.preventDefault();
+
+        section.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
 
         navLinks.forEach(a=>a.classList.remove("active"));
         this.classList.add("active");
+      }
 
-      });
     });
-  }
+  });
 
 });
