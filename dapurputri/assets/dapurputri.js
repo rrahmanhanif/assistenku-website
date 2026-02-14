@@ -76,16 +76,13 @@
     PAKET_7_HARI.forEach((m) => {
       const card = el("article", "card paket-card");
 
-      // header
       const head = el("div", "paket-head");
       head.appendChild(el("h4", "paket-day", m.day));
       head.appendChild(el("span", "badge", m.tag));
 
-      // list
       const ul = el("ul", "menu-list");
       m.items.forEach((it) => ul.appendChild(el("li", "", it)));
 
-      // footer
       const bottom = el("div", "paket-bottom");
       bottom.appendChild(el("div", "paket-price", m.price));
 
@@ -93,8 +90,8 @@
       order.href = waLink(m.waText);
       order.target = "_blank";
       order.rel = "noopener";
-      bottom.appendChild(order);
 
+      bottom.appendChild(order);
       card.appendChild(head);
       card.appendChild(ul);
       card.appendChild(bottom);
@@ -106,17 +103,20 @@
     const lines = [];
     lines.push("Paket Catering 7 Hari — Dapur Putri");
     lines.push("");
+
     PAKET_7_HARI.forEach((m) => {
       lines.push(`${m.day}`);
       m.items.forEach((it) => lines.push(`- ${it}`));
       lines.push(`Harga: ${m.price}`);
       lines.push("");
     });
+
     lines.push("Paket Langganan: 7 Hari Rp180.000 / pax");
     lines.push("Minimal order: 10 box / hari");
     lines.push("Free sambal. Request pedas & pantangan makanan bisa.");
     lines.push("WhatsApp: +62 851-8666-0020");
     lines.push(`Email: ${EMAIL_TO}`);
+
     return lines.join("\n");
   }
 
@@ -158,8 +158,26 @@
     }
   }
 
+  function initAnimations() {
+    const elements = document.querySelectorAll(".card, .hero-card, .side");
+    elements.forEach((el, i) => {
+      el.classList.add("fade-in");
+      el.style.animationDelay = (i * 0.08) + "s";
+    });
+
+    const links = document.querySelectorAll(".bottom-nav a");
+    links.forEach(link => {
+      link.addEventListener("click", function () {
+        links.forEach(l => l.classList.remove("active"));
+        this.classList.add("active");
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     renderPaket();
     wireActions();
+    initAnimations();
   });
+
 })();
