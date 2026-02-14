@@ -1,16 +1,16 @@
 document.addEventListener("DOMContentLoaded", function(){
 
-  // ==============================
+  // =====================
   // Tahun otomatis
-  // ==============================
+  // =====================
   const yearEl = document.getElementById("year");
   if(yearEl){
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // ==============================
-  // Render Produk (aman)
-  // ==============================
+  // =====================
+  // Render Produk
+  // =====================
   function renderProduk(data, containerId){
     const container = document.getElementById(containerId);
     if(!container) return;
@@ -24,13 +24,11 @@ document.addEventListener("DOMContentLoaded", function(){
       card.innerHTML = `
         <h3>${item.size}</h3>
         <div class="price">${item.price}</div>
-        <div class="card-actions">
-          <a href="https://wa.me/6285186660020"
-             target="_blank"
-             class="btn btn-wa">
-             WA
-          </a>
-        </div>
+        <a href="https://wa.me/6285186660020"
+           target="_blank"
+           class="btn-wa">
+           Pesan via WA
+        </a>
       `;
 
       container.appendChild(card);
@@ -49,44 +47,33 @@ document.addEventListener("DOMContentLoaded", function(){
   ], "mentahGrid");
 
 
-  // ==============================
-  // Mobile Bottom Navigation (stabil)
-  // ==============================
+  // =====================
+  // Mobile Navigation (100% working)
+  // =====================
   const navLinks = document.querySelectorAll(".bottom-nav a");
 
-  if(navLinks.length){
+  navLinks.forEach(link=>{
+    link.addEventListener("click", function(e){
 
-    navLinks.forEach(link=>{
-      link.addEventListener("click", function(e){
+      const href = this.getAttribute("href");
+      if(!href || !href.startsWith("#")) return;
 
-        // Ambil target dari data-target atau dari href
-        let targetId = this.getAttribute("data-target");
+      e.preventDefault();
 
-        if(!targetId){
-          const href = this.getAttribute("href");
-          if(href && href.startsWith("#")){
-            targetId = href.replace("#","");
-          }
-        }
+      const targetId = href.replace("#","");
+      const section = document.getElementById(targetId);
 
-        if(!targetId) return;
-
-        const section = document.getElementById(targetId);
-        if(!section) return;
-
-        e.preventDefault();
-
+      if(section){
         section.scrollIntoView({
           behavior: "smooth",
           block: "start"
         });
+      }
 
-        navLinks.forEach(a=>a.classList.remove("active"));
-        this.classList.add("active");
+      navLinks.forEach(a=>a.classList.remove("active"));
+      this.classList.add("active");
 
-      });
     });
-
-  }
+  });
 
 });
