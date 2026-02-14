@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 
   // ==============================
-  // Render Produk (AMAN)
+  // Render Produk (aman)
   // ==============================
   function renderProduk(data, containerId){
     const container = document.getElementById(containerId);
-    if(!container) return; // <-- penting agar tidak error
+    if(!container) return;
 
     container.innerHTML = "";
 
@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function(){
     });
   }
 
-  // Data hanya dirender kalau container ada
   renderProduk([
     { size: "100g", price: "Rp 12.000" },
     { size: "250g", price: "Rp 28.000" },
@@ -51,17 +50,30 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
   // ==============================
-  // Mobile Bottom Navigation
+  // Mobile Bottom Navigation (stabil)
   // ==============================
   const navLinks = document.querySelectorAll(".bottom-nav a");
 
-  navLinks.forEach(link=>{
-    link.addEventListener("click", function(e){
+  if(navLinks.length){
 
-      const targetId = this.getAttribute("data-target");
-      const section = document.getElementById(targetId);
+    navLinks.forEach(link=>{
+      link.addEventListener("click", function(e){
 
-      if(section){
+        // Ambil target dari data-target atau dari href
+        let targetId = this.getAttribute("data-target");
+
+        if(!targetId){
+          const href = this.getAttribute("href");
+          if(href && href.startsWith("#")){
+            targetId = href.replace("#","");
+          }
+        }
+
+        if(!targetId) return;
+
+        const section = document.getElementById(targetId);
+        if(!section) return;
+
         e.preventDefault();
 
         section.scrollIntoView({
@@ -71,9 +83,10 @@ document.addEventListener("DOMContentLoaded", function(){
 
         navLinks.forEach(a=>a.classList.remove("active"));
         this.classList.add("active");
-      }
 
+      });
     });
-  });
+
+  }
 
 });
