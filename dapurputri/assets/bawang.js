@@ -1,57 +1,76 @@
 document.addEventListener("DOMContentLoaded", function(){
 
-// Tahun otomatis
-document.getElementById("year").textContent = new Date().getFullYear();
+  // Tahun otomatis (aman)
+  const yearEl = document.getElementById("year");
+  if(yearEl){
+    yearEl.textContent = new Date().getFullYear();
+  }
 
-// Data produk goreng
-const gorengData = [
-  { size: "100g", price: "Rp 12.000" },
-  { size: "250g", price: "Rp 28.000" },
-  { size: "500g", price: "Rp 52.000" }
-];
+  // =============================
+  // RENDER PRODUK (SAFE VERSION)
+  // =============================
 
-const mentahData = [
-  { size: "500g", price: "Rp 18.000" },
-  { size: "1kg", price: "Rp 34.000" }
-];
+  const gorengData = [
+    { size: "100g", price: "Rp 12.000" },
+    { size: "250g", price: "Rp 28.000" },
+    { size: "500g", price: "Rp 52.000" }
+  ];
 
-function renderProduk(data, containerId){
-  const container = document.getElementById(containerId);
+  const mentahData = [
+    { size: "500g", price: "Rp 18.000" },
+    { size: "1kg", price: "Rp 34.000" }
+  ];
 
-  data.forEach(item=>{
-    const card = document.createElement("div");
-    card.className = "card";
+  function renderProduk(data, containerId){
+    const container = document.getElementById(containerId);
 
-    card.innerHTML = `
-      <h3>${item.size}</h3>
-      <div class="price">${item.price}</div>
-      <div class="card-actions">
-        <a href="https://wa.me/6285186660020" target="_blank" class="btn btn-wa">WA</a>
-      </div>
-    `;
+    // STOP jika container tidak ada
+    if(!container) return;
 
-    container.appendChild(card);
-  });
-}
+    data.forEach(item=>{
+      const card = document.createElement("div");
+      card.className = "card";
 
-renderProduk(gorengData, "gorengGrid");
-renderProduk(mentahData, "mentahGrid");
+      card.innerHTML = `
+        <h3>${item.size}</h3>
+        <div class="price">${item.price}</div>
+        <div class="card-actions">
+          <a href="https://wa.me/6285186660020" target="_blank" class="btn btn-wa">WA</a>
+        </div>
+      `;
 
-// Mobile nav scroll
-document.querySelectorAll(".bottom-nav a").forEach(link=>{
-  link.addEventListener("click", function(){
-    const target = this.getAttribute("data-target");
-    const section = document.getElementById(target);
+      container.appendChild(card);
+    });
+  }
 
-    if(section){
-      section.scrollIntoView({ behavior: "smooth" });
-    }
+  renderProduk(gorengData, "gorengGrid");
+  renderProduk(mentahData, "mentahGrid");
 
-    document.querySelectorAll(".bottom-nav a")
-      .forEach(a=>a.classList.remove("active"));
+  // =============================
+  // MOBILE NAVIGATION (FIXED)
+  // =============================
 
-    this.classList.add("active");
-  });
-});
+  const navLinks = document.querySelectorAll(".bottom-nav a");
+
+  if(navLinks.length){
+    navLinks.forEach(link=>{
+      link.addEventListener("click", function(){
+
+        const target = this.dataset.target;
+        const section = document.getElementById(target);
+
+        if(section){
+          section.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+
+        navLinks.forEach(a=>a.classList.remove("active"));
+        this.classList.add("active");
+
+      });
+    });
+  }
 
 });
