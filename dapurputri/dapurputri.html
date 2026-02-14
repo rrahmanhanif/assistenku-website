@@ -3,281 +3,143 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dapur Putri — Catering & Homemade Premium</title>
-  <meta name="description" content="Dapur Putri — hidangan rumahan premium dengan kualitas rapi. Pesan via WhatsApp, Email, atau GoFood." />
+  <title>Dapur Putri — Catering Homemade Premium</title>
+  <meta name="description" content="Dapur Putri — Catering rumahan premium, higienis, rapi dan konsisten. Pesan mudah via WhatsApp atau GoFood." />
   <link rel="stylesheet" href="/dapurputri/assets/dapurputri.css" />
 </head>
 
 <body>
-  <!-- Topbar -->
-  <div class="topbar">
-    <div class="container">
-      <div class="topbar-inner">
-        <div class="brand">
-          <img src="/dapurputri/assets/dapurputrilogo.png" alt="Logo Dapur Putri" />
-          <div class="title">
-            <strong>Dapur Putri</strong>
-            <span>Homemade Premium • Rapi • Higienis</span>
-          </div>
-        </div>
 
-        <nav class="nav" aria-label="Navigasi">
-          <a href="#paket">Paket 7 Hari</a>
-          <a href="#menu">Menu</a>
-          <a href="#cara-pesan">Cara Pesan</a>
-          <a href="#gofood">GoFood</a>
-        </nav>
-
-        <a class="btn btn-primary" href="https://wa.me/6285186660020?text=Halo%20Dapur%20Putri,%20saya%20ingin%20pesan%20catering." target="_blank" rel="noopener">
-          Pesan Sekarang
-        </a>
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="container topbar-inner">
+    <div class="brand">
+      <img src="/dapurputri/assets/dapurputrilogo.png" alt="Logo">
+      <div>
+        <strong>Dapur Putri</strong>
+        <small>Homemade • Premium • Higienis</small>
       </div>
     </div>
+
+    <nav class="desktop-nav">
+      <a href="#paket">Paket</a>
+      <a href="#menu">Menu</a>
+      <a href="#cara">Cara Pesan</a>
+      <a href="#gofood">GoFood</a>
+    </nav>
+
+    <a class="btn btn-primary" href="https://wa.me/6285186660020" target="_blank">Pesan</a>
   </div>
+</header>
 
-  <!-- Hero -->
-  <header class="hero">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-card">
-          <div class="kicker"><span class="dot"></span><span>Rasa rumahan, presentasi premium</span></div>
-          <h1>Dapur Putri — Catering Homemade</h1>
-          <p class="subtitle">
-            Hidangan hangat dengan tampilan rapi, porsi jelas, dan rasa konsisten.
-            Cocok untuk makan harian, keluarga, maupun kebutuhan acara.
-          </p>
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-wrap">
 
-          <div class="cta-row">
-            <a class="btn btn-whatsapp" href="https://wa.me/6285186660020?text=Halo%20Dapur%20Putri,%20saya%20ingin%20order%20makanan." target="_blank" rel="noopener">
-              Order via WhatsApp
-            </a>
-            <a class="btn btn-email" href="mailto:rahmadanip88@gmail.com?subject=pesan%20makanan%20dapur%20putri" target="_blank" rel="noopener">
-              Order via Email
-            </a>
-            <a class="btn" href="https://gofood.link/a/KHS6rGQ" target="_blank" rel="noopener">
-              Pesan via GoFood
-            </a>
-          </div>
-
-          <div class="trust">
-            <div class="pill">
-              <strong>Higienis & Terukur</strong>
-              <span>Proses rapi, porsi jelas, dan standar kebersihan dijaga.</span>
-            </div>
-            <div class="pill">
-              <strong>Rasa Konsisten</strong>
-              <span>Cocok untuk repeat order—harian maupun acara.</span>
-            </div>
-            <div class="pill">
-              <strong>Respon Cepat</strong>
-              <span>Order mudah via WhatsApp/Email/GoFood.</span>
-            </div>
-          </div>
-        </div>
-
-        <aside class="side">
-          <div class="logo-big">
-            <img src="/dapurputri/assets/dapurputrilogo.png" alt="Dapur Putri" />
-          </div>
-          <h2>Informasi Pemesanan</h2>
-          <p>
-            Kami menerima pesanan harian dan kebutuhan acara. Untuk detail menu, jumlah porsi, dan jadwal pengantaran,
-            silakan hubungi kami.
-          </p>
-
-          <div class="info">
-            <div class="row">
-              <span>WhatsApp</span>
-              <strong><a href="https://wa.me/6285186660020" target="_blank" rel="noopener">+62 851-8666-0020</a></strong>
-            </div>
-            <div class="row">
-              <span>Email</span>
-              <strong><a href="mailto:rahmadanip88@gmail.com?subject=pesan%20makanan%20dapur%20putri" target="_blank" rel="noopener">rahmadanip88@gmail.com</a></strong>
-            </div>
-            <div class="row">
-              <span>GoFood</span>
-              <strong><a href="https://gofood.link/a/KHS6rGQ" target="_blank" rel="noopener">Buka di GoFood</a></strong>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </header>
-
-  <!-- Paket 7 Hari -->
-  <section id="paket">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h3>Paket Catering 7 Hari</h3>
-          <p>Menu berganti setiap hari. Cocok untuk kantor/keluarga. Harga sudah termasuk sambal.</p>
-        </div>
-        <div class="head-actions">
-          <button class="btn btn-primary" id="copyPaket" type="button">Salin Paket (WhatsApp)</button>
-          <button class="btn" id="printPage" type="button">Cetak</button>
-        </div>
-      </div>
-
-      <div class="grid" id="paketGrid" aria-label="Paket 7 hari">
-        <!-- Render oleh JS -->
-        <noscript>
-          <div class="note">Aktifkan JavaScript untuk melihat paket 7 hari.</div>
-        </noscript>
-      </div>
-
-      <div class="cta-band mini">
-        <div>
-          <h4>Paket Langganan</h4>
-          <p><strong>7 Hari: Rp180.000 / pax</strong> (hemat Rp10.000)</p>
-        </div>
-        <div class="cta-actions">
-          <a class="btn btn-whatsapp" href="https://wa.me/6285186660020?text=Halo%20Dapur%20Putri,%20saya%20ingin%20langganan%20paket%207%20hari." target="_blank" rel="noopener">Langganan via WhatsApp</a>
-          <a class="btn" href="#cara-pesan">Cara Pesan</a>
-        </div>
-      </div>
-
-      <p class="fine">
-        Minimal order: 10 box / hari. Area antar menyesuaikan. Harga dapat berubah mengikuti bahan pokok.
+    <div class="hero-left">
+      <h1>Catering Rumahan<br>Dengan Standar Premium</h1>
+      <p>
+        Porsi jelas, rasa konsisten, pengemasan rapi.
+        Cocok untuk kantor, keluarga, dan kebutuhan acara.
       </p>
-    </div>
-  </section>
 
-  <div class="note">
-  <strong>Ketentuan Ongkos Kirim</strong><br>
-  Harga menu <strong>tidak termasuk ongkos kirim</strong>. Ongkir mengikuti tarif aplikasi (Grab/Gojek) atau ketentuan antar Dapur Putri.
-  Nominal ongkir dikonfirmasi sebelum pengiriman.
+      <div class="hero-cta">
+        <a class="btn btn-whatsapp" href="https://wa.me/6285186660020" target="_blank">WhatsApp</a>
+        <a class="btn" href="#menu">Lihat Menu</a>
+        <a class="btn btn-secondary" href="bawang.html">Halaman Bawang</a>
+      </div>
+
+      <div class="hero-trust">
+        <div>✔ Higienis</div>
+        <div>✔ Respon Cepat</div>
+        <div>✔ Bisa Custom</div>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <img src="/dapurputri/assets/dapurputrilogo.png" alt="Logo">
+      <h3>Informasi Pemesanan</h3>
+      <p>Minimal 10 box / hari. Ongkir mengikuti tarif aplikasi.</p>
+      <a class="btn btn-whatsapp full" href="https://wa.me/6285186660020" target="_blank">Order Sekarang</a>
+    </div>
+
   </div>
+</section>
 
-  <!-- Menu -->
-  <section id="menu">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h3>Menu Favorit</h3>
-          <p>Contoh menu favorit. Anda bisa sesuaikan sesuai katalog GoFood.</p>
-        </div>
+<!-- PAKET -->
+<section id="paket" class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Paket Catering 7 Hari</h2>
+      <button id="copyBtn" class="btn-small">Salin Paket</button>
+    </div>
+    <div id="paketGrid" class="grid"></div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="section alt">
+  <div class="container">
+    <h2>Menu Favorit</h2>
+    <div class="grid">
+      <div class="card">
+        <h4>Nasi Ayam Geprek</h4>
+        <p>Pedas mantap, porsi rapi.</p>
+        <a class="btn-small" href="https://wa.me/6285186660020">Order</a>
       </div>
 
-      <div class="grid">
-        <article class="card">
-          <h4 class="name">Nasi Ayam Geprek</h4>
-          <p class="desc">Ayam geprek pedas, sambal mantap, porsi rapi.</p>
-          <div class="bottom">
-            <span class="price">Mulai Rp —</span>
-            <a class="btn" href="https://wa.me/6285186660020?text=Halo%20Dapur%20Putri,%20saya%20ingin%20order%20Nasi%20Ayam%20Geprek." target="_blank" rel="noopener">Order</a>
-          </div>
-        </article>
+      <div class="card">
+        <h4>Nasi Ayam Bakar</h4>
+        <p>Bumbu meresap, cocok keluarga.</p>
+        <a class="btn-small" href="https://wa.me/6285186660020">Order</a>
+      </div>
 
-        <article class="card">
-          <h4 class="name">Nasi Ayam Bakar</h4>
-          <p class="desc">Ayam bakar bumbu meresap, cocok untuk keluarga.</p>
-          <div class="bottom">
-            <span class="price">Mulai Rp —</span>
-            <a class="btn" href="https://wa.me/6285186660020?text=Halo%20Dapur%20Putri,%20saya%20ingin%20order%20Nasi%20Ayam%20Bakar." target="_blank" rel="noopener">Order</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <h4 class="name">Nasi Rendang</h4>
-          <p class="desc">Rendang gurih, hangat, dan konsisten.</p>
-          <div class="bottom">
-            <span class="price">Mulai Rp —</span>
-            <a class="btn" href="https://wa.me/6285186660020?text=Halo%20Dapur%20Putri,%20saya%20ingin%20order%20Nasi%20Rendang." target="_blank" rel="noopener">Order</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <h4 class="name">Snack Box / Nasi Box Acara</h4>
-          <p class="desc">Untuk rapat, syukuran, dan kebutuhan event.</p>
-          <div class="bottom">
-            <span class="price">By request</span>
-            <a class="btn" href="https://wa.me/6285186660020?text=Halo%20Dapur%20Putri,%20saya%20ingin%20tanya%20Snack%20Box%20atau%20Nasi%20Box%20untuk%20acara." target="_blank" rel="noopener">Tanya</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <h4 class="name">Menu Spesial Mingguan</h4>
-          <p class="desc">Info menu spesial tersedia via WhatsApp (respon cepat).</p>
-          <div class="bottom">
-            <span class="price">Update mingguan</span>
-            <a class="btn" href="https://wa.me/6285186660020?text=Halo%20Dapur%20Putri,%20mohon%20info%20menu%20spesial%20minggu%20ini." target="_blank" rel="noopener">Minta Info</a>
-          </div>
-        </article>
+      <div class="card">
+        <h4>Nasi Rendang</h4>
+        <p>Gurih dan konsisten.</p>
+        <a class="btn-small" href="https://wa.me/6285186660020">Order</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Cara Pesan -->
-  <section id="cara-pesan">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h3>Cara Pesan</h3>
-          <p>Untuk catering/event, sebutkan tanggal, jumlah porsi, dan alamat.</p>
-        </div>
-      </div>
+<!-- CARA -->
+<section id="cara" class="section">
+  <div class="container">
+    <h2>Cara Pesan</h2>
+    <ol>
+      <li>Hubungi WhatsApp</li>
+      <li>Sebutkan tanggal & jumlah</li>
+      <li>Konfirmasi alamat & pembayaran</li>
+    </ol>
+  </div>
+</section>
 
-      <div class="cta-band">
-        <div>
-          <h4>Siap pesan sekarang?</h4>
-          <p>Kirim email dengan subject <strong>pesan makanan dapur putri</strong> atau chat via WhatsApp.</p>
-        </div>
-        <div class="cta-actions">
-          <a class="btn btn-whatsapp" href="https://wa.me/6285186660020?text=Halo%20Dapur%20Putri,%20saya%20ingin%20pesan%20makanan." target="_blank" rel="noopener">WhatsApp</a>
-          <a class="btn btn-email" href="mailto:rahmadanip88@gmail.com?subject=pesan%20makanan%20dapur%20putri" target="_blank" rel="noopener">Email</a>
-          <a class="btn btn-primary" href="#gofood">GoFood</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- GOFOOD -->
+<section id="gofood" class="section alt">
+  <div class="container center">
+    <h2>Pesan via GoFood</h2>
+    <a class="btn btn-primary" href="https://gofood.link/a/KHS6rGQ" target="_blank">Buka GoFood</a>
+  </div>
+</section>
 
-  <!-- GoFood -->
-  <section id="gofood">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <h3>Pesan via GoFood</h3>
-          <p>Buka halaman GoFood Dapur Putri melalui link resmi berikut.</p>
-        </div>
-      </div>
+<footer>
+  <div class="container">
+    © <span id="year"></span> Dapur Putri
+  </div>
+</footer>
 
-      <div class="cta-band">
-        <div>
-          <h4>GoFood — Dapur Putri</h4>
-          <p>Link resmi: <span class="mono">gofood.link/a/KHS6rGQ</span></p>
-        </div>
-        <div class="cta-actions">
-          <a class="btn btn-primary" href="https://gofood.link/a/KHS6rGQ" target="_blank" rel="noopener">Buka GoFood</a>
-          <a class="btn" href="#menu">Lihat Menu</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/6285186660020" class="floating-wa" target="_blank">WA</a>
 
-  <footer>
-    <div class="container">
-      <div class="foot">
-        <div>
-          <strong class="foot-title">Dapur Putri</strong>
-          <small>Homemade Premium • Rapi • Higienis</small>
-          <small>WhatsApp: <a href="https://wa.me/6285186660020" target="_blank" rel="noopener">+62 851-8666-0020</a></small>
-          <small>Email: <a href="mailto:rahmadanip88@gmail.com?subject=pesan%20makanan%20dapur%20putri" target="_blank" rel="noopener">rahmadanip88@gmail.com</a></small>
-        </div>
-
-        <div>
-          <small>GoFood: <a href="https://gofood.link/a/KHS6rGQ" target="_blank" rel="noopener">gofood.link/a/KHS6rGQ</a></small>
-          <small style="margin-top:8px;">© <span id="year"></span> Dapur Putri. All rights reserved.</small>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="/dapurputri/assets/dapurputri.js"></script>
-  <div class="bottom-nav">
-  <a href="#menu"><span>🍽️</span>Menu Favorit</a>
-  <a href="#paket"><span>📦</span>Paket Catering</a>
-  <a href="#cara"><span>📝</span>Cara Pesan</a>
-  <a href="#kontak"><span>📲</span>Kontak / Order</a>
+<!-- MOBILE NAV -->
+<div class="bottom-nav">
+  <a data-target="paket">📦</a>
+  <a data-target="menu">🍽️</a>
+  <a data-target="cara">📝</a>
+  <a data-target="gofood">📲</a>
 </div>
+
+<script src="/dapurputri/assets/dapurputri.js"></script>
 </body>
 </html>
