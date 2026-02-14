@@ -5,34 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bawang Goreng Premium | Dapur Putri</title>
 
-<!-- RELATIVE PATH (WAJIB untuk GitHub Pages) -->
-<link rel="stylesheet" href="/dapurputri/assets/bawang.css">
+<link rel="stylesheet" href="/dapurputri/assets/bawang.css?v=4">
 </head>
 <body>
 
-<header class="navbar">
-  <div class="container nav-container">
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="container topbar-inner">
 
-    <div class="logo">
-      <a href="dapurputri.html">DAPUR PUTRI</a>
+    <div class="brand">
+      <strong>Dapur Putri</strong>
+      <small>Professional Catering Service</small>
     </div>
 
-    <ul class="nav-links">
-      <li><a href="dapurputri.html">Beranda</a></li>
-      <li><a href="#tentang">Tentang</a></li>
-      <li><a href="#keunggulan">Keunggulan</a></li>
-      <li><a href="#kontak">Pesan</a></li>
-    </ul>
-
-    <div class="menu-toggle" id="mobile-menu">
-      ☰
-    </div>
+    <nav class="desktop-nav">
+      <a href="dapurputri.html">Beranda</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#keunggulan">Keunggulan</a>
+      <a href="#kontak">Pesan</a>
+    </nav>
 
   </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="container center">
+  <div class="container hero-wrap">
     <h1>Bawang Goreng Premium</h1>
     <p>
       Bukan sekadar pelengkap hidangan. Diproduksi dari bawang pilihan
@@ -48,6 +46,7 @@
   </div>
 </section>
 
+<!-- TENTANG -->
 <section id="tentang" class="section">
   <div class="container narrow">
     <h2>Standar Produksi Terjaga</h2>
@@ -64,11 +63,12 @@
   </div>
 </section>
 
+<!-- KEUNGGULAN -->
 <section id="keunggulan" class="section alt">
   <div class="container">
     <h2>Keunggulan Produk</h2>
 
-    <div class="grid-3">
+    <div class="grid">
       <div class="card">
         <h3>Renyah Tahan Lama</h3>
         <p>Dikemas untuk menjaga tekstur tetap stabil saat distribusi.</p>
@@ -87,7 +87,8 @@
   </div>
 </section>
 
-<section id="kontak" class="section center">
+<!-- KONTAK -->
+<section id="kontak" class="section">
   <div class="container narrow">
     <h2>Pemesanan & Distribusi</h2>
     <p>
@@ -112,14 +113,11 @@
   </div>
 </section>
 
-<footer class="footer">
-  <div class="container center">
+<footer>
+  <div class="container">
     <p>© <span id="year"></span> Dapur Putri. Produk berkualitas untuk kebutuhan premium.</p>
   </div>
 </footer>
-
-<!-- RELATIVE JS PATH -->
-<script src="assets/bawang.js"></script>
 
 </body>
 </html>
