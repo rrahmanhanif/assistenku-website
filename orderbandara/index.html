@@ -1,59 +1,83 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order Bandara - Assistenku</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Bandara</title>
 
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
 
-  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <div class="container">
 
-  <h2>Order Bandara</h2>
+<h2>Order Bandara</h2>
 
-  <!-- MODE -->
-  <div class="mode-selector">
-    <label><input type="radio" name="mode" value="airport" checked> Airport Mode</label>
-    <label><input type="radio" name="mode" value="custom"> Custom Mode</label>
-  </div>
+<!-- MODE -->
+<div class="section">
+  <label><input type="radio" name="mode" value="airport" checked> Airport Mode</label>
+  <label><input type="radio" name="mode" value="custom"> Custom Mode</label>
+</div>
 
-  <!-- TERMINAL (Airport Mode only) -->
-  <div id="airportSection">
-    <label>Pilih Terminal</label>
-    <select id="terminalSelect">
-      <option value="t1">Terminal 1</option>
-      <option value="t2">Terminal 2</option>
-      <option value="t3">Terminal 3</option>
-    </select>
-  </div>
+<!-- SUB MODE AIRPORT -->
+<div class="section" id="airportSubMode">
+  <label><input type="radio" name="airportType" value="drop" checked> Drop ke Bandara</label>
+  <label><input type="radio" name="airportType" value="pickup"> Jemput dari Bandara</label>
+</div>
 
-  <!-- PICKUP -->
-  <div class="form-group">
-    <label>Titik Jemput</label>
-    <input type="text" id="pickupInput" placeholder="Ketik alamat atau klik peta">
-    <small id="pickupCoord"></small>
-  </div>
+<!-- TERMINAL -->
+<div class="section" id="terminalSection">
+  <label>Pilih Terminal</label>
+  <select id="terminalSelect">
+    <option value="">-- Pilih Terminal --</option>
+    <option value="T1">Terminal 1</option>
+    <option value="T2">Terminal 2</option>
+    <option value="T3">Terminal 3</option>
+  </select>
+</div>
 
-  <!-- DESTINATION (Custom Mode only) -->
-  <div id="destinationSection" class="hidden">
-    <div class="form-group">
-      <label>Titik Tujuan</label>
-      <input type="text" id="destinationInput" placeholder="Ketik alamat atau klik peta">
-      <small id="destinationCoord"></small>
-    </div>
-  </div>
+<!-- PICKUP -->
+<div class="section" id="pickupSection">
+  <label>Titik Jemput</label>
+  <input type="text" id="pickupInput" placeholder="Masukkan alamat atau klik peta">
+</div>
 
-  <!-- MAP -->
-  <div id="map"></div>
+<!-- DESTINATION -->
+<div class="section" id="destinationSection">
+  <label>Titik Tujuan</label>
+  <input type="text" id="destinationInput" placeholder="Masukkan alamat atau klik peta">
+</div>
+
+<div id="map"></div>
+
+<hr>
+
+<h3>Detail Perhitungan</h3>
+
+<div class="result">
+  <p>Jarak: <span id="distance">-</span></p>
+  <p>Base Fare: Rp <span id="baseFare">-</span></p>
+  <p>Airport Fee: Rp <span id="airportFee">-</span></p>
+  <p>Surge: x<span id="surge">1</span></p>
+  <h3>Total: Rp <span id="total">-</span></h3>
+</div>
+
+<button id="waButton" disabled>Pesan via WhatsApp</button>
+
+<p class="disclaimer">
+Harga berlaku untuk tujuan yang telah dipilih.<br>
+Perubahan titik tujuan akan membatalkan harga dan dilakukan perhitungan ulang.<br>
+Pastikan tujuan Anda sudah benar sebelum melanjutkan.
+</p>
 
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
