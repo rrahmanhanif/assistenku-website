@@ -1,182 +1,207 @@
-// ================================
-// CONFIG
-// ================================
-const TERMINALS = {
-  t1: [-6.1256, 106.6559],
-  t2: [-6.1198, 106.6555],
-  t3: [-6.1270, 106.6537]
+// ================== CONFIG ==================
+
+const ORS_API_KEY = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjhmNjVlM2NkZGQ2YzRhYTRhNDFlZjMxYzNjMjJiYzllIiwiaCI6Im11cm11cjY0In0=";
+
+const tarifPerKm = 8000;
+const airportFee = 25000;
+const minimumFare = 41000;
+const surgeMultiplier = 1;
+
+const terminalCoords = {
+  T1: [-6.1256, 106.6559],
+  T2: [-6.1272, 106.6537],
+  T3: [-6.1246, 106.6577]
 };
 
-// ================================
-// STATE
-// ================================
-let pickupMarker = null;
-let destinationMarker = null;
-let pickupCoords = null;
-let destinationCoords = null;
+// ================== STATE ==================
 
-// ================================
-// MAP INIT
-// ================================
-const map = L.map('map').setView([-6.2, 106.8], 11);
+let mode = "airport";
+let subMode = "drop";
+let startCoords = null;
+let endCoords = null;
+let finalLocked = false;
+
+// ================== MAP INIT ==================
+
+const map = L.map('map').setView([-6.2, 106.8], 10);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19
+  attribution: ''
 }).addTo(map);
 
-// ================================
-// MODE TOGGLE
-// ================================
-const modeRadios = document.querySelectorAll("input[name='mode']");
-const airportSection = document.getElementById("airportSection");
-const destinationSection = document.getElementById("destinationSection");
+let startMarker = null;
+let endMarker = null;
 
-modeRadios.forEach(radio => {
-  radio.addEventListener("change", () => {
-    toggleMode();
-    resetAll();
-  });
-});
+// ================== MODE FUNCTIONS ==================
 
-function getMode() {
-  return document.querySelector("input[name='mode']:checked").value;
+function setMode(newMode) {
+  mode = newMode;
+  document.getElementById("airportSubMode").style.display = mode === "airport" ? "block" : "none";
+  document.getElementById("terminalSection").style.display = mode === "airport" ? "block" : "none";
+  document.getElementById("destinationSection").style.display = mode === "custom" ? "block" : "none";
+  resetCalculation();
 }
 
-function toggleMode() {
-  if (getMode() === "airport") {
-    airportSection.classList.remove("hidden");
-    destinationSection.classList.add("hidden");
-  } else {
-    airportSection.classList.add("hidden");
-    destinationSection.classList.remove("hidden");
-  }
+function setSubMode(newSub) {
+  subMode = newSub;
+  resetCalculation();
 }
 
-// ================================
-// TERMINAL AUTO DESTINATION
-// ================================
-document.getElementById("terminalSelect")
-  .addEventListener("change", setTerminalDestination);
+// ================== MARKER ==================
 
-function setTerminalDestination() {
+function updateMarker(type, latlng) {
 
-  const value = document.getElementById("terminalSelect").value;
-  destinationCoords = TERMINALS[value];
-
-  if (destinationMarker) {
-    map.removeLayer(destinationMarker);
+  if (type === "start") {
+    if (startMarker) map.removeLayer(startMarker);
+    startMarker = L.marker(latlng, { draggable: true }).addTo(map);
+    startMarker.on("dragend", () => {
+      startCoords = startMarker.getLatLng();
+      calculateRoute();
+    });
+    startCoords = latlng;
   }
 
-  destinationMarker = L.marker(destinationCoords, { draggable: false })
-    .addTo(map)
-    .bindPopup("Tujuan Terminal")
-    .openPopup();
+  if (type === "end") {
+    if (endMarker) map.removeLayer(endMarker);
+    endMarker = L.marker(latlng, { draggable: true }).addTo(map);
+    endMarker.on("dragend", () => {
+      endCoords = endMarker.getLatLng();
+      calculateRoute();
+    });
+    endCoords = latlng;
+  }
 
-  updateDestinationText(destinationCoords);
+  calculateRoute();
 }
 
-// ================================
-// MAP CLICK HANDLER
-// ================================
-map.on("click", function(e) {
+// ================== ROUTING ==================
 
-  const mode = getMode();
+async function calculateRoute() {
 
-  if (!pickupCoords) {
-    setPickup(e.latlng);
+  if (!startCoords || !endCoords || finalLocked) {
+    document.getElementById("waButton").disabled = true;
     return;
   }
 
-  if (mode === "custom" && !destinationCoords) {
-    setDestination(e.latlng);
+  const body = {
+    coordinates: [
+      [startCoords.lng, startCoords.lat],
+      [endCoords.lng, endCoords.lat]
+    ]
+  };
+
+  const res = await fetch("https://api.openrouteservice.org/v2/directions/driving-car", {
+    method: "POST",
+    headers: {
+      "Authorization": ORS_API_KEY,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  });
+
+  const data = await res.json();
+  const distance = data.routes[0].summary.distance;
+  const km = distance / 1000;
+
+  calculateFare(km);
+}
+
+// ================== FARE ==================
+
+function calculateFare(km) {
+
+  let total = 0;
+
+  if (km <= 3) {
+    total = minimumFare;
+  } else {
+    let baseFare = km * tarifPerKm;
+    let finalBase = baseFare * surgeMultiplier;
+    total = mode === "airport" ? finalBase + airportFee : finalBase;
+  }
+
+  if (total < minimumFare) total = minimumFare;
+
+  total = Math.ceil(total / 1000) * 1000;
+
+  updateUI(km, total);
+}
+
+// ================== UI ==================
+
+function updateUI(km, total) {
+
+  document.getElementById("distance").innerText = km.toFixed(2) + " KM";
+  document.getElementById("baseFare").innerText = (km * tarifPerKm).toLocaleString();
+  document.getElementById("airportFee").innerText = mode === "airport" ? airportFee.toLocaleString() : "0";
+  document.getElementById("total").innerText = total.toLocaleString();
+
+  document.getElementById("waButton").disabled = false;
+}
+
+// ================== RESET ==================
+
+function resetCalculation() {
+
+  startCoords = null;
+  endCoords = null;
+  finalLocked = false;
+
+  if (startMarker) map.removeLayer(startMarker);
+  if (endMarker) map.removeLayer(endMarker);
+
+  document.getElementById("distance").innerText = "-";
+  document.getElementById("baseFare").innerText = "-";
+  document.getElementById("airportFee").innerText = "-";
+  document.getElementById("total").innerText = "-";
+
+  document.getElementById("waButton").disabled = true;
+}
+
+// ================== TERMINAL ==================
+
+document.getElementById("terminalSelect").addEventListener("change", function() {
+  const term = this.value;
+  if (!term) return;
+
+  const coords = L.latLng(terminalCoords[term][0], terminalCoords[term][1]);
+
+  if (subMode === "drop") {
+    updateMarker("end", coords);
+  } else {
+    updateMarker("start", coords);
   }
 });
 
-// ================================
-// SET PICKUP
-// ================================
-function setPickup(latlng) {
+// ================== MAP CLICK ==================
 
-  pickupCoords = [latlng.lat, latlng.lng];
+map.on("click", function(e) {
 
-  if (pickupMarker) map.removeLayer(pickupMarker);
+  if (mode === "custom") {
 
-  pickupMarker = L.marker(latlng, { draggable: true })
-    .addTo(map)
-    .bindPopup("Pickup")
-    .openPopup();
+    if (!startCoords) updateMarker("start", e.latlng);
+    else updateMarker("end", e.latlng);
 
-  pickupMarker.on("dragend", function(e) {
-    pickupCoords = [
-      e.target.getLatLng().lat,
-      e.target.getLatLng().lng
-    ];
-    updatePickupText(pickupCoords);
-  });
+  } else {
 
-  updatePickupText(pickupCoords);
-}
+    if (subMode === "drop") updateMarker("start", e.latlng);
+    else updateMarker("end", e.latlng);
+  }
+});
 
-// ================================
-// SET DESTINATION (CUSTOM MODE)
-// ================================
-function setDestination(latlng) {
+// ================== MODE LISTENER ==================
 
-  destinationCoords = [latlng.lat, latlng.lng];
+document.querySelectorAll("input[name='mode']").forEach(el => {
+  el.addEventListener("change", e => setMode(e.target.value));
+});
 
-  if (destinationMarker) map.removeLayer(destinationMarker);
+document.querySelectorAll("input[name='airportType']").forEach(el => {
+  el.addEventListener("change", e => setSubMode(e.target.value));
+});
 
-  destinationMarker = L.marker(latlng, { draggable: true })
-    .addTo(map)
-    .bindPopup("Tujuan")
-    .openPopup();
+// ================== FREEZE ==================
 
-  destinationMarker.on("dragend", function(e) {
-    destinationCoords = [
-      e.target.getLatLng().lat,
-      e.target.getLatLng().lng
-    ];
-    updateDestinationText(destinationCoords);
-  });
-
-  updateDestinationText(destinationCoords);
-}
-
-// ================================
-// UPDATE TEXT FIELD
-// ================================
-function updatePickupText(coords) {
-  document.getElementById("pickupCoord").innerText =
-    `${coords[0]}, ${coords[1]}`;
-}
-
-function updateDestinationText(coords) {
-  document.getElementById("destinationCoord").innerText =
-    `${coords[0]}, ${coords[1]}`;
-}
-
-// ================================
-// RESET ALL WHEN MODE CHANGE
-// ================================
-function resetAll() {
-
-  pickupCoords = null;
-  destinationCoords = null;
-
-  if (pickupMarker) map.removeLayer(pickupMarker);
-  if (destinationMarker) map.removeLayer(destinationMarker);
-
-  pickupMarker = null;
-  destinationMarker = null;
-
-  document.getElementById("pickupInput").value = "";
-  document.getElementById("destinationInput").value = "";
-  document.getElementById("pickupCoord").innerText = "";
-  document.getElementById("destinationCoord").innerText = "";
-}
-
-// ================================
-// INIT
-// ================================
-toggleMode();
-setTerminalDestination();
+document.getElementById("waButton").addEventListener("click", function() {
+  finalLocked = true;
+  alert("Harga dikunci. Perubahan lokasi akan membatalkan harga.");
+});
