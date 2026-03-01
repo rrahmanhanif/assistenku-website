@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Order Bandara - Assistenku</title>
 
-  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
@@ -16,42 +14,49 @@
 
   <h1>Order Bandara</h1>
 
+  <!-- MODE SELECTOR -->
   <div class="mode-selector">
-    <label><input type="radio" name="mode" value="airport" checked> Airport Mode</label>
-    <label><input type="radio" name="mode" value="custom"> Custom Mode</label>
+    <label>
+      <input type="radio" name="mode" value="airport" checked>
+      Airport Mode
+    </label>
+    <label>
+      <input type="radio" name="mode" value="custom">
+      Custom Mode
+    </label>
   </div>
 
-  <div id="terminalSelect">
-    <label>Pilih Terminal:</label>
-    <select id="terminal">
+  <!-- AIRPORT MODE SECTION -->
+  <div id="airportSection">
+
+    <label>Titik Jemput</label>
+    <input type="text" id="pickupInput" placeholder="Masukkan alamat pickup">
+
+    <label>Pilih Terminal</label>
+    <select id="terminalSelect">
       <option value="t1">Terminal 1</option>
       <option value="t2">Terminal 2</option>
       <option value="t3">Terminal 3</option>
     </select>
+
+  </div>
+
+  <!-- CUSTOM MODE SECTION -->
+  <div id="customSection" class="hidden">
+
+    <label>Titik Jemput</label>
+    <input type="text" id="pickupCustomInput" placeholder="Masukkan alamat pickup">
+
+    <label>Titik Tujuan</label>
+    <input type="text" id="destinationCustomInput" placeholder="Masukkan alamat tujuan">
+
   </div>
 
   <div id="map"></div>
-
-  <div id="calculation" class="hidden">
-    <h3>Detail Perhitungan</h3>
-    <p>Jarak: <span id="distance_km"></span> KM</p>
-    <p>Base Fare: Rp <span id="base_fare"></span></p>
-    <p>Airport Fee: Rp 25.000</p>
-    <p>Surge: x<span id="surge"></span></p>
-    <h2>Total: Rp <span id="final_price"></span></h2>
-  </div>
-
-  <button id="waBtn" class="hidden">Pesan via WhatsApp</button>
-
-  <p class="disclaimer">
-    Harga berlaku untuk tujuan yang telah dipilih.<br/>
-    Perubahan titik tujuan akan membatalkan harga dan dilakukan perhitungan ulang.
-  </p>
 
 </div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="js/app.js"></script>
-
 </body>
 </html>
