@@ -1,62 +1,59 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order Bandara - Assistenku</title>
 
+  <!-- Leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-  <link rel="stylesheet" href="css/style.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <div class="container">
 
-  <h1>Order Bandara</h1>
+  <h2>Order Bandara</h2>
 
-  <!-- MODE SELECTOR -->
+  <!-- MODE -->
   <div class="mode-selector">
-    <label>
-      <input type="radio" name="mode" value="airport" checked>
-      Airport Mode
-    </label>
-    <label>
-      <input type="radio" name="mode" value="custom">
-      Custom Mode
-    </label>
+    <label><input type="radio" name="mode" value="airport" checked> Airport Mode</label>
+    <label><input type="radio" name="mode" value="custom"> Custom Mode</label>
   </div>
 
-  <!-- AIRPORT MODE SECTION -->
+  <!-- TERMINAL (Airport Mode only) -->
   <div id="airportSection">
-
-    <label>Titik Jemput</label>
-    <input type="text" id="pickupInput" placeholder="Masukkan alamat pickup">
-
     <label>Pilih Terminal</label>
     <select id="terminalSelect">
       <option value="t1">Terminal 1</option>
       <option value="t2">Terminal 2</option>
       <option value="t3">Terminal 3</option>
     </select>
-
   </div>
 
-  <!-- CUSTOM MODE SECTION -->
-  <div id="customSection" class="hidden">
-
+  <!-- PICKUP -->
+  <div class="form-group">
     <label>Titik Jemput</label>
-    <input type="text" id="pickupCustomInput" placeholder="Masukkan alamat pickup">
-
-    <label>Titik Tujuan</label>
-    <input type="text" id="destinationCustomInput" placeholder="Masukkan alamat tujuan">
-
+    <input type="text" id="pickupInput" placeholder="Ketik alamat atau klik peta">
+    <small id="pickupCoord"></small>
   </div>
 
+  <!-- DESTINATION (Custom Mode only) -->
+  <div id="destinationSection" class="hidden">
+    <div class="form-group">
+      <label>Titik Tujuan</label>
+      <input type="text" id="destinationInput" placeholder="Ketik alamat atau klik peta">
+      <small id="destinationCoord"></small>
+    </div>
+  </div>
+
+  <!-- MAP -->
   <div id="map"></div>
 
 </div>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
