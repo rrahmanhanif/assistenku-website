@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Pesan Mobil Premium</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+</head>
+
+<body>
+
+<h2>Form Pemesanan Mobil</h2>
+
+<label>Nama Pemesan</label>
+<input id="nama">
+
+<label>Nomor Whatsapp</label>
+<input id="wa">
+
+<label>Jenis Layanan</label>
+
+<select id="layanan">
+
+<option value="pickup">Pick-up Only</option>
+<option value="dropoff">Drop-off Only</option>
+<option value="standby">Full Standby</option>
+
+</select>
+
+<label>Durasi Standby</label>
+
+<select id="durasi">
+
+<option value="3">3 Jam</option>
+<option value="5">5 Jam</option>
+<option value="8">8 Jam</option>
+
+</select>
+
+<h3>Pilih Lokasi</h3>
+
+<div id="map"></div>
+
+<p>
+
+Tarif Estimasi:  
+<span id="tarif">0</span>
+
+</p>
+
+<button onclick="submitBooking()">
+Pesan via WhatsApp
+</button>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
