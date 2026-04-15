@@ -1,141 +1,128 @@
-*{box-sizing:border-box;margin:0;padding:0}
-
-body{
-font-family:Inter,system-ui;
-background:#0b1220;
-color:#e2e8f0;
-line-height:1.7;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
 }
 
-.container{max-width:1100px;margin:auto;padding:0 20px}
-.narrow{max-width:800px;margin:auto}
-
-.section{padding:90px 0}
-.section.alt{background:#111a2e}
-.section-desc{color:#94a3b8;margin-top:10px}
-
-h1{font-size:42px;margin-bottom:20px}
-h2{font-size:30px;margin-bottom:20px}
-h4{margin-bottom:10px}
-
-p{color:#94a3b8}
-
-/* TOPBAR */
-.topbar{
-position:sticky;
-top:0;
-background:#0b1220;
-border-bottom:1px solid rgba(255,255,255,.06);
-z-index:50;
+/* LAYOUT */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
 }
-.topbar-inner{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 0;
+
+.center {
+  text-align: center;
 }
-.brand{display:flex;gap:12px;align-items:center}
-.brand img{width:42px;background:#fff;border-radius:12px;padding:6px}
-.brand small{color:#64748b}
 
-.desktop-nav{display:flex;gap:25px}
-.desktop-nav a{color:#94a3b8;text-decoration:none;font-size:14px}
-.desktop-nav a:hover{color:#fff}
+/* HEADER */
+.topbar {
+  background: white;
+  border-bottom: 1px solid #eee;
+}
 
-/* HERO */
-.hero{padding:120px 0}
-.hero-wrap{max-width:900px}
-.hero-left p{margin-bottom:25px}
+.topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.brand {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
 
-.hero-trust{
-display:flex;
-gap:25px;
-color:#22c55e;
-font-size:14px;
+.brand img {
+  width: 40px;
 }
 
 /* BUTTON */
-.btn{
-background:#1e293b;
-padding:12px 18px;
-border-radius:10px;
-font-weight:600;
-color:#fff;
-text-decoration:none;
-font-size:14px;
-}
-.btn-primary{background:#2563eb}
-.btn-secondary{background:#334155}
-
-/* GRID */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-top:35px}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:30px}
-
-.card{
-background:#16233d;
-padding:25px;
-border-radius:16px;
-border:1px solid rgba(255,255,255,.05);
+.btn {
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
 }
 
-.card ul{
-margin-top:10px;
-padding-left:18px;
-color:#94a3b8;
-font-size:14px;
+.btn-primary {
+  background: #e11d48;
+  color: white;
+}
+
+/* HERO */
+.hero {
+  padding: 60px 20px;
+}
+
+.subtitle {
+  max-width: 500px;
+  margin: auto;
+}
+
+.price-tag {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #e11d48;
+}
+
+.trust {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* ADDON */
+.addon-box {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.addon-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.addon-box li {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* GRID INSTAGRAM STYLE */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
 }
 
 /* FOOTER */
-footer{
-padding:40px 0;
-text-align:center;
-border-top:1px solid rgba(255,255,255,.05);
-margin-top:80px;
-color:#64748b;
+footer {
+  background: white;
+  text-align: center;
+  padding: 20px;
 }
 
-/* FLOAT WA */
-.floating-wa{
-position:fixed;
-bottom:90px;
-right:20px;
-background:#16a34a;
-padding:14px 18px;
-border-radius:50px;
-font-weight:bold;
-z-index:100;
+.footer-logo {
+  width: 80px;
+  margin-bottom: 10px;
 }
-
-/* MOBILE NAV */
-.bottom-nav{
-position:fixed;
-bottom:0;
-left:0;
-right:0;
-display:none;
-justify-content:space-around;
-background:#0b1220;
-padding:14px 0;
-border-top:1px solid rgba(255,255,255,.05);
-}
-.bottom-nav a{color:#94a3b8;font-size:20px}
-.bottom-nav a.active{color:#fff}
-
-@media(max-width:900px){
-.grid{grid-template-columns:1fr}
-.grid-2{grid-template-columns:1fr}
-.desktop-nav{display:none}
-.bottom-nav{display:flex}
-body{padding-bottom:70px}
-}
-
-.cta-group{
-display:flex;
-gap:15px;
-justify-content:center;
-flex-wrap:wrap;
-margin-top:20px;
-}
-
