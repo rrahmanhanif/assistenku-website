@@ -246,6 +246,116 @@ body {
 }
 
 /* ============================= */
+/* FIX MENU GRID (INSTAGRAM STYLE) */
+/* ============================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* default mobile */
+  gap: 16px;
+}
+
+/* tablet */
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* desktop */
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ============================= */
+/* CARD FIX */
+/* ============================= */
+
+.card {
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 16px;
+  overflow: hidden; /* WAJIB agar gambar tidak keluar */
+  box-shadow: var(--shadow-soft);
+  transition: all 0.25s ease;
+  padding: 0; /* HAPUS padding biar image full */
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ============================= */
+/* IMAGE FIX */
+/* ============================= */
+
+.card img {
+  width: 100%;
+  height: 160px; /* tinggi konsisten */
+  object-fit: cover; /* crop seperti IG */
+  display: block;
+}
+
+/* desktop lebih tinggi */
+@media (min-width: 768px) {
+  .card img {
+    height: 180px;
+  }
+}
+
+/* ============================= */
+/* CONTENT */
+/* ============================= */
+
+.card .content {
+  padding: 14px;
+}
+
+.card h3 {
+  font-size: 15px;
+  margin: 0 0 6px;
+}
+
+.card p {
+  font-size: 12px;
+  color: var(--text-light);
+  line-height: 1.4;
+  height: 38px;
+  overflow: hidden; /* biar rapi */
+}
+
+.price {
+  margin-top: 8px;
+  font-weight: 700;
+  color: var(--secondary);
+  font-size: 14px;
+}
+
+/* ============================= */
+/* SECTION TITLE */
+/* ============================= */
+
+.section-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* ============================= */
+/* FIX OVERFLOW GLOBAL */
+/* ============================= */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================= */
 /* FOOTER */
 /* ============================= */
 footer {
