@@ -355,6 +355,25 @@ img {
   display: block;
 }
 
+/* FLOATING CTA */
+.floating-cta {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #3B82F6, #60A5FA);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(59,130,246,0.5);
+  z-index: 999;
+  transition: 0.3s;
+}
+
+.floating-cta:hover {
+  transform: scale(1.05);
+}
 /* ============================= */
 /* FOOTER */
 /* ============================= */
