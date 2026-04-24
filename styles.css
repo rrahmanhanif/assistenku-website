@@ -44,19 +44,19 @@ p{font-size:16px;margin-bottom:15px;}
 .apply-box{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
 
 /* =========================================================
-   IMAGE (DUA POLA: img.card-image dan div.card-image > img)
+   IMAGE
 ========================================================= */
-/* wrapper jika card-image adalah DIV (karir) */
 .card-image{width:100%;border-radius:12px;margin-bottom:12px;}
-
-/* jika card-image adalah IMG langsung (layanan) */
 img.card-image{width:100%;height:auto;display:block;object-fit:contain;border-radius:12px;margin-bottom:12px;}
-
-/* jika card-image adalah DIV yang berisi IMG (karir) – default utuh */
 .card-image > img{width:100%;height:auto;display:block;object-fit:contain;border-radius:12px;}
 
-/* gambar lain */
-.founder-img,.legal-img{width:100%;border-radius:12px;margin:10px 0;object-fit:contain;display:block;}
+.founder-img,.legal-img{
+  width:100%;
+  border-radius:12px;
+  margin:10px 0;
+  object-fit:contain;
+  display:block;
+}
 
 /* =========================================================
    BUTTONS
@@ -66,19 +66,15 @@ img.card-image{width:100%;height:auto;display:block;object-fit:contain;border-ra
   text-decoration:none;font-weight:600;transition:.2s;margin-top:10px;
 }
 
-/* Primary */
 .btn-primary{background:#0d6efd;color:#fff;}
 .btn-primary:hover{background:#0b5ed7;}
 
-/* Secondary */
 .btn-secondary{background:#6c757d;color:#fff;}
 .btn-secondary:hover{background:#5a6268;}
 
-/* Outline (blue border) */
 .btn-outline{background:transparent;color:#0b5ed7;border:2px solid #0b5ed7;}
 .btn-outline:hover{background:#0b5ed7;color:#fff;}
 
-/* Tertiary (thin outline) */
 .btn-tertiary{background:transparent;color:#0d6efd;border:1px solid #0d6efd;}
 .btn-tertiary:hover{background:#0b5ed7;border-color:#0b5ed7;color:#fff;}
 
@@ -106,7 +102,12 @@ footer{margin-top:40px;background:#f0f3f8;text-align:center;padding:20px;font-si
 /* =========================================================
    PWA INSTALL BANNER
 ========================================================= */
-.pwa-install{position:fixed;left:12px;right:12px;bottom:16px;z-index:9999;background:#1f1f1f;color:#fff;border-radius:14px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.pwa-install{
+  position:fixed;left:12px;right:12px;bottom:16px;z-index:9999;
+  background:#1f1f1f;color:#fff;border-radius:14px;padding:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
 .pwa-install__left{display:flex;align-items:center;gap:12px;}
 .pwa-install__icon{width:44px;height:44px;border-radius:12px;background:#fff;}
 .pwa-install__title{font-size:16px;font-weight:700;}
@@ -114,10 +115,10 @@ footer{margin-top:40px;background:#f0f3f8;text-align:center;padding:20px;font-si
 .pwa-install__btn{background:transparent;color:#7cb7ff;border:none;font-weight:700;font-size:16px;padding:8px;cursor:pointer;}
 
 /* =========================================================
-   KHUSUS HALAMAN KARIR (rapi seragam + crop aman)
+   KHUSUS HALAMAN KARIR
 ========================================================= */
 .karir-page .card-image{
-  height:260px;       /* boleh 240 / 260 / 280 */
+  height:260px;
   overflow:hidden;
   border-radius:12px;
   background:#fff;
@@ -126,134 +127,40 @@ footer{margin-top:40px;background:#f0f3f8;text-align:center;padding:20px;font-si
 .karir-page .card-image > img{
   width:100%;
   height:100%;
-  object-fit:contain; /* UTUH */
+  object-fit:contain;
   display:block;
 }
 
-/* SECTION */
-.legal-section {
-  padding: 40px 20px;
-}
-
-/* GRID CARD */
-.card-grid {
-  display: grid;
-  gap: 20px;
-}
-
-.card {
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-
-/* BUTTON */
-.btn-primary {
-  display: block;
-  margin-top: 10px;
-  padding: 12px;
-  background: #0b3c5d;
-  color: #fff;
-  text-align: center;
-  border-radius: 8px;
-  text-decoration: none;
-}
-
-/* GRID GAMBAR */
-.legal-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.legal-thumb {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  background: #f5f5f5;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.legal-thumb:hover {
-  transform: scale(1.03);
-}
-
-/* MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  padding-top: 40px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.95);
-}
-
-.modal-content {
-  display: block;
-  margin: auto;
-  max-width: 90%;
-  max-height: 85%;
-  transition: transform 0.2s ease;
-  cursor: zoom-in;
-}
-
-.close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  color: white;
-  font-size: 32px;
-  cursor: pointer;
-}
-
-/* RESPONSIVE */
-@media (min-width: 768px) {
-  .card-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 /* =========================================================
-   LEGAL DOCUMENT GRID (ISOLATED - TIDAK MENGGANGGU GLOBAL)
+   LEGAL DOCUMENT (FINAL - NON GRID)
 ========================================================= */
 
-.legal-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
+.legal-doc{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
   margin-top:10px;
 }
 
-/* thumbnail dokumen */
-.legal-grid .legal-thumb{
-  width:100%;
-  height:110px;            /* kontrol ukuran */
-  object-fit:contain;      /* tidak terpotong */
+.legal-doc img{
+  width:90px;
+  height:130px;
+  object-fit:contain;
   background:#f5f5f5;
   border-radius:8px;
   padding:6px;
   cursor:pointer;
   transition:transform .2s ease;
+  border:1px solid #e5e5e5;
 }
 
-.legal-grid .legal-thumb:hover{
-  transform:scale(1.03);
+.legal-doc img:hover{
+  transform:scale(1.05);
 }
 
-/* mobile optimization */
 @media(max-width:600px){
-  .legal-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .legal-grid .legal-thumb{
-    height:90px;
+  .legal-doc img{
+    width:70px;
+    height:110px;
   }
 }
