@@ -100,7 +100,7 @@ document.addEventListener("click", async (e) => {
 
 const modal = document.getElementById("imageModal");
 const modalImg = document.getElementById("modalImg");
-const images = document.querySelectorAll(".legal-thumb");
+const images = document.querySelectorAll(".legal-card-img");
 const closeBtn = document.querySelector(".close");
 
 let zoom = 1;
@@ -108,6 +108,8 @@ let zoom = 1;
 /* OPEN MODAL */
 images.forEach(img => {
   img.addEventListener("click", () => {
+    if (!modal || !modalImg) return;
+
     modal.style.display = "block";
     modalImg.src = img.src;
     zoom = 1;
@@ -116,30 +118,39 @@ images.forEach(img => {
 });
 
 /* CLOSE */
-closeBtn.onclick = () => modal.style.display = "none";
+if (closeBtn && modal) {
+  closeBtn.onclick = () => modal.style.display = "none";
+}
 
-modal.onclick = (e) => {
-  if (e.target !== modalImg) {
-    modal.style.display = "none";
-  }
-};
+/* CLOSE OUTSIDE */
+if (modal && modalImg) {
+  modal.onclick = (e) => {
+    if (e.target !== modalImg) {
+      modal.style.display = "none";
+    }
+  };
+}
 
 /* ZOOM CLICK */
-modalImg.onclick = () => {
-  zoom = zoom === 1 ? 2 : 1;
-  modalImg.style.transform = `scale(${zoom})`;
-};
+if (modalImg) {
+  modalImg.onclick = () => {
+    zoom = zoom === 1 ? 2 : 1;
+    modalImg.style.transform = `scale(${zoom})`;
+  };
+}
 
 /* ZOOM SCROLL (desktop) */
-modal.addEventListener("wheel", (e) => {
-  e.preventDefault();
+if (modal && modalImg) {
+  modal.addEventListener("wheel", (e) => {
+    e.preventDefault();
 
-  if (e.deltaY < 0) {
-    zoom += 0.2;
-  } else {
-    zoom -= 0.2;
-  }
+    if (e.deltaY < 0) {
+      zoom += 0.2;
+    } else {
+      zoom -= 0.2;
+    }
 
-  zoom = Math.min(Math.max(zoom, 1), 5);
-  modalImg.style.transform = `scale(${zoom})`;
-});
+    zoom = Math.min(Math.max(zoom, 1), 5);
+    modalImg.style.transform = `scale(${zoom})`;
+  });
+}
