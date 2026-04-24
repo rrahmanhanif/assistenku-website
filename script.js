@@ -97,3 +97,49 @@ document.addEventListener("click", async (e) => {
   // Setelah user memilih, tetap nonaktif (Chrome biasanya cooldown)
   setInstallButtonState(false);
 });
+
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImg");
+const images = document.querySelectorAll(".legal-thumb");
+const closeBtn = document.querySelector(".close");
+
+let zoom = 1;
+
+/* OPEN MODAL */
+images.forEach(img => {
+  img.addEventListener("click", () => {
+    modal.style.display = "block";
+    modalImg.src = img.src;
+    zoom = 1;
+    modalImg.style.transform = "scale(1)";
+  });
+});
+
+/* CLOSE */
+closeBtn.onclick = () => modal.style.display = "none";
+
+modal.onclick = (e) => {
+  if (e.target !== modalImg) {
+    modal.style.display = "none";
+  }
+};
+
+/* ZOOM CLICK */
+modalImg.onclick = () => {
+  zoom = zoom === 1 ? 2 : 1;
+  modalImg.style.transform = `scale(${zoom})`;
+};
+
+/* ZOOM SCROLL (desktop) */
+modal.addEventListener("wheel", (e) => {
+  e.preventDefault();
+
+  if (e.deltaY < 0) {
+    zoom += 0.2;
+  } else {
+    zoom -= 0.2;
+  }
+
+  zoom = Math.min(Math.max(zoom, 1), 5);
+  modalImg.style.transform = `scale(${zoom})`;
+});
