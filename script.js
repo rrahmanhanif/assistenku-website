@@ -154,3 +154,25 @@ if (modal && modalImg) {
     modalImg.style.transform = `scale(${zoom})`;
   });
 }
+
+<script>
+  const popup = document.getElementById("kbliPopup");
+  const closeBtn = document.getElementById("closeKbli");
+
+  // Muncul setiap buka halaman
+  window.addEventListener("load", () => {
+    popup.style.display = "flex";
+  });
+
+  // Tutup popup
+  closeBtn.addEventListener("click", () => {
+    popup.style.display = "none";
+  });
+
+  // Optional: klik luar gambar = tutup
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) {
+      popup.style.display = "none";
+    }
+  });
+</script>
